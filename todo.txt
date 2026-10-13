@@ -1,0 +1,6 @@
+12/10/26
+
+tester generatePlanets
+
+1000 m 1000 c
+240 m 120 c par h
