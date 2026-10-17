@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Vessel{% endblock %}
+
+{% block body %}
+    <h1>Edit Vessel</h1>
+
+    {{ include('vessel/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_vessel_index') }}">back to list</a>
+
+    {{ include('vessel/_delete_form.html.twig') }}
+{% endblock %}

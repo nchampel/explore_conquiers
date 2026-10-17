@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vessel index{% endblock %}
+
+{% block body %}
+    <h1>Vessel index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Metal</th>
+                <th>Crystal</th>
+                <th>Deuterium</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for vessel in vessels %}
+            <tr>
+                <td>{{ vessel.id }}</td>
+                <td>{{ vessel.name }}</td>
+                <td>{{ vessel.type }}</td>
+                <td>{{ vessel.metal }}</td>
+                <td>{{ vessel.crystal }}</td>
+                <td>{{ vessel.deuterium }}</td>
+                <td>
+                    <a href="{{ path('app_vessel_show', {'id': vessel.id}) }}">show</a>
+                    <a href="{{ path('app_vessel_edit', {'id': vessel.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_vessel_new') }}">Create new</a>
+    <a href="{{ path('app_home_game_og') }}">accueil</a>
+{% endblock %}

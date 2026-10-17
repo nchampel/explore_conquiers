@@ -44,10 +44,21 @@ class Planet
     #[ORM\Column]
     private ?int $fields = null;
 
+    #[ORM\OneToMany(mappedBy: 'planet', targetEntity: PlanetVessel::class, orphanRemoval: true)]
+    private Collection $planetVessels;
+
+    #[ORM\OneToMany(mappedBy: 'planet', targetEntity: PlanetDefence::class, orphanRemoval: true)]
+    private Collection $planetDefences;
+
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $name = null;
+
     public function __construct()
     {
         $this->planetBuildings = new ArrayCollection();
         $this->planetResources = new ArrayCollection();
+        $this->planetVessels = new ArrayCollection();
+        $this->planetDefences = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -204,6 +215,78 @@ class Planet
     public function setFields(int $fields): static
     {
         $this->fields = $fields;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PlanetVessel>
+     */
+    public function getPlanetVessels(): Collection
+    {
+        return $this->planetVessels;
+    }
+
+    public function addPlanetVessel(PlanetVessel $planetVessel): static
+    {
+        if (!$this->planetVessels->contains($planetVessel)) {
+            $this->planetVessels->add($planetVessel);
+            $planetVessel->setPlanet($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlanetVessel(PlanetVessel $planetVessel): static
+    {
+        if ($this->planetVessels->removeElement($planetVessel)) {
+            // set the owning side to null (unless already changed)
+            if ($planetVessel->getPlanet() === $this) {
+                $planetVessel->setPlanet(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PlanetDefence>
+     */
+    public function getPlanetDefences(): Collection
+    {
+        return $this->planetDefences;
+    }
+
+    public function addPlanetDefence(PlanetDefence $planetDefence): static
+    {
+        if (!$this->planetDefences->contains($planetDefence)) {
+            $this->planetDefences->add($planetDefence);
+            $planetDefence->setPlanet($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlanetDefence(PlanetDefence $planetDefence): static
+    {
+        if ($this->planetDefences->removeElement($planetDefence)) {
+            // set the owning side to null (unless already changed)
+            if ($planetDefence->getPlanet() === $this) {
+                $planetDefence->setPlanet(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): static
+    {
+        $this->name = $name;
 
         return $this;
     }

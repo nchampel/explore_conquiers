@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Planet;
 use App\Entity\PlanetBuilding;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -20,6 +21,22 @@ class PlanetBuildingRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, PlanetBuilding::class);
     }
+
+       /**
+        * @return PlanetBuilding[] retourne les bâtiments
+        */
+        public function findBuildingProductionByPlanet(Planet $planet): array
+        {
+            return $this->createQueryBuilder('p')
+                ->andWhere('p.building IN (1, 2, 3)')
+                ->andWhere('p.planet = :planet')
+                ->setParameter('planet', $planet)
+                // ->orderBy('p.id', 'ASC')
+                // ->setMaxResults(10)
+                ->getQuery()
+                ->getResult()
+            ;
+        }
 
 //    /**
 //     * @return PlanetBuilding[] Returns an array of PlanetBuilding objects

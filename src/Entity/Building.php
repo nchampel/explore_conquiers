@@ -28,7 +28,7 @@ class Building
     private ?int $crystal = null;
 
     #[ORM\Column]
-    private ?int $deuterium = null;
+    private ?int $deuterium = 0;
 
     #[ORM\OneToMany(mappedBy: 'building', targetEntity: PlanetBuilding::class, orphanRemoval: true)]
     private Collection $planetBuildings;
@@ -132,4 +132,5 @@ class Building
 
         return $this;
     }
+
 }

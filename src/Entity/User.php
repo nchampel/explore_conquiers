@@ -37,10 +37,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Planet::class)]
     private Collection $planets;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: ResearchPlayer::class, orphanRemoval: true)]
+    private Collection $researchPlayers;
+
     public function __construct()
     {
         $this->planetBuildings = new ArrayCollection();
         $this->planets = new ArrayCollection();
+        $this->researchPlayers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -186,6 +190,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($planet->getUser() === $this) {
                 $planet->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ResearchPlayer>
+     */
+    public function getResearchPlayers(): Collection
+    {
+        return $this->researchPlayers;
+    }
+
+    public function addResearchPlayer(ResearchPlayer $researchPlayer): static
+    {
+        if (!$this->researchPlayers->contains($researchPlayer)) {
+            $this->researchPlayers->add($researchPlayer);
+            $researchPlayer->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResearchPlayer(ResearchPlayer $researchPlayer): static
+    {
+        if ($this->researchPlayers->removeElement($researchPlayer)) {
+            // set the owning side to null (unless already changed)
+            if ($researchPlayer->getUser() === $this) {
+                $researchPlayer->setUser(null);
             }
         }
 

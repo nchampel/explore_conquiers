@@ -21,6 +21,21 @@ class PlanetRepository extends ServiceEntityRepository
         parent::__construct($registry, Planet::class);
     }
 
+    /**
+     * @return Planet[] retourne les planètes occupées
+     */
+    public function findPlanetsByUserAndNPC(): array
+   {
+       return $this->createQueryBuilder('p')
+           ->andWhere('p.user IS NOT NULL')
+        //    ->setParameter('val', $value)
+        //    ->orderBy('p.id', 'ASC')
+        //    ->setMaxResults(10)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
+
 //    /**
 //     * @return Planet[] Returns an array of Planet objects
 //     */

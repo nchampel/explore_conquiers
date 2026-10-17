@@ -1,0 +1,1685 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <!-- <style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style> -->
+
+    {# <div class="example-wrapper">
+    <h1>Hello {{ user.pseudo }}! ✅</h1>
+
+    This friendly message is coming from me!
+
+
+    
+</div> #}
+
+    
+
+    {# <link rel="stylesheet" type="text/css" href="https://gf1.geo.gfsrv.net/cdnc5/bcabfb589b8e77130280a35910521f.css
+"/>
+            <link rel="stylesheet" type="text/css" href="/assets/css/resourcesbar.css"/>
+            <link rel="stylesheet" type="text/css" href="/assets/css/retrieveEmail.css"/>
+            <link rel="stylesheet" type="text/css" href="/assets/css/technologydetails.css"/>
+            <link rel="stylesheet" type="text/css" href="/assets/css/technologytree.css"/> #}
+    
+                
+                
+
+
+    
+
+            
+    <!-- #MMO:NETBAR# -->
+    <div id="pagefoldtarget"></div>
+    <script type="text/javascript" data-cookieconsent="ignore">
+        var mmoCSS =
+            " body {margin:0; padding:0;} div.openX_interstitial div.openX_int_closeButton a { text-indent:-4000px; float:right; height:23px; width:23px; display:block; background:transparent url(//gf2.geo.gfsrv.net/cdn14/7618d1159940178a2e53a8be22710a.png) repeat-x; } #mmonetbar { background:transparent url(//gf3.geo.gfsrv.net/cdn52/ab65c4951f415dff50d74738c953b5.bg) repeat-x; font:normal 11px Tahoma, Arial, Helvetica, sans-serif; height:32px; left:0; padding:0; position:absolute; text-align:center; top:0; width:100%; z-index:3000; } #mmonetbar #mmoContent { height:32px; margin:0 auto; width:1024px; position: relative; } #mmonetbar .mmosmallbar {width:585px !important;} #mmonetbar .mmosmallbar div.mmoBoxMiddle { width: 290px; } #mmonetbar .mmonewsout {width:800px !important;} #mmonetbar .mmouseronlineout {width:768px !important;} #mmonetbar .mmolangout {width:380px !important;} #mmonetbar .mmolangout .mmoGame { width: 265px; } #mmonetbar #mmoContent.mmoingame { width: 533px; } #mmonetbar #mmoContent.mmoingame .mmoGame { width: auto; } #mmonetbar a, #mmoNetbarSubmenu a { color:#666; font:normal 11px Tahoma, Arial, Helvetica, sans-serif; outline: none; text-decoration:none; white-space:nowrap; } #mmonetbar select { background-color:#091218 !important; border:1px solid #1c2e3a !important; color:#9099a3 !important; font:normal 11px Verdana, Arial, Helvetica, sans-serif; height:18px; margin-top:3px; width:100px; } #mmonetbar .mmoGames select {width:80px;} #mmonetbar option { background-color:#091218 !important; color:#9099a3 !important; } #mmonetbar option:hover { background-color:#132835 !important; } #mmonetbar select#mmoCountry {width:120px;} #mmonetbar .mmoSelectbox { background-color:#091218; float:left; margin:3px 0 0 3px; position:relative; } * html #mmonetbar .mmoSelectbox {position:static;} *+html #mmonetbar .mmoSelectbox {position:static;} #mmonetbar #mmoOneGame {cursor:default; height:14px; margin-top:3px; padding-left:5px; width:80px;} #mmonetbar .label {float:left; font-weight:bold; margin-right:4px; overflow:hidden !important;} #mmonetbar #mmoUsers .label {font-size:10px;} #mmonetbar .mmoBoxLeft, #mmonetbar .mmoBoxRight { background:transparent url(//gf3.geo.gfsrv.net/cdn29/0f334111ba97c654b6e353f7168012.sprites) no-repeat -109px -4px; float:left; width:5px; height:24px; } #mmonetbar .mmoBoxRight {background-position:-126px -4px;} #mmonetbar .mmoBoxMiddle { background:transparent url(//gf3.geo.gfsrv.net/cdn52/ab65c4951f415dff50d74738c953b5.bg) repeat-x 0 -36px; color:#9099a3 !important; float:left; height:24px; line-height:22px; text-align:left; white-space:nowrap; position: relative; z-index: 10000; } #mmonetbar #mmoGames, #mmonetbar #mmoLangs {margin:0px 4px 0 0;} #mmonetbar #mmoNews, #mmonetbar #mmoUsers, #mmonetbar #mmoGame, #mmonetbar .nojsGame {margin:4px 4px 0 0;} #mmonetbar #mmoLogo { background:transparent url(//gf3.geo.gfsrv.net/cdn29/0f334111ba97c654b6e353f7168012.sprites) no-repeat top left; float:left; display:block; height:32px; width:108px; text-indent: -9999px; position: relative; z-index: 1 } #mmonetbar #mmoNews {float:left; width:252px;} #mmonetbar #mmoNews #mmoNewsContent {text-align:left; width:200px;} #mmonetbar #mmoNews #mmoNewsticker {overflow:hidden; width:240px;} #mmonetbar #mmoNews #mmoNewsticker ul { margin: 0; padding: 0; list-style: none; } #mmonetbar #mmoNews #mmoNewsticker ul li { font:normal 11px/22px Tahoma, Arial, Helvetica, sans-serif !important; color:#9099a3 !important; padding: 0; margin: 0; background: none; display: none; } #mmonetbar #mmoNews #mmoNewsticker ul li.mmoTickShow { display: block; } #mmonetbar #mmoNews #mmoNewsticker ul li a img {border:0;} #mmonetbar #mmoNews #mmoNewsticker ul li a {color:#9099a3 !important;display:block;height:24px;line-height:23px;} #mmonetbar #mmoNews #mmoNewsticker ul li a:hover {text-decoration:underline;} #mmonetbar #mmoUsers {float:left; width:178px;} #mmonetbar #mmoUsers .mmoBoxLeft {width:17px;} #mmonetbar #mmoUsers .mmoBoxMiddle {padding-left:3px; width:150px;} #mmonetbar .mmoGame {display:none; float:left; width:432px;} #mmonetbar .mmoGame #mmoGames {float:left; width:206px;} #mmonetbar .mmoGame #mmoLangs {float:left; margin:0; width:252px;} #mmonetbar .mmoGame label { color:#9099a3 !important; float:left; font-weight:400 !important; line-height:22px; margin:0px; text-align:right !important; width:110px; font-size: 11px !important; } #mmonetbar .nojsGame {display:block; width:470px;} #mmonetbar .nojsGame .mmoBoxMiddle {width:450px;} #mmonetbar .nojsGame .mmoSelectbox {margin:0px 0 0 3px;} *+html #mmonetbar .nojsGame .mmoSelectbox {margin:2px 0 0 3px;} * html #mmonetbar .nojsGame .mmoSelectbox {margin:2px 0 0 3px;} #mmonetbar .nojsGame .mmoGameBtn { background:transparent url(//gf3.geo.gfsrv.net/cdn29/0f334111ba97c654b6e353f7168012.sprites) no-repeat -162px -7px; border:none; cursor:pointer; float:left; height:18px; margin:3px 0 0 7px; padding:0; width:18px; } #mmonetbar .mmoSelectArea { border:1px solid #1c2e3a; color:#9099a3 !important; display:block !important; float:none; font-weight:400 !important; font-size:11px; height:16px; line-height:13px; -moz-box-sizing: content-box; overflow:hidden !important; width:90px; } #mmonetbar #mmoLangSelect .mmoSelectArea {width:129px;} #mmonetbar #mmoLangSelect .mmoOptionsDivVisible {min-width:129px;} #mmonetbar .mmoSelectArea .mmoSelectButton { background: url(//gf3.geo.gfsrv.net/cdn29/0f334111ba97c654b6e353f7168012.sprites) no-repeat -141px -8px; float:right; width:17px; height:16px; } #mmonetbar .mmoSelectText {cursor:pointer; float:left; overflow:hidden; padding:1px 2px; width:68px;} #mmonetbar #mmoLangSelect .mmoSelectText {width:107px;} #mmonetbar #mmoOneLang {cursor:default; height:14px;} #mmonetbar div.mmoOneLang { background: none; } #mmonetbar div.mmoOneLang #mmoOneLang { border: none; padding: 2px 3px; } #mmonetbar .mmoOptionsDivInvisible, #mmonetbar .mmoOptionsDivVisible { background-color: #091218 !important; border: 1px solid #1c2e3a; position: absolute; min-width:90px; z-index: 3100; } * html #mmonetbar .mmoOptionsDivVisible .highlight {background-color:#132835 !important} #mmonetbar .mmoOptionsDivInvisible {display: none;} #mmonetbar .mmoOptionsDivVisible ul { border:0; font:normal 11px Tahoma, Arial, Helvetica, sans-serif; list-style: none; margin:0; padding:2px; overflow:auto; overflow-x:hidden; } #mmonetbar #mmoLangs .mmoOptionsDivVisible ul {min-width:125px;} #mmonetbar .mmoOptionsDivVisible ul li { background-color: #091218; height:14px; padding:2px 0; } #mmonetbar .mmoOptionsDivVisible a { color: #9099a3 !important; display: block; font-weight:400 !important; height:16px !important; min-width:80px; text-decoration: none; white-space:nowrap; width:100%; } #mmonetbar #mmoContent .mmoLangList a {min-width:102px;} #mmonetbar .mmoOptionsDivVisible li:hover {background-color: #132835;} #mmonetbar .mmoOptionsDivVisible li a:hover {color: #9099a3 !important;} #mmonetbar .mmoOptionsDivVisible li.mmoActive {background-color: #132835 !important;} #mmonetbar .mmoOptionsDivVisible li.mmoActive a {color: #9099a3 !important;} #mmonetbar .mmoOptionsDivVisible ul.mmoListHeight {height:240px} #mmonetbar .mmoOptionsDivVisible ul.mmoLangList.mmoListHeight li {padding-right:15px !important; width:100%;} #mmonetbar #mmoGameSelect ul.mmoListHeight a {min-width:85px;} #mmonetbar #mmoLangSelect ul.mmoListHeight a {min-width:105px;} #mmonetbar #mmoFocus {position:absolute;left:-2000px;top:-2000px;} #mmonetbar #mmoLangs .mmoSelectText span, #mmonetbar #mmoLangs .mmoflag { background: transparent url(//gf3.geo.gfsrv.net/cdn28/71fe874d78b03e38e06a3b471f6224.png) no-repeat; height:14px !important; padding-left:23px; } .mmo_AE {background-position:left 0px !important} .mmo_AR {background-position:left -14px !important} .mmo_BE {background-position:left -28px !important} .mmo_BG {background-position:left -42px !important} .mmo_BR {background-position:left -56px !important} .mmo_BY {background-position:left -70px !important} .mmo_CA {background-position:left -84px !important} .mmo_CH {background-position:left -98px !important} .mmo_CL {background-position:left -112px !important} .mmo_CN {background-position:left -126px !important} .mmo_CO {background-position:left -140px !important} .mmo_CZ {background-position:left -154px !important} .mmo_DE {background-position:left -168px !important} .mmo_DK {background-position:left -182px !important} .mmo_EE {background-position:left -196px !important} .mmo_EG {background-position:left -210px !important} .mmo_EN {background-position:left -224px !important} .mmo_ES {background-position:left -238px !important} .mmo_EU {background-position:left -252px !important} .mmo_FI {background-position:left -266px !important} .mmo_FR {background-position:left -280px !important} .mmo_GR {background-position:left -294px !important} .mmo_HK {background-position:left -308px !important} .mmo_HR {background-position:left -322px !important} .mmo_HU {background-position:left -336px !important} .mmo_ID {background-position:left -350px !important} .mmo_IL {background-position:left -364px !important} .mmo_IN {background-position:left -378px !important} .mmo_INTL {background-position:left -392px !important} .mmo_IR {background-position:left -406px !important} .mmo_IT {background-position:left -420px !important} .mmo_JP {background-position:left -434px !important} .mmo_KE {background-position:left -448px !important} .mmo_KR {background-position:left -462px !important} .mmo_LT {background-position:left -476px !important} .mmo_LV {background-position:left -490px !important} .mmo_ME {background-position:left -504px !important} .mmo_MK {background-position:left -518px !important} .mmo_MX {background-position:left -532px !important} .mmo_NL {background-position:left -546px !important} .mmo_NO {background-position:left -560px !important} .mmo_PE {background-position:left -574px !important} .mmo_PH {background-position:left -588px !important} .mmo_PK {background-position:left -602px !important} .mmo_PL {background-position:left -616px !important} .mmo_PT {background-position:left -630px !important} .mmo_RO {background-position:left -644px !important} .mmo_RS {background-position:left -658px !important} .mmo_RU {background-position:left -672px !important} .mmo_SE {background-position:left -686px !important} .mmo_SI {background-position:left -700px !important} .mmo_SK {background-position:left -714px !important} .mmo_TH {background-position:left -728px !important} .mmo_TR {background-position:left -742px !important} .mmo_TW {background-position:left -756px !important} .mmo_UA {background-position:left -770px !important} .mmo_UK {background-position:left -784px !important} .mmo_US {background-position:left -798px !important} .mmo_VE {background-position:left -812px !important} .mmo_VN {background-position:left -826px !important} .mmo_YU {background-position:left -840px !important} .mmo_ZA {background-position:left -854px !important} .mmo_WW {background-position:left -392px !important} .mmo_AU {background-position:left -868px !important} div#mmonetbar a:active { top: 0; } div#mmoGamesOverviewPanel { width: 582px; position: absolute; top: 0; right: 0; font: 12px Arial, sans-serif; } div#mmoGamesOverviewPanel h4, div#mmoGamesOverviewPanel h5 { margin: 0; font-size: 12px; font-weight: bold; text-align: left; } div#mmoGamesOverviewPanel a { text-decoration: none; } div#mmoGamesOverviewPanel a img { border: none; } div#mmoGamesOverviewToggle { width: 168px; padding: 4px 0 4px 414px; } div#mmoGamesOverviewToggle h4 { height: 18px; position: relative; background: url(//gf3.geo.gfsrv.net/cdn52/ab65c4951f415dff50d74738c953b5.bg) repeat-x 0 -36px; top: 0px; padding: 3px 20px; -moz-box-sizing: content-box; } div#mmoGamesOverviewToggle h4 a { display: block; width: 116px; height: 16px; line-height: 14px; text-align: left; font-weight: normal; outline: none; color: #9099a3 !important; font-size: 11px !important; position: relative; border: 1px solid #1c2e3a; padding: 0 0 0 10px; background: #091218; -moz-box-sizing: content-box; } div#mmoGamesOverviewToggle h4 a.gameCountZero { cursor: default; text-align: center; padding: 0; width: 126px; } div#mmoGamesOverviewToggle h4 a span.mmoNbPseudoSelect_icon { display: block; position: absolute; top: 0; right: 0; width: 17px; height: 16px; background: url(//gf3.geo.gfsrv.net/cdn29/0f334111ba97c654b6e353f7168012.sprites) no-repeat -141px -8px; } span.iconTriangle { display: block; position: absolute; top: 5px; right: 10px; width: 0px; border: 5px solid transparent; border-bottom-color: #9099a3; } div#mmoGamesOverviewToggle h4 a.toggleHidden { } div#mmoGamesOverviewToggle h4 a.toggleHidden span.iconTriangle { top: 10px; border: 5px solid transparent; border-top-color: #9099a3; } div#mmoGamesOverviewToggle h4 span.mmoNbBoxEdge { display: block; width: 5px; height: 24px; background: url(//gf3.geo.gfsrv.net/cdn29/0f334111ba97c654b6e353f7168012.sprites) no-repeat -109px -4px; position: absolute; top: 0; } div#mmoGamesOverviewToggle h4 span.mmoNbBoxEdge_left { left: 0; } div#mmoGamesOverviewToggle h4 span.mmoNbBoxEdge_right { right: 0; background-position: -126px -4px; } div#mmoGamesOverviewLists { clear: both; background: #091218; width: 580px; border: 1px solid #1c2e3a; float: left; position: relative; top: 0px; -moz-box-sizing: content-box; } div#mmoGamesOverviewLists h5 { clear: both; width: 544px; margin: 0; padding: 0 18px; height: 27px; line-height: 27px; color: #9099a3; border-bottom: 1px solid #1c2e3a; background: url(//gf3.geo.gfsrv.net/cdn52/ab65c4951f415dff50d74738c953b5.bg) repeat-x 0 -3px; font-family: inherit; -moz-box-sizing: content-box; } div#mmoGamesOverviewLists h5 a { color: #9099a3; font-weight: bold; line-height: 27px; } #mmoGamesOverviewLists #mmoGamesOverview_featured li { width: auto; } #mmoGamesOverviewLists #mmoGamesOverview_featured span.gameImgTarget { display: block; width: 560px; height: 180px; margin: 0; } #mmoGamesOverviewLists #mmoGamesOverview_featured span.gameName { display: none; } #mmoGamesOverview_featured img { display: block; } div#mmoGamesOverviewLists ul { margin: 0; padding: 5px 5px; list-style: none; width: 570px; float: left; text-align: left; -moz-box-sizing: content-box; } div#mmoGamesOverviewLists ul li { margin: 0; padding: 0; list-style: none; width: 190px; float: left; background: none; } div#mmoGamesOverviewLists ul li a, #mmoNetbarSubmenu .submenu_item a { display: block; padding: 5px; font-weight: bold; line-height: 1; color: #9099a3 !important; font-size: 11px !important; } div#mmoGamesOverviewLists ul li a:focus, div#mmoGamesOverviewLists ul li a:hover, #mmoNetbarSubmenu .submenu_item a:focus, #mmoNetbarSubmenu .submenu_item a:hover { background-color: #132835; } div#mmoGamesOverviewLists ul li a span.gameImgTarget { display: block; width: 180px; height: 90px; background: none; margin: 0 0 4px 0; } div#mmoGamesOverviewLists ul li a span img { display: block; } #mmoNetbarSubmenu .submenu { background-color: #091218; display: none; position: absolute; z-index: 11111; } div#mmoGamesOverviewLists div#mmoGamesOverviewCountry { width: 20px; height: 14px; position: absolute; top: 6px; right: 12px; background-image: url(//gf3.geo.gfsrv.net/cdn28/71fe874d78b03e38e06a3b471f6224.png); background-repeat: no-repeat; } #mmonetbar div.nojsGame { width: 432px !important; } #mmonetbar div.nojsGame div.mmoBoxMiddle { width: 422px; } #mmonetbar div.nojsGame label { width: 105px; } #pagefoldtarget .nbPF { position: absolute; top: 0; z-index: 999999; text-indent: -9999px; width: 125px; height: 120px; } #pagefoldtarget .nbPFLeft { left: 0px; } #pagefoldtarget .nbPF.nbPFRight { right: 0px; background-position: right 0px } #pagefoldtarget .nbPFDark.nbPFRight { background-image: url(//gf2.geo.gfsrv.net/cdn75/98954a5b65ea8ac2b5472017426515.png); _background-image: url(//gf1.geo.gfsrv.net/cdn9d/ca3b68a0f2fc9b5fd4f4e9acc1aa9f.gif); } #pagefoldtarget .nbPFDark.nbPFLeft { background-image: url(//gf2.geo.gfsrv.net/cdndd/f3329ffdb5f66db6930cd98f547da7.png); _background-image: url(//gf1.geo.gfsrv.net/cdn37/470d765043864d857eb6ffdc30bc4d.gif); } #pagefoldtarget .nbPFLight.nbPFRight { background-image: url(//gf1.geo.gfsrv.net/cdn34/8ae6ba8194f659bc3784e01b457749.png); _background-image: url(//gf2.geo.gfsrv.net/cdn46/2634bb44de90d88b10e3fe8cf940ff.gif); } #pagefoldtarget .nbPFLight.nbPFLeft { background: url(//gf1.geo.gfsrv.net/cdn38/d4718fc349f75778ee051b4cc76824.png) no-repeat; _background-image: url(//gf1.geo.gfsrv.net/cdn01/3dc42ed780058a74a17220804afda1.gif); } #pagefoldtarget .nbPF a{ text-indent: -9999px; display: block; width: 110px; height: 95px; } #pagefoldtarget .nbPF.nbPFRight a{ float:right; } #pagefoldtarget .nbPF.nbPFHover a{ width:358px; height: 320px; } #pagefoldtarget .nbPF.nbPFHover { background-position: left -129px !important; width:400px; height: 400px; } #pagefoldtarget .nbPF.nbPFRight.nbPFHover { background-position: right -129px !important; } ";
+        var mmostyle = document.createElement("style");
+        if (navigator.appName == "Microsoft Internet Explorer") {
+            mmostyle.setAttribute("type", "text/css");
+            mmostyle.styleSheet.cssText = mmoCSS;
+        } else {
+            var mmostyleTxt = document.createTextNode(mmoCSS);
+            mmostyle.type = "text/css";
+            mmostyle.appendChild(mmostyleTxt);
+        }
+        document.getElementsByTagName("head")[0].appendChild(mmostyle);
+    </script>
+
+    <noscript>
+        <style type="text/css">
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            #mmonetbar {
+                background: transparent
+                    url(//gf3.geo.gfsrv.net/cdn52/ab65c4951f415dff50d74738c953b5.bg)
+                    repeat-x;
+                font:
+                    normal 11px Tahoma,
+                    Arial,
+                    Helvetica,
+                    sans-serif;
+                height: 32px;
+                left: 0;
+                padding: 0;
+                position: absolute;
+                text-align: center;
+                top: 0;
+                width: 100%;
+                z-index: 3000;
+            }
+            #mmonetbar #mmoContent {
+                height: 32px;
+                margin: 0 auto;
+                width: 1024px;
+                position: relative;
+            }
+            #mmonetbar #mmoLogo {
+                background: transparent
+                    url(//gf3.geo.gfsrv.net/cdn29/0f334111ba97c654b6e353f7168012.sprites)
+                    no-repeat top left;
+                float: left;
+                display: block;
+                height: 32px;
+                width: 108px;
+                text-indent: -9999px;
+            }
+            #mmonetbar #mmoNews,
+            #mmonetbar #mmoGame,
+            #mmonetbar #mmoFocus,
+            #pagefoldtarget {
+                display: none !important;
+            }
+        </style>
+    </noscript>
+
+    <div id="mmoNetbarSubmenu"><div id='submenu_LittleGames' class='submenu' onmouseenter='mmoHoverMenu("LittleGames")' onmouseleave='mmoLeaveMenu("LittleGames")'><div class='submenu_item'><a href='https://gameforge.com/fr-FR/littlegames/jeux-io/' target='_blank'>Jeu .io</a></div><div class='submenu_item'><a href='https://gameforge.com/fr-FR/littlegames/jeux-de-mahjong/' target='_blank'>Jeu Mahjong</a></div><div class='submenu_item'><a href='https://gameforge.com/fr-FR/littlegames/jeux-de-auto/' target='_blank'>Jeu Voiture</a></div><div class='submenu_item'><a href='https://gameforge.com/fr-FR/littlegames/jeux-de-filles/' target='_blank'>Jeu Fille</a></div><div class='submenu_item'><a href='https://gameforge.com/fr-FR/littlegames/jeux-de-moto/' target='_blank'>Jeu Moto</a></div><div class='submenu_item'><a href='https://gameforge.com/fr-FR/littlegames/jeux-de-bubble-shooter/' target='_blank'>Jeu Bubble</a></div><div class='submenu_item'><a href='https://gameforge.com/fr-FR/littlegames/jeux-de-multijoueur/' target='_blank'>Jeu Multijoueur</a></div><div class='submenu_item'><a href='https://gameforge.com/fr-FR/littlegames/jeux-de-arcade/' target='_blank'>Jeu Arcade</a></div><div class='submenu_item'><a href='https://gameforge.com/fr-FR/littlegames/jeux-de-football/' target='_blank'>Jeu Foot</a></div><div class='submenu_item'><a href='https://gameforge.com/fr-FR/littlegames/jeux-de-action/' target='_blank'>Jeu Action</a></div></div></div>
+
+//     <script type="text/javascript" data-cookieconsent="ignore">
+// function mmoEl(name){if(document.getElementById){return document.getElementById(name);}else if(document.all){return document.all[name];}else if(document.layers){return document.layers[name];}
+// return false;}
+// function mmoJump(el){window.location.href=el.options[el.selectedIndex].value;}
+// var mmo_tickDly=3000;var mmo_tickFadeDly=50;var mmo_tickFadeTicks=10;var mmoTickEl=null;var mmoTickItems=null;var mmoTickIdx=0;var mmoTickState=0;var mmoTickFade=1;var mmoTickHalt=false;function mmoTicker(){var f=0;try{mmoTickEl=mmoEl('mmoNewsticker');if(mmoTickEl){mmoTickItems=mmoTickEl.getElementsByTagName("li");if(mmoTickItems){f=1;}}}catch(e){f=0;}
+// if(!f){setTimeout(mmoTicker,10);return;}
+// setTimeout(mmoTicknext,0);}
+// function mmoTicknext(){if(mmoTickHalt){mmoTickAlphaFor(mmoTickEl,100);setTimeout(mmoTicknext,500);return;}
+// if(mmoTickState===0){mmoTickFade=mmoTickFade-1;mmoTickAlpha();if(mmoTickFade<=0){mmoTickState=1;setTimeout(mmoTicknext,0);return;}
+// setTimeout(mmoTicknext,mmo_tickFadeDly);return;}
+// if(mmoTickState===1){mmoTickItems[mmoTickIdx].className="";mmoTickIdx++;if(mmoTickIdx>=mmoTickItems.length)mmoTickIdx=0;mmoTickItems[mmoTickIdx].className="mmoTickShow";setTimeout(mmoTicknext,mmo_tickFadeDly);mmoTickState=2;return;}
+// if(mmoTickState===2){mmoTickFade=mmoTickFade+1;mmoTickAlpha();if(mmoTickFade>=mmo_tickFadeTicks){if(mmoTickItems.length<2)return;mmoTickState=0;setTimeout(mmoTicknext,mmo_tickDly);return;}
+// setTimeout(mmoTicknext,mmo_tickFadeDly);return;}}
+// function mmoTickAlpha(){var a=(100/mmo_tickFadeTicks)*mmoTickFade;mmoTickAlphaFor(mmoTickEl,a);}
+// function mmoTickAlphaFor(el,a){el.style.filter='Alpha(opacity='+a+')';el.style.opacity=a/100;el.style.MozOpacity=a/100;el.style.KhtmlOpacity=a/100;}
+// var mmoActive_select=null;function mmoInitSelect(){if(!document.getElementById)return false;document.getElementById('mmonetbar').style.display='block';document.getElementById('mmoGame').style.display='block';document.getElementById('mmoFocus').onkeyup=function(e){mmo_selid=mmoActive_select.id.replace('mmoOptionsDiv','');if(!e){e=window.event;}
+// if(e.keyCode)var thecode=e.keyCode;else if(e.which)var thecode=e.which;mmoSelectMe(mmo_selid,thecode);}}
+// function mmoSelectMe(selid,thecode)
+// {
+//     var mmolist=document.getElementById('mmoList'+selid);
+//     var mmoitems=mmolist.getElementsByTagName('li');
+//     switch(thecode)
+//     {case 13:mmoShowOptions(selid);
+//     window.location=mmoActive_select.url;
+//     break;
+//     case 38:mmoActive_select.activeit.className='';
+//     var minus=((mmoActive_select.activeid-1)<=0)?'0':(mmoActive_select.activeid-1);
+//     mmoActive_select=mmoSetActive(selid,minus);
+//     break;
+//     case 40:mmoActive_select.activeit.className='';
+//     var plus=((mmoActive_select.activeid+1)>=mmoitems.length)?(mmoitems.length-1):(mmoActive_select.activeid+1);
+//     mmoActive_select=mmoSetActive(selid,plus);
+//     break;
+//     default:thecode=String.fromCharCode(thecode);
+//     var found=false;for(var i=0;i<mmoitems.length;i++){var _a=mmoitems[i].getElementsByTagName('a');
+//     if(navigator.appName.indexOf("Explorer")>-1){}else{txtContent=_a[0].textContent;}
+// if(!found&&(thecode.toLowerCase()===txtContent.charAt(0).toLowerCase())){mmoActive_select.activeit.className='';mmoActive_select=mmoSetActive(selid,i);found=true;}}
+// break;}}
+// function mmoSetActive(selid,itemid){mmoActive_select=null;var mmolist=document.getElementById('mmoList'+selid);var mmoitems=mmolist.getElementsByTagName('li');mmoActive_select=document.getElementById('mmoOptionsDiv'+selid);mmoActive_select.selid=selid;if(itemid!==undefined){var _a=mmoitems[itemid].getElementsByTagName('a');var textVar=document.getElementById("mmoMySelectText"+selid);textVar.innerHTML=_a[0].innerHTML;if(selid===1)textVar.className=_a[0].className;mmoitems[itemid].className='mmoActive';}
+// for(var i=0;i<mmoitems.length;i++){if(mmoitems[i].className==='mmoActive'){mmoActive_select.activeit=mmoitems[i];mmoActive_select.activeid=i;mmoActive_select.url=(mmoitems[i].getElementsByTagName('a'))?mmoitems[i].getElementsByTagName('a')[0].href:null;}}
+// return mmoActive_select;}
+// function mmoShowOptions(g){var _elem=document.getElementById("mmoOptionsDiv"+g);if((mmoActive_select)&&(mmoActive_select!==_elem)){mmoActive_select.className="mmoOptionsDivInvisible";document.getElementById('mmonetbar').focus();}
+// if(_elem.className==="mmoOptionsDivInvisible"){document.getElementById('mmoFocus').focus();mmoActive_select=mmoSetActive(g);if(document.documentElement){document.documentElement.onclick=mmoHideOptions;}else{window.onclick=mmoHideOptions;}
+// _elem.className="mmoOptionsDivVisible";}else if(_elem.className==="mmoOptionsDivVisible"){_elem.className="mmoOptionsDivInvisible";document.getElementById('mmonetbar').focus();}}
+// function mmoHideOptions(e){if(mmoActive_select){if(!e)e=window.event;var _target=(e.target||e.srcElement);if((_target.id.indexOf('mmoOptionsDiv')!==-1))return false;if(mmoisElementBefore(_target,'mmoSelectArea')===0&&(mmoisElementBefore(_target,'mmoOptionsDiv')===0)){mmoActive_select.className="mmoOptionsDivInvisible";mmoActive_select=null;}}else{if(document.documentElement)document.documentElement.onclick=function(){};else window.onclick=null;}}
+// function mmoisElementBefore(_el,_class){var _parent=_el;do _parent=_parent.parentNode;while(_parent&&(_parent.className!=null)&&(_parent.className.indexOf(_class)===-1))
+// return(_parent.className&&(_parent.className.indexOf(_class)!==-1))?1:0;}
+// var ua=navigator.userAgent.toLowerCase();var ie6browser=(ua.indexOf("msie 6")>-1)&&(ua.indexOf("opera")<0);function highlight(el,mod){if(ie6browser){if(mod===1&&!el.className.match(/highlight/))el.className=el.className+' highlight';else if(mod===0)el.className=el.className.replace(/highlight/g,'');}}
+// var mmoToggleDisplay={init:function(wrapperId){var wrapper=document.getElementById(wrapperId);if(!wrapper)return;var headline=wrapper.getElementsByTagName("h4")[0],link=headline.getElementsByTagName("a")[0];if(link.className.indexOf("gameCountZero")!==-1)return false;var panel=document.getElementById(link.hash.substr(1));mmoToggleDisplay.hidePanel(panel,link);link.onclick=function(e){mmoToggleDisplay.loadImages();mmoToggleDisplay.toggle(this,panel);return false;};mmoToggleDisplay.outerClick(wrapper,link,panel);var timeoutID=null,delay=5000;wrapper.onmouseout=function(e){if(!e){e=window.event;}
+// var reltg=e.relatedTarget?e.relatedTarget:e.toElement;if(reltg===wrapper||mmoToggleDisplay.isChildOf(reltg,wrapper)){return;}
+// timeoutID=setTimeout(function(){mmoToggleDisplay.hidePanel(panel,link);},delay);};wrapper.onmouseover=function(e){if(timeoutID){clearTimeout(timeoutID);}};},isChildOf:function(child,parent){while(child&&child!==parent){child=child.parentNode;}
+// return child===parent;},hidePanel:function(panel,link){panel.style.display="none";link.className="toggleHidden";},toggle:function(link,panel){panel.style.display=panel.style.display==="none"?"block":"none";link.className=link.className==="toggleHidden"?"":"toggleHidden";},outerClick:function(wrapper,link,panel){document.body.onclick=function(e){if(!e){e=window.event}
+// if(!(mmoToggleDisplay.isChildOf((e.target||e.srcElement),wrapper))&&panel.style.display!=="none"){mmoToggleDisplay.toggle(link,panel);}}},loadImages:function(){var script=document.createElement("script");script.type="text/javascript";var jsonGameData_browser='{"bitefight":"\/\/gf1.geo.gfsrv.net\/cdn3f\/d53efd82d430eaa71b708336af9624.png","ikariam":"\/\/gf1.geo.gfsrv.net\/cdn97\/5eb97ec17c9bf00ee949a25477c60f.jpg","wildguns":"\/\/gf2.geo.gfsrv.net\/cdndd\/ebc630fd6cd54015dde8278c245157.jpg","gladiatus":"\/\/gf3.geo.gfsrv.net\/cdnbb\/d085978b65d61721efa60ad406bf74.jpg","battleknight":"\/\/gf3.geo.gfsrv.net\/cdn88\/1078f8c8b702f6c00bd80540a15de4.png","legend":"\/\/gf1.geo.gfsrv.net\/cdn6b\/31521d05ea6178577f99be0cf2a227.jpg","kingsage":"\/\/gf1.geo.gfsrv.net\/cdncd\/48d4d41c64ce8cd6d180828935ef80.png","LittleGames":"\/\/gf1.geo.gfsrv.net\/cdn38\/66b5d81c98a38def3fab97a3e3e6bd.jpg","GMag":"\/\/gf1.geo.gfsrv.net\/cdnf0\/88646a3b18e92d232bad5b8391cec7.jpg"}',jsonGameData_client='{"metin2":"\/\/gf1.geo.gfsrv.net\/cdn31\/42e645397ef450be0886499f765855.jpg","shelfheroes":"\/\/gf3.geo.gfsrv.net\/cdnb3\/e3251489ec189ada4be46c8937b5ea.jpg","aionclassic":"\/\/gf1.geo.gfsrv.net\/cdnf7\/b7c61c7f69e94f140a2974f5b6c3f5.jpg","4story":"\/\/gf3.geo.gfsrv.net\/cdn21\/8d2cfb67ec3607d2e5c83c61b97238.jpg","underarock":"\/\/gf2.geo.gfsrv.net\/cdn44\/8095267d67ff3d00b2c73f683cf062.jpg","hiddenkitten":"\/\/gf2.geo.gfsrv.net\/cdn74\/38f9c661d019fba68f09538ea7bd55.jpg","tinythor":"\/\/gf3.geo.gfsrv.net\/cdne0\/8bfcba9516e86833ac9707136a8d6f.jpg","cubio":"\/\/gf1.geo.gfsrv.net\/cdn01\/28283bdc6d43ce25ef518787276cf2.jpg","aion":"\/\/gf1.geo.gfsrv.net\/cdn07\/a155657608cd0cdff7417c8d18aac1.jpg","elsword":"\/\/gf3.geo.gfsrv.net\/cdn28\/f1d511fc6386d1242f9928eac92079.jpg","runesofmagic":"\/\/gf1.geo.gfsrv.net\/cdn69\/35877003ccc87e5e1c9d1c31e3f8ae.jpg"}',jsonGameData_featured='{"nostale":"\/\/gf1.geo.gfsrv.net\/cdn62\/84c9d0e323420705236077b143ee31.teaser"}';script.text='';script.text+=' mmoToggleDisplay.callback('+jsonGameData_featured+', "featured");';script.text+=' mmoToggleDisplay.callback('+jsonGameData_client+', "client");';script.text+='mmoToggleDisplay.callback('+jsonGameData_browser+', "browser");';document.getElementsByTagName("head")[0].appendChild(script);mmoToggleDisplay.loadImages=function(){};},callback:function(data,gamesCat){for(var gameName in data){var gameSpan=document.getElementById("gameImgTarget_"+gameName);if(!gameSpan){return false;}
+// var gameImg=document.createElement("img");gameImg.src=""+data[gameName];gameImg.alt="";gameSpan.appendChild(gameImg);}}};    </script>
+
+    {# <div id="mmonetbar" class="mmoogame">
+    
+            <div id="mmoContent" class="mmonewsout">
+
+                <a
+                    id="mmoLogo"
+                    target="_blank"
+                    href="https://fr.gameforge.com/games/ogame?kid=5-29808-00108-1105-101121df"
+                    title="Gameforge.com &ndash; Feel free to play"
+                >Gameforge.com &ndash; Feel free to play</a>
+
+                <!-- news -->
+                <div id="mmoNews">
+                    <div class="mmoBoxLeft"></div>
+                    <div class="mmoBoxMiddle" onmouseover="mmoTickHalt=true;" onmouseout="mmoTickHalt=false;">
+                        <div class="mmoNewsContent">
+                            <div id="mmoNewsticker">
+                                <ul>
+                                    <li class="mmoTickShow">
+                                        <a target="_blank" href="https://gameforge.com/play/nostale?kid=5-09108-09008-2610-12027015"><b>NosTale</b> : Catacombes : 10 étages inédits</a>
+                                    </li>
+                                    <li class="">
+                                        <a target="_blank" href="https://lobby.gladiatus.gameforge.com/?kid=5-03708-09008-2610-12027109"><b>Gladiatus</b> : nouveau serveur des héros</a>
+                                    </li>
+                                    <li class="">
+                                        <a target="_blank" href="https://gameforge.com/fr-FR/play/metin2/news/5aac2ee9-bad0-41ff-b99b-2e74ad06fec2?kid=5-02008-09008-2610-1202714b"><b>Metin2:</b> Aamon's Legacy</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mmoBoxRight"></div>
+                </div>
+        
+                <div id="mmoGame" class="mmoGame">
+                    <div class="mmoBoxLeft"></div>
+                    <div class="mmoBoxMiddle">
+
+                        <!--<div id="mmoGames"></div>-->
+
+                        <div id="mmoLangs">
+                            <label>Choisissez un pays:</label>
+                            <div id="mmoLangSelect" class="mmoSelectbox">
+                                <div id="mmoSarea1" onclick="mmoShowOptions(1)" class="mmoSelectArea">
+                                    <div class="mmoSelectText" id="mmoMySelectContent1">
+                                        <div id="mmoMySelectText1" class="mmoflag mmo_FR">France</div>                                </div>
+                                    <div class="mmoSelectButton"></div>
+                                </div>
+                                <div class="mmoOptionsDivInvisible" id="mmoOptionsDiv1">
+                                    <ul class="mmoLangList mmoListHeight" id="mmoList1">
+                                        <li><a href="https://play.ogame.gameforge.com/?kid=5-00140-00108-1105-120121c1" target="_blank" rel="nofollow" class="mmoflag mmo_AR">Argentina</a></li>
+                                        <li><a href="//br.ogame.gameforge.com/?kid=5-00119-00108-1105-120121b2" target="_blank" rel="nofollow" class="mmoflag mmo_BR">Brasil</a></li>
+                                        <li><a href="https://play.ogame.gameforge.com/?kid=5-00120-00108-1105-120121ee" target="_blank" rel="nofollow" class="mmoflag mmo_DK">Danmark</a></li>
+                                        <li><a href="https://play.ogame.gameforge.com/?kid=5-00106-00108-1105-12012131" target="_blank" rel="nofollow" class="mmoflag mmo_DE">Deutschland</a></li>
+                                        <li><a href="https://play.ogame.gameforge.com/?kid=5-00109-00108-1105-12012186" target="_blank" rel="nofollow" class="mmoflag mmo_ES">España</a></li>
+                                        <li class="mmoActive"><a href="https://play.ogame.gameforge.com/?kid=5-00108-00108-1105-12012196" target="_blank" rel="nofollow" class="mmoflag mmo_FR">France</a></li>
+                                        <li><a href="https://play.ogame.gameforge.com/?kid=5-00126-00108-1105-120121c8" target="_blank" rel="nofollow" class="mmoflag mmo_HR">Hrvatska</a></li>
+                                        <li><a href="https://play.ogame.gameforge.com/?kid=5-00110-00108-1105-12012162" target="_blank" rel="nofollow" class="mmoflag mmo_IT">Italia</a></li>
+                                        <li><a href="//hu.ogame.gameforge.com/?kid=5-00132-00108-1105-12012145" target="_blank" rel="nofollow" class="mmoflag mmo_HU">Magyarország</a></li>
+                                        <li><a href="https://play.ogame.gameforge.com/?kid=5-00139-00108-1105-120121e4" target="_blank" rel="nofollow" class="mmoflag mmo_MX">México</a></li>
+                                        <li><a href="https://play.ogame.gameforge.com/?kid=5-00113-00108-1105-1201219c" target="_blank" rel="nofollow" class="mmoflag mmo_NL">Nederland</a></li>
+                                        <li><a href="https://play.ogame.gameforge.com/?kid=5-00134-00108-1105-1201211b" target="_blank" rel="nofollow" class="mmoflag mmo_NO">Norge</a></li>
+                                        <li><a href="https://play.ogame.gameforge.com/?kid=5-00111-00108-1105-120121e0" target="_blank" rel="nofollow" class="mmoflag mmo_PL">Polska</a></li>
+                                        <li><a href="https://play.ogame.gameforge.com/?kid=5-00117-00108-1105-120121ce" target="_blank" rel="nofollow" class="mmoflag mmo_PT">Portugal</a></li>
+                                        <li><a href="https://play.ogame.gameforge.com/?kid=5-00133-00108-1105-12012146" target="_blank" rel="nofollow" class="mmoflag mmo_RO">Romania</a></li>
+                                        <li><a href="https://play.ogame.gameforge.com/?kid=5-00160-00108-1105-12012166" target="_blank" rel="nofollow" class="mmoflag mmo_SI">Slovenija</a></li>
+                                        <li><a href="https://play.ogame.gameforge.com/?kid=5-00135-00108-1105-120121fa" target="_blank" rel="nofollow" class="mmoflag mmo_SK">Slovensko</a></li>
+                                        <li><a href="https://play.ogame.gameforge.com/?kid=5-00137-00108-1105-1201212b" target="_blank" rel="nofollow" class="mmoflag mmo_FI">Suomi</a></li>
+                                        <li><a href="https://play.ogame.gameforge.com/?kid=5-00123-00108-1105-12012184" target="_blank" rel="nofollow" class="mmoflag mmo_SE">Sverige</a></li>
+                                        <li><a href="https://play.ogame.gameforge.com/?kid=5-00114-00108-1105-120121b9" target="_blank" rel="nofollow" class="mmoflag mmo_TR">Türkiye</a></li>
+                                        <li><a href="https://play.ogame.gameforge.com/?kid=5-00145-00108-1105-120121e0" target="_blank" rel="nofollow" class="mmoflag mmo_US">USA</a></li>
+                                        <li><a href="https://play.ogame.gameforge.com/?kid=5-00107-00108-1105-1201214f" target="_blank" rel="nofollow" class="mmoflag mmo_EN">United Kingdom</a></li>
+                                        <li><a href="//cz.ogame.gameforge.com/?kid=5-00131-00108-1105-12012118" target="_blank" rel="nofollow" class="mmoflag mmo_CZ">Česká Republika</a></li>
+                                        <li><a href="//gr.ogame.gameforge.com/?kid=5-00127-00108-1105-12012111" target="_blank" rel="nofollow" class="mmoflag mmo_GR">Ελλάδα</a></li>
+                                        <li><a href="https://play.ogame.gameforge.com/?kid=5-00115-00108-1105-120121c0" target="_blank" rel="nofollow" class="mmoflag mmo_RU">Российская Федерация</a></li>
+                                        <li><a href="https://play.ogame.gameforge.com/?kid=5-00116-00108-1105-1201219d" target="_blank" rel="nofollow" class="mmoflag mmo_TW">台灣</a></li>
+                                        <li><a href="https://play.ogame.gameforge.com/?kid=5-00122-00108-1105-12012143" target="_blank" rel="nofollow" class="mmoflag mmo_JP">日本</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mmoBoxRight"></div>
+
+                    <div id="mmoGamesOverviewPanel">
+                        <div id="mmoGamesOverviewToggle">
+                            <h4>
+                                <a href="#mmoGamesOverviewLists">Plus de jeux<span class="mmoNbPseudoSelect_icon"></span></a>
+                                <span class="mmoNbBoxEdge mmoNbBoxEdge_left"></span>
+                                <span class="mmoNbBoxEdge mmoNbBoxEdge_right"></span>
+                            </h4>
+                        </div>
+                        <div id="mmoGamesOverviewLists">
+                            <div id="mmoGamesOverviewCountry" class="mmo_FR"></div>
+
+                            <!-- Section: Featured Game -->
+                            <h5>Jeu conseillé</h5>
+                            <ul id="mmoGamesOverview_featured">
+                                <li>
+                                    <a
+                                        id="mmoTile_nostale"
+                                        href="https://fr.nostale.gameforge.com/landing/?kid=5-09108-00108-1105-1202817f"
+                                        title="Incarne la légende !"
+                                        target="_blank"
+                                        onmouseenter="mmoHoverTile('nostale')"
+                                        onmouseleave="mmoLeaveTile('nostale')"
+                                    >
+                                        <span id="gameImgTarget_nostale" class="gameImgTarget"></span>
+                                        <span class="gameName">NosTale</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        
+                            <!-- Section: Client Games -->
+                            <h5><a href="https://gameforge.com/fr-FR/mmorpg/?origin=netbar" target="_blank">Client Games</a></h5>
+                            <ul id="mmoGamesOverview_client">
+                                <li class="mmoGameIcon mmoGameIcon_metin2 mmoGameIcon_metin2_fr">
+                                    <a
+                                        id="mmoTile_metin2"
+                                        href="https://fr.metin2.gameforge.com/landing?kid=5-02008-00108-1105-12028177"
+                                        title="Affûte ton épée et ton esprit"
+                                        target="_blank"
+                                        onmouseenter="mmoHoverTile('metin2')"
+                                        onmouseleave="mmoLeaveTile('metin2')"
+                                    >
+                                        <span id="gameImgTarget_metin2" class="gameImgTarget"></span>
+                                        Metin2                                        </a>
+                                </li>
+                                <li class="mmoGameIcon mmoGameIcon_shelfheroes mmoGameIcon_shelfheroes_fr">
+                                    <a
+                                        id="mmoTile_shelfheroes"
+                                        href="https://store.steampowered.com/app/3151140/Shelf_Heroes/?utm_source=gameforge&utm_campaign=fgs2026&utm_medium=netbar&kid=5-abw08-00108-1105-1202816a"
+                                        title="Liste de Souhaits"
+                                        target="_blank"
+                                        onmouseenter="mmoHoverTile('shelfheroes')"
+                                        onmouseleave="mmoLeaveTile('shelfheroes')"
+                                    >
+                                        <span id="gameImgTarget_shelfheroes" class="gameImgTarget"></span>
+                                        Shelf Heroes                                        </a>
+                                </li>
+                                <li class="mmoGameIcon mmoGameIcon_aionclassic mmoGameIcon_aionclassic_fr">
+                                    <a
+                                        id="mmoTile_aionclassic"
+                                        href="https://join.aionclassic.gameforge.com?kid=5-aba08-00108-1105-12028114"
+                                        title="Retour aux sources"
+                                        target="_blank"
+                                        onmouseenter="mmoHoverTile('aionclassic')"
+                                        onmouseleave="mmoLeaveTile('aionclassic')"
+                                    >
+                                        <span id="gameImgTarget_aionclassic" class="gameImgTarget"></span>
+                                        Aion Classic Europe                                        </a>
+                                </li>
+                                <li class="mmoGameIcon mmoGameIcon_4story mmoGameIcon_4story_fr">
+                                    <a
+                                        id="mmoTile_4story"
+                                        href="http://fr.4story.gameforge.com/landing?kid=5-23308-00108-1105-12028153"
+                                        title="Pour la lumière de la vérité"
+                                        target="_blank"
+                                        onmouseenter="mmoHoverTile('4story')"
+                                        onmouseleave="mmoLeaveTile('4story')"
+                                    >
+                                        <span id="gameImgTarget_4story" class="gameImgTarget"></span>
+                                        4Story                                        </a>
+                                </li>
+                                <li class="mmoGameIcon mmoGameIcon_underarock mmoGameIcon_underarock_fr">
+                                    <a
+                                        id="mmoTile_underarock"
+                                        href="https://store.steampowered.com/app/1667040/Under_a_Rock/?utm_source=gf&utm_campaign=netbar&utm_medium=web&kid=5-abk08-00108-1105-1202814c"
+                                        title="LISTE DE SOUHAITS"
+                                        target="_blank"
+                                        onmouseenter="mmoHoverTile('underarock')"
+                                        onmouseleave="mmoLeaveTile('underarock')"
+                                    >
+                                        <span id="gameImgTarget_underarock" class="gameImgTarget"></span>
+                                        Under a Rock                                        </a>
+                                </li>
+                                <li class="mmoGameIcon mmoGameIcon_hiddenkitten mmoGameIcon_hiddenkitten_fr">
+                                    <a
+                                        id="mmoTile_hiddenkitten"
+                                        href="https://store.steampowered.com/app/2402200/Hidden_Kitten/?kid=5-abi08-00108-1105-12028141"
+                                        title="Hidden Kitten"
+                                        target="_blank"
+                                        onmouseenter="mmoHoverTile('hiddenkitten')"
+                                        onmouseleave="mmoLeaveTile('hiddenkitten')"
+                                    >
+                                        <span id="gameImgTarget_hiddenkitten" class="gameImgTarget"></span>
+                                        Chat Caché                                        </a>
+                                </li>
+                                <li class="mmoGameIcon mmoGameIcon_tinythor mmoGameIcon_tinythor_fr">
+                                    <a
+                                        id="mmoTile_tinythor"
+                                        href="https://store.steampowered.com/app/541310/Tiny_Thor/?utm_source=gf&utm_medium=netbar&utm_campaign=5-ab807-09007-2302-120281cf&kid=5-ab808-00108-1105-12028110"
+                                        title="DISPONIBLE SUR STEAM"
+                                        target="_blank"
+                                        onmouseenter="mmoHoverTile('tinythor')"
+                                        onmouseleave="mmoLeaveTile('tinythor')"
+                                    >
+                                        <span id="gameImgTarget_tinythor" class="gameImgTarget"></span>
+                                        Tiny Thor                                        </a>
+                                </li>
+                                <li class="mmoGameIcon mmoGameIcon_cubio mmoGameIcon_cubio_fr">
+                                    <a
+                                        id="mmoTile_cubio"
+                                        href="https://www.playcubio.com/?kid=5-abe08-00108-1105-12028193"
+                                        title="Créer. Jouer. Partager."
+                                        target="_blank"
+                                        onmouseenter="mmoHoverTile('cubio')"
+                                        onmouseleave="mmoLeaveTile('cubio')"
+                                    >
+                                        <span id="gameImgTarget_cubio" class="gameImgTarget"></span>
+                                        Cubio                                        </a>
+                                </li>
+                                <li class="mmoGameIcon mmoGameIcon_aion mmoGameIcon_aion_fr">
+                                    <a
+                                        id="mmoTile_aion"
+                                        href="https://fr.aion.gameforge.com/website/7-0?kid=5-62008-00108-1105-1202817f"
+                                        title="Déployez vos ailes"
+                                        target="_blank"
+                                        onmouseenter="mmoHoverTile('aion')"
+                                        onmouseleave="mmoLeaveTile('aion')"
+                                    >
+                                        <span id="gameImgTarget_aion" class="gameImgTarget"></span>
+                                        AION Free-to-Play                                        </a>
+                                </li>
+                                <li class="mmoGameIcon mmoGameIcon_elsword mmoGameIcon_elsword_fr">
+                                    <a
+                                        id="mmoTile_elsword"
+                                        href="https://fr.elsword.gameforge.com/landing?kid=5-48808-00108-1105-1202814d"
+                                        title="Des monstres vicieux, des héros cool"
+                                        target="_blank"
+                                        onmouseenter="mmoHoverTile('elsword')"
+                                        onmouseleave="mmoLeaveTile('elsword')"
+                                    >
+                                        <span id="gameImgTarget_elsword" class="gameImgTarget"></span>
+                                        Elsword                                        </a>
+                                </li>
+                                <li class="mmoGameIcon mmoGameIcon_runesofmagic mmoGameIcon_runesofmagic_fr">
+                                    <a
+                                        id="mmoTile_runesofmagic"
+                                        href="https://fr.runesofmagic.gameforge.com/landing/?kid=5-46808-00108-1105-120281b8"
+                                        title="LE MMORPG primé"
+                                        target="_blank"
+                                        onmouseenter="mmoHoverTile('runesofmagic')"
+                                        onmouseleave="mmoLeaveTile('runesofmagic')"
+                                    >
+                                        <span id="gameImgTarget_runesofmagic" class="gameImgTarget"></span>
+                                        Runes of Magic                                        </a>
+                                </li>
+                            </ul>
+                            
+                            <!-- Section: Browser Games -->
+                            <h5><a href="https://gameforge.com/fr-FR/browser-games/jeux-par-navigateur/?origin=netbar" target="_blank">Jeux par navigateur</a></h5>
+                            <ul id="mmoGamesOverview_browser">
+                                <li class="mmoGameIcon mmoGameIcon_bitefight mmoGameIcon_bitefight_fr">
+                                    <a
+                                        id="mmoTile_bitefight"
+                                        href="https://fr.bitefight.gameforge.com/?kid=5-00208-00108-1105-12028178"
+                                        title="Ennemis nocturnes"
+                                        target="_blank"
+                                        onmouseenter="mmoHoverTile('bitefight')"
+                                        onmouseleave="mmoLeaveTile('bitefight')"
+                                    >
+                                        <span id="gameImgTarget_bitefight" class="gameImgTarget"></span>
+                                        BiteFight                                        </a>
+                                </li>
+                                <li class="mmoGameIcon mmoGameIcon_ikariam mmoGameIcon_ikariam_fr">
+                                    <a
+                                        id="mmoTile_ikariam"
+                                        href="https://lobby.ikariam.gameforge.com/fr_FR/?kid=5-03808-00108-1105-12028100"
+                                        title="Le futur de l’antiquité"
+                                        target="_blank"
+                                        onmouseenter="mmoHoverTile('ikariam')"
+                                        onmouseleave="mmoLeaveTile('ikariam')"
+                                    >
+                                        <span id="gameImgTarget_ikariam" class="gameImgTarget"></span>
+                                        Ikariam                                        </a>
+                                </li>
+                                <li class="mmoGameIcon mmoGameIcon_wildguns mmoGameIcon_wildguns_fr">
+                                    <a
+                                        id="mmoTile_wildguns"
+                                        href="https://lobby.wildguns.gameforge.com/fr_FR//?kid=5-12708-00108-1105-12028114"
+                                        title="Pars à la conquête des grands espaces"
+                                        target="_blank"
+                                        onmouseenter="mmoHoverTile('wildguns')"
+                                        onmouseleave="mmoLeaveTile('wildguns')"
+                                    >
+                                        <span id="gameImgTarget_wildguns" class="gameImgTarget"></span>
+                                        WildGuns                                        </a>
+                                </li>
+                                <li class="mmoGameIcon mmoGameIcon_gladiatus mmoGameIcon_gladiatus_fr">
+                                    <a
+                                        id="mmoTile_gladiatus"
+                                        href="https://lobby.gladiatus.gameforge.com/fr_FR/?kid=5-03708-00108-1105-1202814a"
+                                        title="Sang, sable et gloire"
+                                        target="_blank"
+                                        onmouseenter="mmoHoverTile('gladiatus')"
+                                        onmouseleave="mmoLeaveTile('gladiatus')"
+                                    >
+                                        <span id="gameImgTarget_gladiatus" class="gameImgTarget"></span>
+                                        Gladiatus                                        </a>
+                                </li>
+                                <li class="mmoGameIcon mmoGameIcon_battleknight mmoGameIcon_battleknight_fr">
+                                    <a
+                                        id="mmoTile_battleknight"
+                                        href="https://fr.battleknight.gameforge.com//?kid=5-01908-00108-1105-1202814d"
+                                        title="Pour l’honneur et la gloire"
+                                        target="_blank"
+                                        onmouseenter="mmoHoverTile('battleknight')"
+                                        onmouseleave="mmoLeaveTile('battleknight')"
+                                    >
+                                        <span id="gameImgTarget_battleknight" class="gameImgTarget"></span>
+                                        BattleKnight                                        </a>
+                                </li>
+                                <li class="mmoGameIcon mmoGameIcon_legend mmoGameIcon_legend_fr">
+                                    <a
+                                        id="mmoTile_legend"
+                                        href="https://lobby.tanoth.gameforge.com/fr_FR/?kid=5-20808-00108-1105-1202810c"
+                                        title="Surmonte l’obscurité"
+                                        target="_blank"
+                                        onmouseenter="mmoHoverTile('legend')"
+                                        onmouseleave="mmoLeaveTile('legend')"
+                                    >
+                                        <span id="gameImgTarget_legend" class="gameImgTarget"></span>
+                                        Tanoth                                        </a>
+                                </li>
+                                <li class="mmoGameIcon mmoGameIcon_kingsage mmoGameIcon_kingsage_fr">
+                                    <a
+                                        id="mmoTile_kingsage"
+                                        href="https://fr.kingsage.gameforge.com/?kid=5-31108-00108-1105-12028141"
+                                        title="Si tu veux la paix, prépare la guerre"
+                                        target="_blank"
+                                        onmouseenter="mmoHoverTile('kingsage')"
+                                        onmouseleave="mmoLeaveTile('kingsage')"
+                                    >
+                                        <span id="gameImgTarget_kingsage" class="gameImgTarget"></span>
+                                        KingsAge                                        </a>
+                                </li>
+                                <li class="mmoGameIcon mmoGameIcon_LittleGames mmoGameIcon_LittleGames_fr">
+                                    <a
+                                        id="mmoTile_LittleGames"
+                                        href="https://gameforge.com/fr-FR/littlegames/?origin=portal/?kid=5-99908-00108-1105-12028165"
+                                        title="Jeux gratuits"
+                                        target="_blank"
+                                        onmouseenter="mmoHoverTile('LittleGames')"
+                                        onmouseleave="mmoLeaveTile('LittleGames')"
+                                    >
+                                        <span id="gameImgTarget_LittleGames" class="gameImgTarget"></span>
+                                        Jeux gratuits                                        </a>
+                                </li>
+                                <li class="mmoGameIcon mmoGameIcon_GMag mmoGameIcon_GMag_fr">
+                                    <a
+                                        id="mmoTile_GMag"
+                                        href="https://gameforge.com/en-US/gmag/?origin=netbar&kid=5-99908-00108-1105-12028165"
+                                        title="GMag"
+                                        target="_blank"
+                                        onmouseenter="mmoHoverTile('GMag')"
+                                        onmouseleave="mmoLeaveTile('GMag')"
+                                    >
+                                        <span id="gameImgTarget_GMag" class="gameImgTarget"></span>
+                                        GMag                                        </a>
+                                </li>
+                            </ul>
+                        </div><!-- /mmoGamesOverviewLists -->
+                    </div><!-- /mmoGamesOverviewPanel -->
+                </div><!-- /mmoGame -->
+                <input id="mmoFocus" type="text" size="5"/>
+            </div><!-- /mmoContent -->
+        </div><!-- /mmonetbar --> #}
+
+    <!-- ogame / fr / ingame / 13.10.2026 21:45 -->
+
+
+    <!--/* OpenX Interstitial or Floating DHTML Tag v2.8.8 */-->
+    <div id="openXHackFoo">
+        <script type="text/javascript" data-cookieconsent="ignore">
+            var HTTP_GET_VARS = new Array();
+            var strGET = document.location.search.substr(
+                1,
+                document.location.search.length,
+            );
+            if (strGET !== "") {
+                var gArr = strGET.split("&");
+                for (i = 0; i < gArr.length; ++i) {
+                    var v = "";
+                    var vArr = gArr[i].split("=");
+                    if (vArr.length > 1) {
+                        v = vArr[1];
+                    }
+                    HTTP_GET_VARS[unescape(vArr[0])] = unescape(v);
+                }
+            }
+
+            function GET(v) {
+                if (!HTTP_GET_VARS[v]) {
+                    return "";
+                }
+                return HTTP_GET_VARS[v];
+            }
+
+            function openxDetectDeviceOS() {
+                return (function (ua) {
+                    if (/iPhone/i.test(ua) || /iPad/.test(ua) || /iPod/.test(ua)) {
+                        return "ios";
+                    } else if (/Android/.test(ua)) {
+                        return "android";
+                    } else if (/Windows Phone OS 7\.0/.test(ua)) {
+                        return "winphone7";
+                    } else if (/BlackBerry/.test(ua)) {
+                        return "rim";
+                    } else {
+                        return "desktop";
+                    }
+                })(navigator.userAgent);
+            }
+
+            function escapeHtml(str) {
+                return str.match(new RegExp("^[0-9a-zA-Z-]+$")) ? str : "";
+            }
+
+            function hasMarketingConsent() {
+                return (
+                    typeof window.gfCookieConsent !== "undefined" &&
+                    window.gfCookieConsent.consent.marketing === true
+                );
+            }
+
+            if (openxDetectDeviceOS() === "desktop") {
+                var params =
+                    "zoneid=1320&source=Quelle&cb=INSERT_RANDOM_NUMBER_HERE&layerstyle=simple&align=right&valign=top&padding=2&shifth=30&shiftv=20&closebutton=t&backcolor=778591&bordercolor=FFFFFF";
+                params = params.replace(
+                    /INSERT_RANDOM_NUMBER_HERE/g,
+                    Math.floor(Math.random() * 99999999999),
+                );
+                params =
+                    params +
+                    "&zindex=9999999&layerstyle=gameforge&kid=" +
+                    escapeHtml(GET("kid"));
+                var m3_u = hasMarketingConsent()
+                    ? "https://ads-delivery.gameforge.com/al.php"
+                    : "https://ads-deliverync.gameforge.com/al.php";
+                document.write(
+                    "<scr" +
+                        'ipt type="text/javascript" src="' +
+                        m3_u +
+                        "?" +
+                        params +
+                        '"></scr' +
+                        "ipt>",
+                );
+            }
+        </script>
+    </div>
+
+    <!-- #/MMO:NETBAR# -->
+
+    <div id="siteHeader">
+        <div id="siteHeaderChild"></div>
+    </div>
+
+    <notification-container></notification-container>
+    <div id="pageContent">
+        <div id="top">
+            <div id="pageReloader" onclick="javascript: redirectOverview();"></div>
+                                        
+            <div
+                id='headerbarcomponent'
+                class=""
+            >
+                <div id="bar">
+                    <div id="playerName">
+                        <a href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&component=playerprofile&profileId=107514">
+                            <profile-picture sq26 class="default  "></profile-picture>            </a>
+        
+                        <selected-language-icon style="background-image: url('https://gf3.geo.gfsrv.net/cdn2d/b34a507b3bf006eea6b2366a87e84b.png');"></selected-language-icon>
+        
+        
+
+                        <span class="textBeefy">
+                            <a
+                                href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=playerprofile&amp;profileId=107514"
+                                class="textBeefy"
+                            >{{ user.pseudo }}</a>
+                        </span>
+                    </div>
+                    <div id="headerBarLinks">
+                        <span class="highlightHeaderLink">
+                            <a href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=playerprofile" accesskey="Profil">Profil</a>
+                        </span>
+                        <span>
+                            <a href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=highscore&amp;site=8&amp;category=1&amp;searchRelId=107514" accesskey="">Classement</a>
+                            &nbsp;(705)
+                        </span>
+                        <span>
+                            <a
+                                href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ajax&amp;component=notices&amp;ajax=1"
+                                class="overlay"
+                                data-overlay-title="Mes notes"
+                                data-overlay-class="notices"
+                                data-overlay-popup-width="750"
+                                data-overlay-popup-height="480"
+                                accesskey=""
+                            >
+                                Notes</a>
+                        </span>
+                        <span>
+                            <a
+                                class=""
+                                accesskey=""
+                                href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=buddies"
+                            >
+                                Amis</a>
+                        </span>
+                        <span>
+                            <a
+                                class="overlay"
+                                href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ajax&amp;component=search&amp;ajax=1"
+                                data-overlay-title="Rechercher dans l`univers"
+                                data-overlay-close="__default closeSearch"
+                                data-overlay-class="search"
+                                accesskey=""
+                            >Chercher</a>
+                        </span>
+                        <span><a href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=preferences" accesskey="">Options</a></span>
+                        <span><a href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=support" target="_blank">Support</a></span>
+                        <span><a href="https://s274-fr.ogame.gameforge.com/game/index.php?page=standalone&amp;component=logout">Logout</a></span>
+                    </div>
+                    <div class="OGameClock">13.10.2026 <span>21:53:01</span></div>
+                </div>
+            </div>
+
+                                        
+            {% include('parts/header.html.twig') %}
+
+                                        
+            {# <div
+                    id='commandercomponent'
+                    class=""
+                >
+                    <div id="lifeform" class="fleft">
+                        <a
+                            href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=lfsettings"
+                            class="tooltipHTML js_hideTipOnMobile ipiHintable"
+                            title="Les Humains
+|Les Humains sont une forme de vie aux facultés variées. Elle est la seule à pouvoir détecter d`autres formes de vie. Sa production de nourriture et la croissance de sa population sont en équilibre. Ils augmentent la production de ressources sur toutes les planètes. Ils ne renforcent pas de bonus de classe.
+"
+                            data-ipi-hint="ipiLifeformSettings"
+                        >
+                            <div class="lifeform-item-icon small lifeform1"></div>
+                        </a>
+                    </div>
+                    <div id="characterclass" class="fleft">
+                        <a
+                            href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=characterclassselection"
+                            class="tooltipHTML js_hideTipOnMobile ipiHintable"
+                            title="Sélectionner la classe|Choisissez votre classe pour obtenir des bonus spéciaux."
+                            data-ipi-hint="ipiCharacterclassSettings"
+                        >
+                            <div class="sprite characterclass medium none"></div>
+                        </a>
+                    </div>
+                    <div id="officers" class="  fright">
+                        <a
+                            href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=officersmess&amp;openDetail=2"
+                            class="tooltipHTML  commander js_hideTipOnMobile "
+                            title="Recruter commandant|&amp;#43;40 favoris, liste de construction, raccourcis, scanner de cargaison, absence de publicité* &lt;span style=&quot;font-size: 10px; line-height: 10px&quot;&gt;(*à l&amp;#96;exception d&amp;#96;astuces en rapport avec le jeu)&lt;/span&gt;"
+                        >
+                            <img src="/cdn/img/layout/pixel.gif" width="30" height="30"></img>
+                        </a>
+                        <a
+                            href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=officersmess&amp;openDetail=3"
+                            class="tooltipHTML  admiral js_hideTipOnMobile "
+                            title="Recruter amiral|Nombre de flottes max +2,
+Expéditions max +1,
+taux de fuite des flottes amélioré,
+Emplacements de sauvegarde pour simulations de combat +20"
+                        >
+                            <img src="/cdn/img/layout/pixel.gif" width="30" height="30"></img>
+                        </a>
+                        <a
+                            href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=officersmess&amp;openDetail=4"
+                            class="tooltipHTML  engineer js_hideTipOnMobile "
+                            title="Recruter ingénieur|Réduit de moitié les dommages infligés aux installations de défense, +10% de production d`énergie"
+                        >
+                            <img src="/cdn/img/layout/pixel.gif" width="30" height="30"></img>
+                        </a>
+                        <a
+                            href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=officersmess&amp;openDetail=5"
+                            class="tooltipHTML  geologist js_hideTipOnMobile "
+                            title="Recruter géologue|+10 % de prod. des mines"
+                        >
+                            <img src="/cdn/img/layout/pixel.gif" width="30" height="30"></img>
+                        </a>
+                        <a
+                            href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=officersmess&amp;openDetail=6"
+                            class="tooltipHTML  technocrat js_hideTipOnMobile "
+                            title="Recruter technocrate|+2 niveau d`espionnage,
+25% de réduction des temps de recherche"
+                        >
+                            <img src="/cdn/img/layout/pixel.gif" width="30" height="30"></img>
+                        </a>
+                    </div>
+                </div> #}
+
+                                        
+            <div
+                id='newmessagesindicatorcomponent'
+                class=""
+            >
+                <div
+                    class="messagesIndicator tooltipBottom  "
+                    onclick="window.location='https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&component=messages'"
+                    title="0 nouveau(x) message(s)"
+                    data-new-messages="0"
+                >
+                    <div class="newCount" style="display:none;">0</div>
+                </div>
+                <div
+                    class="chatIndicator tooltipBottom  "
+                    onclick="window.location='https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&component=chat'"
+                    title="0 nouveau(x) message(s)"
+                    data-new-messages="0"
+                >
+                    <div class="newCount" style="display:none;">0</div>
+                </div>
+
+                <script type="text/javascript">
+                    var getAsAjaxUrl =
+                        "https://s274-fr.ogame.gameforge.com/game/index.php?page=componentOnly&component=messages&ajax=1";
+                    var getAsJsonUrl =
+                        "https://s274-fr.ogame.gameforge.com/game/index.php?page=componentOnly&component=messages&asJson=1";
+                </script>    </div>
+
+                                        
+            <div
+                id='notificationbarcomponent'
+                class=""
+            >
+                <div id="message-wrapper">
+                    <div id="messages_collapsed">
+                        <div id="eventboxFilled" class="eventToggle" style="display: none;">
+                            <a
+                                id="js_eventDetailsClosed"
+                                class="tooltipRight js_hideTipOnMobile"
+                                href="javascript:void(0);"
+                                title="Plus de détails"
+                            ></a>
+                            <a
+                                id="js_eventDetailsOpen"
+                                class="tooltipRight open js_hideTipOnMobile"
+                                href="javascript:void(0);"
+                                title="Moins de détails"
+                            ></a>
+                        </div>
+                        <div
+                            id="eventboxLoading"
+                            class="textCenter textBeefy"
+                            style="display: block;"
+                        >
+                            <img
+                                height="16"
+                                width="16"
+                                alt="ajax spinner"
+                                src="https://gf3.geo.gfsrv.net/cdne3/3f9884806436537bdec305aa26fc60.gif"
+                            />
+                            Chargement...
+                        </div>
+                        <div
+                            id="eventboxBlank"
+                            class="textCenter"
+                            style="display: none;"
+                        >
+                            Pas de mouvements de flotte
+                        </div>
+                    </div>
+                    <div
+                        id="attack_alert"
+                        class="tooltip noAttack"
+                        title=""
+                    >
+                        <a
+                            href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=eventlist"
+                            class=" tooltipHTML js_hideTipOnMobile"
+                        ></a>
+                    </div>
+                </div>    </div>
+
+        </div>
+
+        {% include('parts/left.html.twig') %}
+            
+        <div id="middle">
+                                                                
+            <div
+                id='eventlistcomponent'
+                class=""
+            >
+                <div
+                    id="eventboxContent"
+                    style="display: none;"
+                >
+                    <div id="eventListWrap">
+                        <div id="eventHeader">
+                            <a class="close_details eventToggle" href="javascript:toggleEvents();">
+                            </a>
+                            <h2>Événements</h2>
+                        </div>
+                        <table id="eventContent">
+                            <tbody>
+                            </tbody>
+                        </table>
+                        <div id="eventFooter"></div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    var timeDelta = 1791921181000 - new Date().getTime();
+                    var LocalizationStrings = {
+                        timeunits: {
+                            short: {
+                                year: "a",
+                                month: "M",
+                                week: "s",
+                                day: "j",
+                                hour: "h",
+                                minute: "m",
+                                second: "s",
+                            },
+                        },
+                        status: { ready: "termin\u00e9" },
+                        decimalPoint: ",",
+                        thousandSeperator: ".",
+                        unitMega: "M",
+                        unitKilo: "K",
+                        unitMilliard: "Md",
+                        question: "Question",
+                        error: "Erreur",
+                        loading: "Chargement...",
+                        notice: "Note",
+                        yes: "Oui",
+                        no: "Non",
+                        ok: "Ok",
+                        attention: "Attention",
+                        outlawWarning:
+                            "Vous \u00eates sur le point d`attaquer un joueur plus puissant. Si vous le faites, votre protection contre les attaques sera suspendue pendant 7 jours et tous les joueurs pourront vous attaquer sans subir de sanctions. \u00cates-vous s\u00fbr de vouloir continuer\u00a0?",
+                        lastSlotWarningMoon:
+                            "La construction de ce b\u00e2timent occupera votre dernier terrain \u00e0 b\u00e2tir. Agrandissez votre base lunaire pour obtenir plus de terrains. Souhaitez-vous quand m\u00eame construire ce b\u00e2timent\u00a0?",
+                        lastSlotWarningPlanet:
+                            "La construction de ce b\u00e2timent occupera votre dernier terrain \u00e0 b\u00e2tir. D\u00e9veloppez votre terraformeur ou achetez une extension plan\u00e9taire pour obtenir plus de terrains. Souhaitez-vous quand m\u00eame construire ce b\u00e2timent ?",
+                        forcedVacationWarning:
+                            "Confirmez votre compte de lobby et recevez de l`Antimati\u00e8re dans chaque univers\u00a0!",
+                        planetMoveBreakUpWarning:
+                            "Attention ! Cette mission pourrait ne pas \u00eatre termin\u00e9e au moment du d\u00e9m\u00e9nagement et entra\u00eener l`annulation de celui-ci. Voulez-vous vraiment lancer cette mission ?",
+                        moreDetails: "Plus de d\u00e9tails",
+                        lessDetails: "Moins de d\u00e9tails",
+                        planetOrder: {
+                            lock: "Verrouiller le classement",
+                            unlock: "D\u00e9verrouiller le classement",
+                        },
+                        darkMatter: "Antimati\u00e8re (AM)",
+                        errorNotEnoughDM:
+                            "Vous n`avez pas assez d`antimati\u00e8re ! Souhaitez-vous en acheter maintenant\u00a0?",
+                        activateItem: {
+                            upgradeItemQuestion:
+                                "Voulez-vous vraiment remplacer l`objet existant\u00a0? Vous perdez alors l`ancien bonus.",
+                            upgradeItemQuestionHeader: "Remplacer l`objet\u00a0?",
+                        },
+                        characterClassItem: {
+                            buyAndActivateItemQuestion:
+                                "Souhaitez-vous activer la classe #characterClassName# en \u00e9change de #darkmatter#\u00a0unit\u00e9s d`antimati\u00e8re\u00a0? Votre classe actuelle sera perdue.",
+                            activateItemQuestion:
+                                "Souhaitez-vous activer la classe #characterClassName#\u00a0? Votre classe actuelle sera perdue.",
+                        },
+                        allianceClassItem: {
+                            buyAndActivateItemQuestion:
+                                "Souhaitez-vous activer la classe d`alliance #allianceClassName# en \u00e9change de #darkmatter#\u00a0unit\u00e9s d`antimati\u00e8re\u00a0? La classe d`alliance actuelle sera supprim\u00e9e.",
+                            activateItemQuestion:
+                                "Souhaitez-vous activer la classe d`alliance #allianceClassName#\u00a0? La classe d`alliance actuelle sera supprim\u00e9e.",
+                            appendCurrentClassQuestion:
+                                "<br><br>Classe d`alliance actuelle\u00a0: #currentAllianceClassName#<br><br>Derni\u00e8re modification le\u00a0: #lastAllianceClassChange#",
+                        },
+                        scrapperOfferItem: {
+                            buyAndActivateItemQuestion:
+                                "Souhaitez-vous activer cette offre pour #darkmatter#\u00a0unit\u00e9s d`antimati\u00e8re\u00a0? Ceci remplacera votre offre actuelle aupr\u00e8s du ferrailleur.",
+                            activateItemQuestion:
+                                "Souhaitez-vous activer cette offre\u00a0? Ceci remplacera votre offre actuelle aupr\u00e8s du ferrailleur.",
+                        },
+                        LOCA_ALL_NETWORK_ATTENTION: "Attention",
+                        LOCA_ALL_YES: "Oui",
+                        LOCA_ALL_NO: "Non",
+                        redirectMessage:
+                            "En suivant ce lien, vous quitterez OGame. Voulez-vous continuer\u00a0?",
+                    };
+                    $("a.icon_link.recallFleet").click(function (e) {
+                        e.preventDefault();
+                        var fleetId = $(this).attr("data-fleet-id");
+                        errorBoxDecision("Rappel", "Rappeler flotte", "Oui", "Non", function () {
+                            $.post(
+                                ajaxRecallFleetURI,
+                                { fleetId: fleetId, token: token },
+                                (response) => {
+                                    let data = JSON.parse(response);
+                                    token = data.newAjaxToken;
+
+                                    if (data.success) {
+                                        let currentUrl = window.location.href;
+                                        let params = new URLSearchParams(currentUrl);
+                                        let currentComponent = params.get("component");
+
+                                        switch (currentComponent) {
+                                            case "movement":
+                                                window.location.reload();
+                                                return;
+                                            case "galaxy":
+                                                if (
+                                                    submitForm &&
+                                                    typeof submitForm === "function" &&
+                                                    typeof galaxy !== "undefined" &&
+                                                    typeof system !== "undefined"
+                                                ) {
+                                                    submitForm();
+                                                }
+                                                break;
+                                        }
+
+                                        getAjaxEventbox();
+                                        refreshFleetEvents(true);
+                                    }
+                                },
+                            );
+                        });
+                        return false;
+                    });
+                    (function ($) {})(jQuery);
+                </script>
+
+
+            </div>
+            <div
+                id='overviewcomponent'
+                class="maincontent"
+            >
+                <div id="inhalt">
+                    <div id="planet" style="background-image:url(https://gf1.geo.gfsrv.net/cdnf3/8f799339969560e123999ccfb4a39b.png);">
+                        <div
+                            id="spaceObjectHeaderCurrentPlanet"
+                            class="overviewGraphic"
+                            style="background-image: url(https://gf1.geo.gfsrv.net/cdn34/82dc01843b5e8a9bc9881a08ff7af6.png);"
+                        ></div>
+                        <div id="spaceObjectHeaderGraphicOverlay"></div>
+                        <div id="spaceObjectHeaderActionIcon" class="overview"></div>
+
+                        <div id="detailWrapper">
+                            <div id="header_text">
+                                <h2>
+                                    <a href="javascript:void(0);" class="openPlanetRenameGiveupBox">
+                                        <p class="planetNameOverview">Vue d`ensemble - </p>
+                                        <span id="planetNameHeader">
+                                            {{ planet.name }}
+                                        </span>
+                                        <img
+                                            class="hinted tooltip"
+                                            title="Abandonner / renommer Planète"
+                                            src="https://gf3.geo.gfsrv.net/cdne7/1f57d944fff38ee51d49c027f574ef.gif"
+                                            width="16"
+                                            height="16"
+                                        />
+                                    </a>
+                                </h2>
+                            </div>
+                            <div id="detail" class="detail_screen">
+                                <div id="techDetailLoading"></div>
+                            </div>
+                            <div id="planetdata">
+
+                                <div class="overlay"></div>
+                                <div id="planetDetails">
+                                    <table cellpadding="0" cellspacing="0" width="100%">
+                                        <tr>
+                                            <td class="desc">
+                                                {# <span id="diameterField">Occupation :</span> #}
+                                                <span id="diameterField"></span>
+                                            </td>
+                                            <td class="data">
+                                                {# <span id="diameterContentField">x / {{ planet.fields }}</span> #}
+                                                <span id="diameterContentField"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="desc">
+                                                {# <span id="temperatureField">Température :</span> #}
+                                                <span id="temperatureField"></span>
+                                            </td>
+                                            <td class="data">
+                                                {# <span id="temperatureContentField">{{ planet.temperature }} °C</span> #}
+                                                <span id="temperatureContentField"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="desc">
+                                                {# <span id="positionField">Position :</span> #}
+                                                <span id="positionField"></span>
+                                            </td>
+                                            <td class="data">
+                                                {# <span id="positionContentField">[{{ planet.galaxy }}:{{ planet.gSystem }}:{{ planet.position }}]</span> #}
+                                                <span id="positionContentField"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="desc">
+                                                {# <span id="scoreField"></span>Points :</td> #}
+                                                <span id="scoreField"></span></td>
+                                            <td class="data">
+                                                {# <span id="scoreContentField">à faire</span> #}
+                                                <span id="scoreContentField"></span>
+                                            </td>
+                                        </tr>
+
+                                        {# <tr>
+                                            <td class="desc">
+                                                <span id="honorField"></span></td>
+                                            <td class="data ">
+                                                <span id="honorContentField"></span>
+                                            </td>
+                                        </tr> #}
+                                    </table>
+                                </div>
+                                <div id="planetOptions">
+    
+                                    <div class="planetMoveStart fleft" style="display: inline">
+                                        <a
+                                            class="tooltipLeft dark_highlight_tablet fleft"
+                                            style="display: inline-block"
+                                            href='https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=galaxy'
+                                            title='Un déménagement vous permet de transférer votre planète vers une autre position, dans un système aussi éloigné que vous le souhaitez. &lt;br /&gt;
+&lt;br /&gt;
+Le transfert a lieu 24 heures après son activation. Pendant ce temps, vous pouvez utiliser normalement votre planète. Un décompte vous indique le temps restant avant le transfert. &lt;br /&gt;
+&lt;br /&gt;
+Lorsque le décompte est terminé et que la planète est transférée, aucune de vos flottes qui y sont stationnées ne peut être active. Vous ne pouvez pas poursuivre de constructions, de réparations ou de recherches pendant le transfert. Si un ordre de construction, un ordre de réparation ou une flotte sont actifs, le transfert sera interrompu.&lt;br /&gt;
+  &lt;br /&gt;
+Une fois le transfert exécuté, 240.000 unités d&amp;#96;antimatière vous seront déduites. La planète, les bâtiments et les ressources stockées seront transférés immédiatement. Vos flottes suivront automatiquement à la vitesse du vaisseau le plus lent. La porte de saut spatial d&amp;#96;une lune transférée sera désactivée pendant 24 heures.'
+                                            data-tooltip-button="Galaxie"
+                                        >
+                                            <span class="planetMoveIcons settings planetMoveDefault icon fleft"></span>
+                                            <span class="planetMoveOverviewMoveLink">Déménager</span>
+                                        </a>
+                                    </div>
+
+                                    <a class="dark_highlight_tablet float_right openPlanetRenameGiveupBox ipiHintable" href="javascript:void(0);" data-ipi-hint="ipiPlanetMoveRename">
+                                        <span class="planetMoveOverviewGivUpLink">Abandonner/renommer</span>
+                                        <span class="planetMoveIcons settings planetMoveGiveUp icon"></span>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <buffBar id="buffBar" class="sliderWrapper">
+                            <div data-uuid="" data-id="" class="add_item">
+                                <a class="activate_item border3px tooltip" href="javascript:void(0);" ref="1" title="Objets pouvant être activés "></a>
+                            </div>
+                            <div class="pagination-controls">
+                                <button id="prev" class="buttonPrev">&laquo;</button>
+                                <button id="next" class="buttonNext">&raquo;</button>
+                            </div>
+                            <ul class="active_items hidden">
+                                <li>
+                                </li>
+                            </ul>
+                        </buffBar>
+                        <script>
+                            $(document).ready(() => {
+                                initBuffBar();
+                            });
+                        </script>
+
+                    </div>
+                    <div class="c-left"></div>
+                    <div class="c-right"></div>
+                    <div id="productionboxBottom">
+                        <div class="productionBoxBuildings boxColumn building">
+                            <div id='productionboxbuildingcomponent' class='productionboxbuilding injectedComponent parent overview'><div class="content-box-s">
+                                    <div class="header">
+                                        <h3>Bâtiment</h3>
+                                    </div>
+                                    <div class="content">
+                                        <table cellspacing="0" cellpadding="0" class="construction active">
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="2" class="idle">
+                                                        <a
+                                                            class="tooltip js_hideTipOnMobile"
+                                                            title="Pour l`instant, il n`y a aucune construction en cours sur cette planète. Cliquez ici pour afficher la production de la planète."
+                                                            href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=supplies"
+                                                        >
+                                                            Aucun bâtiment en construction.
+                                                            <br/>
+                                                            (Ressources)
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="footer"></div>
+                                </div>
+                                <script type="text/javascript">
+                                    var scheduleBuildListEntryUrl =
+                                        "https://s274-fr.ogame.gameforge.com/game/index.php?page=componentOnly&component=buildlistactions&action=scheduleEntry&asJson=1";
+                                    var LOCA_ERROR_INQUIRY_NOT_WORKED_TRYAGAIN =
+                                        "La dernière requête n`a pas encore été traitée. Veuillez réessayer.";
+                                    redirectPremiumLink =
+                                        "https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&component=officersmess&openDetail=1";
+
+                                    window.token = "e186d54a2378abc3943d2c1a4086812a";
+                                </script>
+                            </div>
+                            {# <div id='productionboxlfbuildingcomponent' class='productionboxlfbuilding injectedComponent parent overview'><div class="content-box-s">
+                                        <div class="header">
+                                            <h3>Bâtiments des formes de vie
+                                            </h3>
+                                        </div>
+                                        <div class="content">
+                                            <table cellspacing="0" cellpadding="0" class="construction active">
+                                                <tbody>
+                                                    <tr>
+                                                        <td colspan="2" class="idle">
+                                                            <a
+                                                                class="tooltip js_hideTipOnMobile"
+                                                                title="Pour l`instant, il n`y a aucune construction en cours sur cette planète. Cliquez ici pour afficher la production de la planète."
+                                                                href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=lfbuildings"
+                                                            >
+                                                                Aucun bâtiment en construction.
+                                                                <br/>
+                                                                (Vers les bâtiments
+                                                                )
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div> 
+                                         <div class="footer"></div>#}
+                            {# </div> #}
+                            {# <script type="text/javascript">
+                                        var scheduleBuildListEntryUrl =
+                                            "https://s274-fr.ogame.gameforge.com/game/index.php?page=componentOnly&component=buildlistactions&action=scheduleEntry&asJson=1";
+                                        var LOCA_ERROR_INQUIRY_NOT_WORKED_TRYAGAIN =
+                                            "La dernière requête n`a pas encore été traitée. Veuillez réessayer.";
+                                        redirectPremiumLink =
+                                            "https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&component=officersmess&openDetail=1";
+
+                                        window.token = "e186d54a2378abc3943d2c1a4086812a";
+                                    </script> #}
+                        </div> 
+                        {# </div> #}
+                        <div class="productionBoxResearch boxColumn research">
+                            <div id='productionboxresearchcomponent' class='productionboxresearch injectedComponent parent overview'><div class="content-box-s">
+                                    <div class="header">
+                                        <h3>Recherche</h3>
+                                    </div>
+                                    <div class="content">
+                                        <table cellspacing="0" cellpadding="0" class="construction active">
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="2" class="idle">
+                                                        <a
+                                                            class="tooltip js_hideTipOnMobile"
+                                                            title="Aucune recherche en cours pour l`instant. Cliquez ici pour accéder à votre laboratoire."
+                                                            href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=research"
+                                                        >
+                                                            Aucune recherche en cours pour l`instant !
+                                                            <br/>
+                                                            (Recherche)
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="footer"></div>
+                                </div>
+                                <script type="text/javascript">
+                                    var scheduleBuildListEntryUrl =
+                                        "https://s274-fr.ogame.gameforge.com/game/index.php?page=componentOnly&component=buildlistactions&action=scheduleEntry&asJson=1";
+                                    var LOCA_ERROR_INQUIRY_NOT_WORKED_TRYAGAIN =
+                                        "La dernière requête n`a pas encore été traitée. Veuillez réessayer.";
+                                    redirectPremiumLink =
+                                        "https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&component=officersmess&openDetail=1";
+
+                                    window.token = "e186d54a2378abc3943d2c1a4086812a";
+                                </script>
+                            </div>
+                            {# <div id='productionboxlfresearchcomponent' class='productionboxlfresearch injectedComponent parent overview'><div class="content-box-s">
+                                        <div class="header">
+                                            <h3>Recherche des formes de vie
+                                            </h3>
+                                        </div>
+                                        <div class="content">
+                                            <table cellspacing="0" cellpadding="0" class="construction active">
+                                                <tbody>
+                                                    <tr>
+                                                        <td colspan="2" class="idle">
+                                                            <a
+                                                                class="tooltip js_hideTipOnMobile"
+                                                                title="Aucune recherche en cours pour l`instant. Cliquez ici pour accéder à votre laboratoire."
+                                                                href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=lfresearch"
+                                                            >
+                                                                Aucune recherche en cours pour l`instant !
+                                                                <br/>
+                                                                (Vers le développement des formes de vie
+                                                                )
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="footer"></div>
+                                    </div>
+                                    <script type="text/javascript">
+                                        var scheduleBuildListEntryUrl =
+                                            "https://s274-fr.ogame.gameforge.com/game/index.php?page=componentOnly&component=buildlistactions&action=scheduleEntry&asJson=1";
+                                        var LOCA_ERROR_INQUIRY_NOT_WORKED_TRYAGAIN =
+                                            "La dernière requête n`a pas encore été traitée. Veuillez réessayer.";
+                                        redirectPremiumLink =
+                                            "https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&component=officersmess&openDetail=1";
+
+                                        window.token = "e186d54a2378abc3943d2c1a4086812a";
+                                    </script>
+                                </div> #}
+                        </div>
+                        <div class="productionBoxShips boxColumn ship">
+        
+                            <div id='productionboxshipyardcomponent' class='productionboxshipyard injectedComponent parent overview'><div class="content-box-s">
+                                    <div class="header">
+                                        <h3>Chantier spatial</h3>
+                                    </div>
+                                    <div class="content">
+                                        <table cellspacing="0" cellpadding="0" class="construction active">
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="2" class="idle">
+                                                        <a
+                                                            class="tooltip js_hideTipOnMobile"
+                                                            title="Aucune production de vaisseaux ou d`unités de défense en cours sur cette planète. Cliquez ici pour accéder au chantier spatial."
+                                                            href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=shipyard"
+                                                        >
+                                                            Aucun(e) vaisseau/défense en construction.
+                                                            <br/>
+                                                            (Chantier spatial)
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="footer"></div>
+                                </div>
+                                <script type="text/javascript">
+                                    var scheduleBuildListEntryUrl =
+                                        "https://s274-fr.ogame.gameforge.com/game/index.php?page=componentOnly&component=buildlistactions&action=scheduleEntry&asJson=1";
+                                    var LOCA_ERROR_INQUIRY_NOT_WORKED_TRYAGAIN =
+                                        "La dernière requête n`a pas encore été traitée. Veuillez réessayer.";
+                                    redirectPremiumLink =
+                                        "https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&component=officersmess&openDetail=1";
+
+                                    window.token = "e186d54a2378abc3943d2c1a4086812a";
+                                </script>
+                            </div>
+                        </div>
+                    </div> {# ici #}
+                </div>
+                <script type="text/javascript">
+                    function openPlanetRenameGiveupBox() {
+                        openOverlay(
+                            "https:\/\/s274-fr.ogame.gameforge.com\/game\/index.php?page=ajax&component=planetlayer&ajax=1",
+                            {
+                                title: "Abandonner \/ renommer plan\u00e8te m\u00e8re",
+                                class: "planetRenameOverlay",
+                            },
+                        );
+                    }
+
+                    let textContent = [];
+
+                    textContent[0] = "Occupation :";
+                    // textContent[1] = "12.800km (<span>0<\/span>\/<span>173<\/span>)";
+                    textContent[1] = "x / {{ planet.fields }}";
+                    textContent[2] = "Temp\u00e9rature :";
+                    textContent[3] = "-13 \u00b0C \u00e0 27\u00b0C";
+                    textContent[4] = "Position :";
+                    // textContent[5] =
+                    //     "<a title='' href=\"https:\/\/s274-fr.ogame.gameforge.com\/game\/index.php?page=ingame&component=galaxy&galaxy=4&system=433&position=12\" class='' >[{{ planet.galaxy }}:{{ planet.gSystem }}:{{ planet.position }}]<\/a>";
+                    textContent[5] =
+                        "[{{ planet.galaxy }}:{{ planet.gSystem }}:{{ planet.position }}]";
+                    textContent[6] = "Points :";
+                    // textContent[7] =
+                    //     "<a href='https:\/\/s274-fr.ogame.gameforge.com\/game\/index.php?page=ingame&component=highscore'>0 (Place 705 sur 720)<\/a>";
+                    textContent[7] =
+                        "à faire";
+                    // textContent[8] = "Points honorifiques\u00a0:";
+                    // textContent[9] = "0";
+
+                    // ajouté par moi
+
+                    // const element = document.getElementById("diameterField");
+                    // const finalText =  textContent[0]; // Le texte que vous voulez afficher à la fin
+                    // let index = 0;
+
+                    const textContentIds = [
+                        "diameterField", "diameterContentField",
+                        "temperatureField", "temperatureContentField",
+                        "positionField", "positionContentField",
+                        "scoreField", "scoreContentField",
+                    ];
+
+                    let indexSequence = 0;
+
+                    function startAnimation() {
+                        // Si on a fini tous les éléments du tableau, on s'arrête (ou on peut relancer si vous voulez une boucle)
+                        if (indexSequence >= textContent.length) return;
+
+                        const target = textContentIds[indexSequence];
+                        const element = document.getElementById(target);
+                        const finalText = textContent[indexSequence];
+                        let charIndex = 0;
+
+                        function animate() {
+                            if (charIndex <= finalText.length) {
+                                // On extrait les caractères + l'underscore
+                                element.textContent = finalText.substring(0, charIndex) + "_";
+                                charIndex++;
+                                setTimeout(animate, 15); // Votre vitesse de 25 ms
+                            } else {
+                                element.textContent = finalText;
+                                // Fin de l'animation pour ce span, on passe au suivant après une petite pause
+                                indexSequence++;
+                                setTimeout(startAnimation, 300); // Pause de 0.8s avant le span suivant
+                            }
+                        }
+
+                        animate();
+                        // On réinitialise avec l'underscore seul
+                        // element.textContent = "_";
+                        // index = 0;
+
+                        // const interval = setInterval(() => {
+                        //     if (index < finalText.length) {
+                        //         index++;
+                        //         // On extrait les 'index' premiers caractères + l'underscore
+                        //         element.textContent = finalText.substring(0, index) + "_";
+                        //     } else if (index == finalText.length){
+                        //         element.textContent = finalText;
+                        //     } else {
+                        //         // Fin de l'animation, on arrête l'intervalle
+                        //         clearInterval(interval);
+                            
+                        //     }
+                        // }, 25); // 100 ms de délai entre chaque caractère
+                    }
+
+                    // Lancement de l'animation au chargement
+                    startAnimation();
+
+                    // (Optionnel) Relancer l'animation toutes les 3 secondes en boucle
+                    // setInterval(startAnimation, 4000);
+
+                    // fin ajout
+
+                    var loca = loca || {};
+
+                    loca = $.extend({}, loca, {
+                        error: "Erreur",
+                        errorNotEnoughDM:
+                            "Vous n`avez pas assez d`antimati\u00e8re ! Souhaitez-vous en acheter maintenant\u00a0?",
+                        notice: "Note",
+                        planetGiveupQuestion:
+                            "Voulez-vous vraiment abandonner la plan\u00e8te %planetName% %planetCoordinates%\u00a0?",
+                        moonGiveupQuestion:
+                            "Voulez-vous vraiment abandonner la lune %planetName% %planetCoordinates%\u00a0?",
+                    });
+
+                    function planetRenamed(data) {
+                        var data = $.parseJSON(data);
+
+                        if (data.newAjaxToken) {
+                            token = data.newAjaxToken;
+                        }
+
+                        if (data.status === "failure") {
+                            showNotification(data.error.message, "error");
+                        } else {
+                            $(".overlayDiv.planetRenameOverlay").dialog("close");
+
+                            reloadPage();
+                        }
+                    }
+
+                    function reloadPage() {
+                        location.href =
+                            "https:\/\/s274-fr.ogame.gameforge.com\/game\/index.php?page=ingame&component=overview";
+                    }
+
+                    var buildUrl;
+
+                    function loadDetails(type) {
+                        url =
+                            "https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&component=overview&ajax=1";
+                        if (typeof detailUrl != "undefined") {
+                            url = detailUrl;
+                        }
+                        $.get(url, { type: type }, function (data) {
+                            $("#detail").html(data);
+                            $("#techDetailLoading").hide();
+                            $("input[type='text']:first", document.forms["form"]).focus();
+                            // When we open any tech details we want a global JS event to catch for custom callbacks
+                            $(document).trigger(
+                                "ajaxShowElement",
+                                typeof techID === "undefined" ? 0 : techID,
+                            ); //techID is magically defined by setting data in the .html; not always so we check it and set it to harmless 0 as default. This is used for the repair dock.
+                            initTooltips();
+                        });
+                    }
+
+                    gfSlider = new GFSlider(getElementByIdWithCache("detailWrapper"));
+
+                    var detailUrl =
+                        "https:\/\/s274-fr.ogame.gameforge.com\/game\/index.php?page=ajax&component=buffactivation&ajax=1";
+                </script>
+
+                <script type="text/javascript">
+                    var animatedOverview = "1";
+                    var planetMoveLoca = {
+                        askTitle: "D\u00e9m\u00e9nager Plan\u00e8te",
+                        askCancel:
+                            "\u00cates-vous s\u00fbr de vouloir annuler le d\u00e9placement de plan\u00e8te\u00a0? Le temps d`attente normal restera le m\u00eame.",
+                        yes: "Oui",
+                        no: "Non",
+                        success: "Le d\u00e9placement de plan\u00e8te a \u00e9t\u00e9 annul\u00e9.",
+                        error: "Erreur",
+                    };
+                    var planetMoveCooldown = -1791921181;
+
+                    // Reset counters to zero here and not in overview.js because due to LazyLoader, the overview.js is parsed only once
+                    // and not everytime the player clicks on the Overview menu link
+                    var currentIndex = 0;
+                    var currentChar = 0;
+                    var linetwo = 0;
+
+                    initOverview();
+                    initType();
+
+                    //OGAME Birthday Event
+
+                    $("#planet")
+                        .find("h2 a")
+                        .hover(
+                            function () {
+                                $("#planet").find("h2 a img").toggleClass("hinted");
+                            },
+                            function () {
+                                $("#planet").find("h2 a img").toggleClass("hinted");
+                            },
+                        );
+                </script>
+            </div>
+        </div>
+        {% include('parts/right.html.twig') %}    
+        
+    </div>
+    <div id="bottom">
+                            
+        <div
+            id='errorboxcomponent'
+            class=""
+        >
+            <div id="decisionTB" style="display:none;">
+                <div id="errorBoxDecision" class="errorBox TBfixedPosition">
+                    <div class="head"><h4 id="errorBoxDecisionHead">-</h4></div>
+                    <div class="middle">
+                        <span id="errorBoxDecisionContent">-</span>
+                        <div class="response">
+                            <div style="float:left; width:180px;">
+                                <a href="javascript:void(0);" class="yes"><span id="errorBoxDecisionYes">.</span></a>
+                            </div>
+                            <div style="float:left; width:180px;">
+                                <a href="javascript:void(0);" class="no"><span id="errorBoxDecisionNo">.</span></a>
+                            </div>
+                            <br class="clearfloat"/>
+                        </div>
+                    </div>
+                    <div class="foot"></div>
+                </div>
+            </div>
+
+            <div id="fadeBox" class="fadeBox fixedPostion" style="display:none;" role="alert">
+                <span id="fadeBoxStyle" class="success"></span>
+                <p id="fadeBoxContent"></p>
+            </div>
+
+            <div id="notifyTB" style="display:none;">
+                <div id="errorBoxNotify" class="errorBox TBfixedPosition">
+                    <div class="head"><h4 id="errorBoxNotifyHead">-</h4></div>
+                    <div class="middle">
+                        <span id="errorBoxNotifyContent">-</span>
+                        <div class="response">
+                            <div>
+                                <a href="javascript:void(0);" class="ok">
+                                    <span id="errorBoxNotifyOk">.</span>
+                                </a>
+                            </div>
+                            <br class="clearfloat"/>
+                        </div>
+                    </div>
+                    <div class="foot"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        initIndex();
+    </script>
+                        
+    <div
+        id='chatbarcomponent'
+        class=""
+    >
+        <script type="text/javascript">
+            var bigChatLink =
+                "https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&component=chat";
+            var ajaxChatToken = "c70be6977e829732e46ae8315de1ecad";
+            var chatUrl =
+                "https:\/\/s274-fr.ogame.gameforge.com\/game\/index.php?page=ingame&component=chat&asJson=1";
+            var chatLoca = {
+                TEXT_EMPTY: "Mais o\u00f9 est le message ?",
+                TEXT_TOO_LONG: "Le message est trop long.",
+                SAME_USER: "Vous ne pouvez pas vous \u00e9crire vous-m\u00eame.",
+                IGNORED_USER: "Vous avez ignor\u00e9 ce joueur.",
+                NO_DATABASE_CONNECTION:
+                    "Une erreur inconnue est apparue, votre derni\u00e8re action n`a malheureusement pas pu \u00eatre effectu\u00e9e!",
+                INVALID_PARAMETERS:
+                    "Une erreur inconnue est apparue, votre derni\u00e8re action n`a malheureusement pas pu \u00eatre effectu\u00e9e!",
+                SEND_FAILED:
+                    "Une erreur inconnue est apparue, votre derni\u00e8re action n`a malheureusement pas pu \u00eatre effectu\u00e9e!",
+                LOCA_ALL_ERROR_NOTACTIVATED:
+                    "Cette fonction n`est disponible qu`apr\u00e8s activation de votre compte.",
+                X_NEW_CHATS: "#+# conversation(s) non-lue(s)",
+                MORE_USERS: "Plus",
+            };
+
+            var visibleChats = { players: [], associations: [] };
+
+            (function ($) {
+                ogame.chat.showPlayerList("#chatBarPlayerList .cb_playerlist_box"); //list in chat bar
+                ogame.chat.showPlayerList("#sideBar"); // list in chat
+
+                var initChatAsyncInterval = window.setInterval(initChatAsync, 100);
+
+                function initChatAsync() {
+                    if (
+                        ogame.chat.isLoadingPlayerList === false &&
+                        ogame.chat.playerList !== null
+                    ) {
+                        clearInterval(initChatAsyncInterval);
+                        ogame.chat.initChatBar(107514);
+                        ogame.chat.initChat(107514, false);
+                        ogame.chat.updateCustomScrollbar($(".scrollContainer"));
+                    }
+                }
+            })(jQuery);
+        </script>
+        <div id="chatBar">
+            <ul class="chat_bar_list">
+                <li id="chatBarPlayerList" class="chat_bar_pl_list_item">
+                    <div class="cb_playerlist_box" style="display:none">
+                    </div>
+                    <span class="onlineCount">0 joueurs en ligne</span>
+                </li>
+            </ul><!-- END Chat Bar List -->
+
+            <script type="text/javascript">
+
+    </script>
+        </div>
+    </div>
+    <div id="siteFooter">
+        <div class="content" style="font-size:10px">
+            <div class="fleft textLeft">
+                <span>13.0.1-r2hf</span>
+                <a class="homeLink" href="http://www.gameforge.com/" target="_blank">© 2002 Gameforge 4D GmbH. Tous droits réservés.</a>
+            </div>
+            <div class="fright textRight">
+                <a
+                    href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ajax&component=serversettings&ajax=1"
+                    class="overlay"
+                    data-overlay-title="Paramètres du serveur"
+                    data-overlay-class="serversettingsoverlay"
+                    data-overlay-popup-width="400"
+                    data-overlay-popup-height="510"
+                >
+                    Paramètres du serveur</a>|
+                <a href="https://discord.gg/OGame" target="_blank">Discord</a>|
+                <a href="https://board.fr.ogame.gameforge.com/" target="_blank">Forum</a>|
+                <a
+                    class="overlay"
+                    href="https://s274-fr.ogame.gameforge.com/game/index.php?page=standalone&amp;component=ruleslayer&amp;ajax=1"
+                    data-overlay-iframe="true"
+                    data-iframe-width="450"
+                    data-overlay-title="Règles"
+                >Règles</a>|
+                <a href="https://agbserver.gameforge.com/rewrite.php?locale=fr&amp;type=imprint&amp;product=ogame" target="_blank">Mentions légales</a>
+            </div>
+        </div>
+    </div>
+
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('app_admin_show') }}">admin</a>
+        <a href="{{ path('app_admin_generate_planets') }}">générer planètes</a>
+        <a href="{{ path('app_defence_index') }}">défense</a>
+        <a href="{{ path('app_vessel_index') }}">vaisseaux</a>
+        <a href="{{ path('app_building_index') }}">bâtiments</a>
+        <a href="{{ path('app_research_index') }}">recherches</a>
+    {% endif %}
+{% endblock %}
+
+    
+

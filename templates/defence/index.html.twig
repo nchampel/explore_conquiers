@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Defence index{% endblock %}
+
+{% block body %}
+    <h1>Defence index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Metal</th>
+                <th>Crystal</th>
+                <th>Deuterium</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for defence in defences %}
+            <tr>
+                <td>{{ defence.id }}</td>
+                <td>{{ defence.name }}</td>
+                <td>{{ defence.type }}</td>
+                <td>{{ defence.metal }}</td>
+                <td>{{ defence.crystal }}</td>
+                <td>{{ defence.deuterium }}</td>
+                <td>
+                    <a href="{{ path('app_defence_show', {'id': defence.id}) }}">show</a>
+                    <a href="{{ path('app_defence_edit', {'id': defence.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_defence_new') }}">Create new</a>
+    <a href="{{ path('app_home_game_og') }}">accueil</a>
+{% endblock %}

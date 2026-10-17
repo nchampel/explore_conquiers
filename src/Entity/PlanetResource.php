@@ -18,19 +18,16 @@ class PlanetResource
     private ?Planet $planet = null;
 
     #[ORM\Column]
-    private ?int $fieldsNumber = null;
-
-    #[ORM\Column]
     private ?int $metal = null;
 
     #[ORM\Column]
     private ?int $crystal = null;
 
     #[ORM\Column]
-    private ?int $deuterium = null;
+    private ?int $deuterium = 0;
 
     #[ORM\Column]
-    private ?int $satellite = null;
+    private ?int $satellite = 0;
 
     public function getId(): ?int
     {
@@ -45,18 +42,6 @@ class PlanetResource
     public function setPlanet(?Planet $planet): static
     {
         $this->planet = $planet;
-
-        return $this;
-    }
-
-    public function getFieldsNumber(): ?int
-    {
-        return $this->fieldsNumber;
-    }
-
-    public function setFieldsNumber(int $fieldsNumber): static
-    {
-        $this->fieldsNumber = $fieldsNumber;
 
         return $this;
     }

@@ -1,6 +1,32 @@
 12/10/26
 
-tester generatePlanets
+ok tester generatePlanets
 
-1000 m 1000 c
+1000 m 1000 c au début
 240 m 120 c par h
+
+13/10
+
+création user, attribution planète WIP
+continuation création entités, début bdd défense
+tentative de copie de design
+
+15/10
+
+continuation création entités
+créer service pour vérifier si bâtiment ou recherche ou vaisseau est débloqué (différera sur chaque planète)
+isUnlocked ne servira que pour les bâtiments de base (le false ne servira pas)
+
+on pourra voler les planètes. défense avec bâtiment qu'on augmentera de niveau, il faudra être 4 niv au dessus vaisseau du bâtiment pour avoir 50% de chance de "convertir" en 1 h.
+du coup nouvelle technologie de "conversion" CONQUÉRANT
+
+ok création nouvel utilisateur
+
+16/10
+
+inspiré de og...x, loot sur minage astéroïde d'un objet de protection pendant x j, mais bloquant l'attaque
+ok récupération ressources et affichage sur accueil copie
+incrémentation WIP
+ok séparer header, gauche, milieu droite html
+animation faite infos planète
+s'occuper x / fields

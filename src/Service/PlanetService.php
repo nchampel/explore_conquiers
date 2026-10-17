@@ -125,7 +125,9 @@ class PlanetService
     }
 
     public function generatePlanets(int $galaxy){
-        for($system = 1 ; $system <= 499 ; $system++){
+        // $maxSystem = 499;
+        $maxSystem = 50;
+        for($system = 1 ; $system <= $maxSystem ; $system++){
             for($position = 1 ; $position <= 15 ; $position++){
                 // $alea = random_int(1, 4);
                 // if($alea != 1){

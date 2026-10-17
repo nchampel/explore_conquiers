@@ -18,11 +18,14 @@ class PlanetBuilding
     private ?Building $building = null;
 
     #[ORM\Column]
-    private ?int $level = null;
+    private ?int $level = 0;
 
     #[ORM\ManyToOne(inversedBy: 'planetBuildings')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Planet $planet = null;
+
+    #[ORM\Column]
+    private ?bool $isUnlocked = false;
 
     public function getId(): ?int
     {
@@ -61,6 +64,18 @@ class PlanetBuilding
     public function setPlanet(?Planet $planet): static
     {
         $this->planet = $planet;
+
+        return $this;
+    }
+
+    public function isIsUnlocked(): ?bool
+    {
+        return $this->isUnlocked;
+    }
+
+    public function setIsUnlocked(bool $isUnlocked): static
+    {
+        $this->isUnlocked = $isUnlocked;
 
         return $this;
     }

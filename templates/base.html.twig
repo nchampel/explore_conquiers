@@ -7,13 +7,37 @@
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
+            <link rel="stylesheet" href="{{ asset('css/pro.min.css') }}">
+            
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/og/bcabfb589b8e77130280a35910521f.css') }}"/>
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/og/resourcesbar.css') }}"/>
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/og/retrieveEmail.css') }}"/>
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/og/technologydetails.css') }}"/>
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/og/technologytree.css') }}"/>
+
         {% endblock %}
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
+            <script type="text/javascript" src="{{ asset('js/functions.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/resourcesApi.js') }}"></script>
+
+            <script type="text/javascript">
+            /**
+             * This is only currently needed in a separate file in libraries because
+             * the javascript files are loaded alphabetically from files and we need to
+             * ensure that our namespace object is loaded before all other ogame specific
+             * javascript code
+             */
+
+            /*
+             * global javascript namespace for ogame
+             */
+            var ogame = ogame || {};
+        </script>
         {% endblock %}
     </head>
-    <body>
+    <body id="ingamepage" class="no-touch no-commander ">
         {% block body %}{% endblock %}
     </body>
 </html>

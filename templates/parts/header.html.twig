@@ -1,0 +1,289 @@
+{# ajouté par moi #}
+        {#  <script type="text/javascript">
+             async () => {
+
+                 let resourcesIncrementedDB = await getResources({{ planet.id }});
+             }
+         </script> #}
+         <script type="text/javascript">
+            planetId = {{ planet.id }};
+        </script>
+        <script type="text/javascript" src="{{ asset('js/incrementResources.js') }}"></script>
+        <script type="text/javascript">
+        // ici pour la maj des ressources par rapport à la BDD
+            startResourceAutoUpdate(planetId, 20000);
+            // ici pour l'incrémentation
+            incrementResourcesByDB(planetId);
+            // fetchResourcesProductions({{ planet.id }});
+        </script>
+        
+
+<div
+    id='resourcesbarcomponent'
+    class=""
+>
+    <div id="resources">
+                            
+        <div class="resource_tile metal">
+            <div
+                id="metal_box"
+                class="metal tooltipHTML resource ipiHintable"
+                title="Métal|&lt;table class=&quot;resourceTooltip&quot;&gt;&lt;tr&gt;&lt;th&gt;Disponible&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;&quot;&gt;6.747&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Capacité de stockage&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;&quot;&gt;10.000&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Production actuelle :&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;undermark&quot;&gt;+240&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Capacité de la cachette :&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;overermark&quot;&gt;0&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;"
+                data-shop-url="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=shop#category=d8d49c315fa620d9c7f1f19963970dea59a0e3be&amp;item=859d82d316b83848f7365d21949b3e1e63c7841f&amp;page=shop&amp;panel1-1="
+                data-ipi-hint="ipiResourcemetal"
+            >
+                <div class="resourceIcon metal"></div>
+                <span class="value">
+                    <span id="resources_metal" data-raw="{{ resources.metal }}" class="">{{ resources.metal }}</span>
+                </span>
+            </div>
+        </div>
+        <div class="resource_tile crystal">
+            <div
+                id="crystal_box"
+                class="crystal tooltipHTML resource ipiHintable"
+                title="Cristal|&lt;table class=&quot;resourceTooltip&quot;&gt;&lt;tr&gt;&lt;th&gt;Disponible&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;&quot;&gt;3.873&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Capacité de stockage&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;&quot;&gt;10.000&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Production actuelle :&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;undermark&quot;&gt;+120&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Capacité de la cachette :&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;overermark&quot;&gt;0&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;"
+                data-shop-url="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=shop#category=d8d49c315fa620d9c7f1f19963970dea59a0e3be&amp;item=bb2f6843226ef598f0b567b92c51b283de90aa48&amp;page=shop&amp;panel1-1="
+                data-ipi-hint="ipiResourcecrystal"
+            >
+                <div class="resourceIcon crystal"></div>
+                <span class="value">
+                    <span id="resources_crystal" data-raw="{{ resources.crystal }}" class="">{{ resources.crystal }}</span>
+                </span>
+            </div>
+        </div>
+        <div class="resource_tile deuterium">
+            <div
+                id="deuterium_box"
+                class="deuterium tooltipHTML resource ipiHintable"
+                title="Deutérium|&lt;table class=&quot;resourceTooltip&quot;&gt;&lt;tr&gt;&lt;th&gt;Disponible&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;&quot;&gt;0&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Capacité de stockage&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;&quot;&gt;10.000&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Production actuelle :&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;overmark&quot;&gt;0&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Capacité de la cachette :&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;overermark&quot;&gt;0&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;"
+                data-shop-url="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=shop#category=d8d49c315fa620d9c7f1f19963970dea59a0e3be&amp;item=cb72ed207dd871832a850ee29f1c1f83aa3f4f36&amp;page=shop&amp;panel1-1="
+                data-ipi-hint="ipiResourcedeuterium"
+            >
+                <div class="resourceIcon deuterium"></div>
+                <span class="value">
+                    <span id="resources_deuterium" data-raw="{{ resources.deuterium }}" class="">{{ resources.deuterium }}</span>
+                </span>
+            </div>
+        </div>
+        <div class="resource_tile energy">
+            <div
+                id="energy_box"
+                class="energy tooltipHTML resource ipiHintable"
+                title="Energie|&lt;table class=&quot;resourceTooltip&quot;&gt;&lt;tr&gt;&lt;th&gt;Disponible&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;&quot;&gt;0&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Production actuelle :&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;overmark&quot;&gt;0&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Consommation&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;overmark&quot;&gt;0&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;"
+                data-ipi-hint="ipiResourceenergy"
+            >
+                <div class="resourceIcon energy"></div>
+                <span class="value">
+                    <span id="resources_energy" data-raw="0" class="">0</span>
+                </span>
+            </div>
+        </div>
+        {# <div class="resource_tile population">
+                            <div
+                                id="population_box"
+                                class="population tooltipHTML resource ipiHintable"
+                                title="Population|&lt;table class=&quot;resourceTooltip&quot;&gt;&lt;tr&gt;&lt;th&gt;Disponible&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;overmark&quot;&gt;210&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Formes de vie N2&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;&quot;&gt;0&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Formes de vie N3&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;&quot;&gt;0&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Logement
+&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;overmark&quot;&gt;210&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Rassasiés&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;undermark&quot;&gt;233&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Affamés&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;overmark&quot;&gt;0&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Taux de croissance&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;&quot;&gt;±0,004&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Emplacement de bunker
+&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;middlemark&quot;&gt;100&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;"
+                                data-ipi-hint="ipiResourcepopulation"
+                            >
+                                <div class="resourceIcon population"></div>
+                                <span class="value">
+                                    <span id="resources_population" data-raw="210" class="">210</span>
+                                </span>
+                            </div>
+                        </div> #}
+        {# <div class="resource_tile food">
+                            <div
+                                id="food_box"
+                                class="food tooltipHTML resource ipiHintable"
+                                title="Nourriture|&lt;table class=&quot;resourceTooltip&quot;&gt;&lt;tr&gt;&lt;th&gt;Disponible&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;overmark&quot;&gt;10&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Capacité de stockage&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;overmark&quot;&gt;10&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Surproduction&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;undermark&quot;&gt;0&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Consommation&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;overmark&quot;&gt;0&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Consommé dans&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;overmark timeTillFoodRunsOut&quot;&gt;~&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;"
+                                data-ipi-hint="ipiResourcefood"
+                            >
+                                <div class="resourceIcon food"></div>
+                                <span class="value">
+                                    <span id="resources_food" data-raw="10" class="">10</span>
+                                </span>
+                            </div> 
+                        </div>#}
+        {# <div class="resource_tile darkmatter">
+                            <div
+                                id="darkmatter_box"
+                                class="darkmatter tooltipHTML resource ipiHintable"
+                                title="Antimatière (AM)|&lt;table class=&quot;resourceTooltip&quot;&gt;&lt;tr&gt;&lt;th&gt;Disponible&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;&quot;&gt;8.000&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Achetée&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;&quot;&gt;0&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Trouvée&lt;/th&gt;&lt;td&gt;&lt;span class=&quot;&quot;&gt;8.000&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;"
+                                data-tooltip-button="Se procurer de l`antimatière"
+                                data-ipi-hint="ipiResourcedarkmatter"
+                            >
+                                <a
+                                    href="https://s274-fr.ogame.gameforge.com/game/index.php?page=payment"
+                                    class="overlay"
+                                >
+                                    <img src="https://gf1.geo.gfsrv.net/cdnc5/401d1a91ff40dc7c8acfa4377d3d65.gif">
+                                    <div class="resourceIcon darkmatter"></div>
+                                </a>
+                                <span class="value">
+                                    <span id="resources_darkmatter" data-raw="8000" class="overlay">8.000</span>
+                                </span>
+                            </div>
+                        </div> #}
+    </div>
+    <script type="text/javascript">
+        var LocalizationStrings = {
+            timeunits: {
+                short: {
+                    year: "a",
+                    month: "M",
+                    week: "s",
+                    day: "j",
+                    hour: "h",
+                    minute: "m",
+                    second: "s",
+                },
+            },
+            status: { ready: "termin\u00e9" },
+            decimalPoint: ",",
+            thousandSeperator: ".",
+            unitMega: "M",
+            unitKilo: "K",
+            unitMilliard: "Md",
+            question: "Question",
+            error: "Erreur",
+            loading: "Chargement...",
+            notice: "Note",
+            yes: "Oui",
+            no: "Non",
+            ok: "Ok",
+            attention: "Attention",
+            outlawWarning:
+                "Vous \u00eates sur le point d`attaquer un joueur plus puissant. Si vous le faites, votre protection contre les attaques sera suspendue pendant 7 jours et tous les joueurs pourront vous attaquer sans subir de sanctions. \u00cates-vous s\u00fbr de vouloir continuer\u00a0?",
+            lastSlotWarningMoon:
+                "La construction de ce b\u00e2timent occupera votre dernier terrain \u00e0 b\u00e2tir. Agrandissez votre base lunaire pour obtenir plus de terrains. Souhaitez-vous quand m\u00eame construire ce b\u00e2timent\u00a0?",
+            lastSlotWarningPlanet:
+                "La construction de ce b\u00e2timent occupera votre dernier terrain \u00e0 b\u00e2tir. D\u00e9veloppez votre terraformeur ou achetez une extension plan\u00e9taire pour obtenir plus de terrains. Souhaitez-vous quand m\u00eame construire ce b\u00e2timent ?",
+            forcedVacationWarning:
+                "Confirmez votre compte de lobby et recevez de l`Antimati\u00e8re dans chaque univers\u00a0!",
+            planetMoveBreakUpWarning:
+                "Attention ! Cette mission pourrait ne pas \u00eatre termin\u00e9e au moment du d\u00e9m\u00e9nagement et entra\u00eener l`annulation de celui-ci. Voulez-vous vraiment lancer cette mission ?",
+            moreDetails: "Plus de d\u00e9tails",
+            lessDetails: "Moins de d\u00e9tails",
+            planetOrder: {
+                lock: "Verrouiller le classement",
+                unlock: "D\u00e9verrouiller le classement",
+            },
+            darkMatter: "Antimati\u00e8re (AM)",
+            errorNotEnoughDM:
+                "Vous n`avez pas assez d`antimati\u00e8re ! Souhaitez-vous en acheter maintenant\u00a0?",
+            activateItem: {
+                upgradeItemQuestion:
+                    "Voulez-vous vraiment remplacer l`objet existant\u00a0? Vous perdez alors l`ancien bonus.",
+                upgradeItemQuestionHeader: "Remplacer l`objet\u00a0?",
+            },
+            characterClassItem: {
+                buyAndActivateItemQuestion:
+                    "Souhaitez-vous activer la classe #characterClassName# en \u00e9change de #darkmatter#\u00a0unit\u00e9s d`antimati\u00e8re\u00a0? Votre classe actuelle sera perdue.",
+                activateItemQuestion:
+                    "Souhaitez-vous activer la classe #characterClassName#\u00a0? Votre classe actuelle sera perdue.",
+            },
+            allianceClassItem: {
+                buyAndActivateItemQuestion:
+                    "Souhaitez-vous activer la classe d`alliance #allianceClassName# en \u00e9change de #darkmatter#\u00a0unit\u00e9s d`antimati\u00e8re\u00a0? La classe d`alliance actuelle sera supprim\u00e9e.",
+                activateItemQuestion:
+                    "Souhaitez-vous activer la classe d`alliance #allianceClassName#\u00a0? La classe d`alliance actuelle sera supprim\u00e9e.",
+                appendCurrentClassQuestion:
+                    "<br><br>Classe d`alliance actuelle\u00a0: #currentAllianceClassName#<br><br>Derni\u00e8re modification le\u00a0: #lastAllianceClassChange#",
+            },
+            scrapperOfferItem: {
+                buyAndActivateItemQuestion:
+                    "Souhaitez-vous activer cette offre pour #darkmatter#\u00a0unit\u00e9s d`antimati\u00e8re\u00a0? Ceci remplacera votre offre actuelle aupr\u00e8s du ferrailleur.",
+                activateItemQuestion:
+                    "Souhaitez-vous activer cette offre\u00a0? Ceci remplacera votre offre actuelle aupr\u00e8s du ferrailleur.",
+            },
+            LOCA_ALL_NETWORK_ATTENTION: "Attention",
+            LOCA_ALL_YES: "Oui",
+            LOCA_ALL_NO: "Non",
+            redirectMessage:
+                "En suivant ce lien, vous quitterez OGame. Voulez-vous continuer\u00a0?",
+        };
+        ajaxResourceboxURI =
+            "https://s274-fr.ogame.gameforge.com/game/index.php?page=componentOnly&component=resourcesbar&action=fetchResources&asJson=1";
+
+        (function ($) {
+            reloadResources({
+                resources: {
+                    population: {
+                        amount: 210,
+                        storage: 210,
+                        protected: 100,
+                        safeCapacity: 100,
+                        growthRate: 0.0044444444444444444,
+                        capableToFeed: 233,
+                        needFood: 0,
+                        singleFoodConsumption: 9.523809523809524e-5,
+                        tooltip:
+                            'Population|<table class="resourceTooltip"><tr><th>Disponible<\/th><td><span class="overmark">210<\/span><\/td><\/tr><tr><th>Formes de vie N2<\/th><td><span class="">0<\/span><\/td><\/tr><tr><th>Formes de vie N3<\/th><td><span class="">0<\/span><\/td><\/tr><tr><th>Logement\n<\/th><td><span class="overmark">210<\/span><\/td><\/tr><tr><th>Rassasi\u00e9s<\/th><td><span class="undermark">233<\/span><\/td><\/tr><tr><th>Affam\u00e9s<\/th><td><span class="overmark">0<\/span><\/td><\/tr><tr><th>Taux de croissance<\/th><td><span class="">\u00b10,004<\/span><\/td><\/tr><tr><th>Emplacement de bunker\n<\/th><td><span class="middlemark">100<\/span><\/td><\/tr><\/table>',
+                    },
+                    food: {
+                        amount: 10,
+                        storage: 10,
+                        protected: 0,
+                        capableToFeed: 233,
+                        production: 0.022222222222222223,
+                        extraproduction: 0,
+                        consumption: 0,
+                        vacationMode: "",
+                        tooltip:
+                            'Nourriture|<table class="resourceTooltip"><tr><th>Disponible<\/th><td><span class="overmark">10<\/span><\/td><\/tr><tr><th>Capacit\u00e9 de stockage<\/th><td><span class="overmark">10<\/span><\/td><\/tr><tr><th>Surproduction<\/th><td><span class="undermark">0<\/span><\/td><\/tr><tr><th>Consommation<\/th><td><span class="overmark">0<\/span><\/td><\/tr><tr><th>Consomm\u00e9 dans<\/th><td><span class="overmark timeTillFoodRunsOut">~<\/span><\/td><\/tr><\/table>',
+                    },
+                    metal: {
+                        amount: 6747,
+                        storage: 10000,
+                        protected: 0,
+                        baseProduction: 0.06666666666666667,
+                        production: 0.06666666666666667,
+                        tooltip:
+                            'M\u00e9tal|<table class="resourceTooltip"><tr><th>Disponible<\/th><td><span class="">6.747<\/span><\/td><\/tr><tr><th>Capacit\u00e9 de stockage<\/th><td><span class="">10.000<\/span><\/td><\/tr><tr><th>Production actuelle\u00a0:<\/th><td><span class="undermark">+240<\/span><\/td><\/tr><tr><th>Capacit\u00e9 de la cachette\u00a0:<\/th><td><span class="overermark">0<\/span><\/td><\/tr><\/table>',
+                        shopUrl:
+                            "https:\/\/s274-fr.ogame.gameforge.com\/game\/index.php?page=ingame&component=shop#category=d8d49c315fa620d9c7f1f19963970dea59a0e3be&item=859d82d316b83848f7365d21949b3e1e63c7841f&page=shop&panel1-1=",
+                    },
+                    crystal: {
+                        amount: 3873,
+                        storage: 10000,
+                        protected: 0,
+                        baseProduction: 0.03333333333333333,
+                        production: 0.03333333333333333,
+                        tooltip:
+                            'Cristal|<table class="resourceTooltip"><tr><th>Disponible<\/th><td><span class="">3.873<\/span><\/td><\/tr><tr><th>Capacit\u00e9 de stockage<\/th><td><span class="">10.000<\/span><\/td><\/tr><tr><th>Production actuelle\u00a0:<\/th><td><span class="undermark">+120<\/span><\/td><\/tr><tr><th>Capacit\u00e9 de la cachette\u00a0:<\/th><td><span class="overermark">0<\/span><\/td><\/tr><\/table>',
+                        shopUrl:
+                            "https:\/\/s274-fr.ogame.gameforge.com\/game\/index.php?page=ingame&component=shop#category=d8d49c315fa620d9c7f1f19963970dea59a0e3be&item=bb2f6843226ef598f0b567b92c51b283de90aa48&page=shop&panel1-1=",
+                    },
+                    deuterium: {
+                        amount: 0,
+                        storage: 10000,
+                        protected: 0,
+                        baseProduction: 0,
+                        production: 0,
+                        tooltip:
+                            'Deut\u00e9rium|<table class="resourceTooltip"><tr><th>Disponible<\/th><td><span class="">0<\/span><\/td><\/tr><tr><th>Capacit\u00e9 de stockage<\/th><td><span class="">10.000<\/span><\/td><\/tr><tr><th>Production actuelle\u00a0:<\/th><td><span class="overmark">0<\/span><\/td><\/tr><tr><th>Capacit\u00e9 de la cachette\u00a0:<\/th><td><span class="overermark">0<\/span><\/td><\/tr><\/table>',
+                        shopUrl:
+                            "https:\/\/s274-fr.ogame.gameforge.com\/game\/index.php?page=ingame&component=shop#category=d8d49c315fa620d9c7f1f19963970dea59a0e3be&item=cb72ed207dd871832a850ee29f1c1f83aa3f4f36&page=shop&panel1-1=",
+                    },
+                    energy: {
+                        amount: 0,
+                        tooltip:
+                            'Energie|<table class="resourceTooltip"><tr><th>Disponible<\/th><td><span class="">0<\/span><\/td><\/tr><tr><th>Production actuelle\u00a0:<\/th><td><span class="overmark">0<\/span><\/td><\/tr><tr><th>Consommation<\/th><td><span class="overmark">0<\/span><\/td><\/tr><\/table>',
+                    },
+                    darkmatter: {
+                        amount: 8000,
+                        tooltip:
+                            'Antimati\u00e8re (AM)|<table class="resourceTooltip"><tr><th>Disponible<\/th><td><span class="">8.000<\/span><\/td><\/tr><tr><th>Achet\u00e9e<\/th><td><span class="">0<\/span><\/td><\/tr><tr><th>Trouv\u00e9e<\/th><td><span class="">8.000<\/span><\/td><\/tr><\/table>',
+                        classes: "overlay",
+                        link: "https:\/\/s274-fr.ogame.gameforge.com\/game\/index.php?page=payment",
+                        img: "https:\/\/gf1.geo.gfsrv.net\/cdnc5\/401d1a91ff40dc7c8acfa4377d3d65.gif",
+                    },
+                },
+                honorScore: 0,
+            });
+        })(jQuery);
+    </script>
+</div>

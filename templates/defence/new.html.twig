@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Defence{% endblock %}
+
+{% block body %}
+    <h1>Create new Defence</h1>
+
+    {{ include('defence/_form.html.twig') }}
+
+    <a href="{{ path('app_defence_index') }}">back to list</a>
+{% endblock %}
