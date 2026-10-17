@@ -1,0 +1,85 @@
+<div
+    id='newmessagesindicatorcomponent'
+    class=""
+>
+    <div
+        class="messagesIndicator tooltipBottom  "
+        onclick="window.location='https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&component=messages'"
+        title="0 nouveau(x) message(s)"
+        data-new-messages="0"
+    >
+        <div class="newCount" style="display:none;">0</div>
+    </div>
+    <div
+        class="chatIndicator tooltipBottom  "
+        onclick="window.location='https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&component=chat'"
+        title="0 nouveau(x) message(s)"
+        data-new-messages="0"
+    >
+        <div class="newCount" style="display:none;">0</div>
+    </div>
+
+    <script type="text/javascript">
+        var getAsAjaxUrl =
+            "https://s274-fr.ogame.gameforge.com/game/index.php?page=componentOnly&component=messages&ajax=1";
+        var getAsJsonUrl =
+            "https://s274-fr.ogame.gameforge.com/game/index.php?page=componentOnly&component=messages&asJson=1";
+    </script>    
+</div>
+
+                                        
+<div
+    id='notificationbarcomponent'
+    class=""
+>
+    <div id="message-wrapper">
+        <div id="messages_collapsed">
+            <div id="eventboxFilled" class="eventToggle" style="display: none;">
+                <a
+                    id="js_eventDetailsClosed"
+                    class="tooltipRight js_hideTipOnMobile"
+                    href="javascript:void(0);"
+                    title="Plus de détails"
+                ></a>
+                <a
+                    id="js_eventDetailsOpen"
+                    class="tooltipRight open js_hideTipOnMobile"
+                    href="javascript:void(0);"
+                    title="Moins de détails"
+                ></a>
+            </div>
+            <div
+                id="eventboxLoading"
+                class="textCenter textBeefy"
+                style="display: block;"
+            >
+                <img
+                    height="16"
+                    width="16"
+                    alt="ajax spinner"
+                    src="https://gf3.geo.gfsrv.net/cdne3/3f9884806436537bdec305aa26fc60.gif"
+                />
+                Chargement...
+            </div>
+            <div
+                id="eventboxBlank"
+                class="textCenter"
+                style="display: none;"
+            >
+                Pas de mouvements de flotte
+            </div>
+        </div>
+        <div
+            id="attack_alert"
+            class="tooltip noAttack"
+            title=""
+        >
+            <a
+                href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=eventlist"
+                class=" tooltipHTML js_hideTipOnMobile"
+            ></a>
+        </div>
+    </div>    
+</div>
+
+

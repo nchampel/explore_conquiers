@@ -29,4 +29,8 @@ ok récupération ressources et affichage sur accueil copie
 incrémentation WIP
 ok séparer header, gauche, milieu droite html
 animation faite infos planète
-s'occuper x / fields
+ok s'occuper x / fields
+
+17/10
+
+s'occuper gif dans css

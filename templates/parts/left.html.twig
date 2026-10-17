@@ -64,8 +64,9 @@
                         </a>
                     </span>
                     <a
-                        class="menubutton  selected ipiHintable"
-                        href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=overview"
+                        class="menubutton  {% if component == 'overview' %} selected {% endif %} ipiHintable"
+                        {# href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=overview" #}
+                        href="{{ path('app_home_game_og') }}"
                         target="_self"
                         data-ipi-hint="ipiToolbarOverview"
                     >
@@ -144,8 +145,9 @@
                         </a>
                     </span>
                     <a
-                        class="menubutton   ipiHintable"
-                        href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=facilities"
+                        class="menubutton {% if component == 'facilities' %} selected {% endif %}  ipiHintable"
+                        {# href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=facilities" #}
+                        href="{{ path('app_facilities') }}"
                         target="_self"
                         data-ipi-hint="ipiToolbarFacilities"
                     >
