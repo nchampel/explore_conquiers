@@ -34,3 +34,8 @@ ok s'occuper x / fields
 17/10
 
 s'occuper gif dans css
+
+18/10
+
+quand on colonise ou conquiert une nouvelle planète, les points gps autour de moi donnent de novuelles planètes, comme si ma nouvelle planète était située loin des autres
+quand on colonise ou conquiert, cela génère planètes ia et libres

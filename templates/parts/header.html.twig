@@ -6,14 +6,18 @@
              }
          </script> #}
          <script type="text/javascript">
-            planetId = {{ planet.id }};
+            let planetId = {{ planet.id }};
+            // let metal = {{ resources.metal }};
+            // let crystal = {{ resources.crystal }};
+            // let deuterium = {{ resources.deuterium }};
+
         </script>
         <script type="text/javascript" src="{{ asset('js/incrementResources.js') }}"></script>
         <script type="text/javascript">
         // ici pour la maj des ressources par rapport à la BDD
             startResourceAutoUpdate(planetId, 20000);
             // ici pour l'incrémentation
-            incrementResourcesByDB(planetId);
+            // incrementResourcesByDB(planetId);
             // fetchResourcesProductions({{ planet.id }});
         </script>
         

@@ -34,8 +34,8 @@ class ApiResourcesController extends AbstractController
         $resources = $this->planetResourceRepository->findOneBy(["planet" => $planet]);
 
         return $this->json([
-            'status_code' => 200,
-            'message' => "Ressources récupérées",
+            // 'status_code' => 200,
+            // 'message' => "Ressources récupérées",
             'metal' => $resources->getMetal(),
             'crystal' => $resources->getCrystal(),
             'deuterium' => $resources->getDeuterium(),
