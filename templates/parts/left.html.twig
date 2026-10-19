@@ -91,8 +91,8 @@
                         </a>
                     </span>
                     <a
-                        class="menubutton   ipiHintable"
-                        href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=supplies"
+                        class="menubutton {% if component == 'supplies' %} selected {% endif %}  ipiHintable"
+                        href="{{ path('app_supplies') }}"
                         target="_self"
                         data-ipi-hint="ipiToolbarResourcebuildings"
                     >

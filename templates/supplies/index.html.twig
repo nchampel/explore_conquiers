@@ -1,0 +1,540 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SuppliesController!{% endblock %}
+
+{% block body %}
+<div id="pageContent">
+        <div id="top">
+            <div id="pageReloader" onclick="javascript: redirectOverview();"></div>
+                                        
+            <div
+                id='headerbarcomponent'
+                class=""
+            >
+
+                                        
+                {% include('parts/top.html.twig') %}
+                {% include('parts/header.html.twig') %}
+                {% include('parts/topBottom.html.twig') %}
+            </div>
+
+            {{ include('parts/left.html.twig') }}
+    <div id="middle">
+                                                                
+        <div id="eventlistcomponent" class="">
+            <div id="eventboxContent" style="display: none;">    <div id="eventListWrap">
+                    <div id="eventHeader">
+                        <a class="close_details eventToggle" href="javascript:toggleEvents();">
+                        </a>
+                        <h2>Événements</h2>
+                    </div>
+                    <table id="eventContent">
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <div id="eventFooter"></div>
+                </div>
+                <script type="text/javascript">
+                    var timeDelta = 1792442650000 - new Date().getTime();
+                    var LocalizationStrings = {
+                        timeunits: {
+                            short: {
+                                year: "a",
+                                month: "M",
+                                week: "s",
+                                day: "j",
+                                hour: "h",
+                                minute: "m",
+                                second: "s",
+                            },
+                        },
+                        status: { ready: "termin\u00e9" },
+                        decimalPoint: ",",
+                        thousandSeperator: ".",
+                        unitMega: "M",
+                        unitKilo: "K",
+                        unitMilliard: "Md",
+                        question: "Question",
+                        error: "Erreur",
+                        loading: "Chargement...",
+                        notice: "Note",
+                        yes: "Oui",
+                        no: "Non",
+                        ok: "Ok",
+                        attention: "Attention",
+                        outlawWarning:
+                            "Vous \u00eates sur le point d`attaquer un joueur plus puissant. Si vous le faites, votre protection contre les attaques sera suspendue pendant 7 jours et tous les joueurs pourront vous attaquer sans subir de sanctions. \u00cates-vous s\u00fbr de vouloir continuer\u00a0?",
+                        lastSlotWarningMoon:
+                            "La construction de ce b\u00e2timent occupera votre dernier terrain \u00e0 b\u00e2tir. Agrandissez votre base lunaire pour obtenir plus de terrains. Souhaitez-vous quand m\u00eame construire ce b\u00e2timent\u00a0?",
+                        lastSlotWarningPlanet:
+                            "La construction de ce b\u00e2timent occupera votre dernier terrain \u00e0 b\u00e2tir. D\u00e9veloppez votre terraformeur ou achetez une extension plan\u00e9taire pour obtenir plus de terrains. Souhaitez-vous quand m\u00eame construire ce b\u00e2timent ?",
+                        forcedVacationWarning:
+                            "Confirmez votre compte de lobby et recevez de l`Antimati\u00e8re dans chaque univers\u00a0!",
+                        planetMoveBreakUpWarning:
+                            "Attention ! Cette mission pourrait ne pas \u00eatre termin\u00e9e au moment du d\u00e9m\u00e9nagement et entra\u00eener l`annulation de celui-ci. Voulez-vous vraiment lancer cette mission ?",
+                        moreDetails: "Plus de d\u00e9tails",
+                        lessDetails: "Moins de d\u00e9tails",
+                        planetOrder: {
+                            lock: "Verrouiller le classement",
+                            unlock: "D\u00e9verrouiller le classement",
+                        },
+                        darkMatter: "Antimati\u00e8re (AM)",
+                        errorNotEnoughDM:
+                            "Vous n`avez pas assez d`antimati\u00e8re ! Souhaitez-vous en acheter maintenant\u00a0?",
+                        activateItem: {
+                            upgradeItemQuestion:
+                                "Voulez-vous vraiment remplacer l`objet existant\u00a0? Vous perdez alors l`ancien bonus.",
+                            upgradeItemQuestionHeader: "Remplacer l`objet\u00a0?",
+                        },
+                        characterClassItem: {
+                            buyAndActivateItemQuestion:
+                                "Souhaitez-vous activer la classe #characterClassName# en \u00e9change de #darkmatter#\u00a0unit\u00e9s d`antimati\u00e8re\u00a0? Votre classe actuelle sera perdue.",
+                            activateItemQuestion:
+                                "Souhaitez-vous activer la classe #characterClassName#\u00a0? Votre classe actuelle sera perdue.",
+                        },
+                        allianceClassItem: {
+                            buyAndActivateItemQuestion:
+                                "Souhaitez-vous activer la classe d`alliance #allianceClassName# en \u00e9change de #darkmatter#\u00a0unit\u00e9s d`antimati\u00e8re\u00a0? La classe d`alliance actuelle sera supprim\u00e9e.",
+                            activateItemQuestion:
+                                "Souhaitez-vous activer la classe d`alliance #allianceClassName#\u00a0? La classe d`alliance actuelle sera supprim\u00e9e.",
+                            appendCurrentClassQuestion:
+                                "<br><br>Classe d`alliance actuelle\u00a0: #currentAllianceClassName#<br><br>Derni\u00e8re modification le\u00a0: #lastAllianceClassChange#",
+                        },
+                        scrapperOfferItem: {
+                            buyAndActivateItemQuestion:
+                                "Souhaitez-vous activer cette offre pour #darkmatter#\u00a0unit\u00e9s d`antimati\u00e8re\u00a0? Ceci remplacera votre offre actuelle aupr\u00e8s du ferrailleur.",
+                            activateItemQuestion:
+                                "Souhaitez-vous activer cette offre\u00a0? Ceci remplacera votre offre actuelle aupr\u00e8s du ferrailleur.",
+                        },
+                        LOCA_ALL_NETWORK_ATTENTION: "Attention",
+                        LOCA_ALL_YES: "Oui",
+                        LOCA_ALL_NO: "Non",
+                        redirectMessage:
+                            "En suivant ce lien, vous quitterez OGame. Voulez-vous continuer\u00a0?",
+                    };
+                    $("a.icon_link.recallFleet").click(function (e) {
+                        e.preventDefault();
+                        var fleetId = $(this).attr("data-fleet-id");
+                        errorBoxDecision("Rappel", "Rappeler flotte", "Oui", "Non", function () {
+                            $.post(
+                                ajaxRecallFleetURI,
+                                { fleetId: fleetId, token: token },
+                                (response) => {
+                                    let data = JSON.parse(response);
+                                    token = data.newAjaxToken;
+
+                                    if (data.success) {
+                                        let currentUrl = window.location.href;
+                                        let params = new URLSearchParams(currentUrl);
+                                        let currentComponent = params.get("component");
+
+                                        switch (currentComponent) {
+                                            case "movement":
+                                                window.location.reload();
+                                                return;
+                                            case "galaxy":
+                                                if (
+                                                    submitForm &&
+                                                    typeof submitForm === "function" &&
+                                                    typeof galaxy !== "undefined" &&
+                                                    typeof system !== "undefined"
+                                                ) {
+                                                    submitForm();
+                                                }
+                                                break;
+                                        }
+
+                                        getAjaxEventbox();
+                                        refreshFleetEvents(true);
+                                    }
+                                },
+                            );
+                        });
+                        return false;
+                    });
+                    (function ($) {})(jQuery);
+                </script>
+
+
+            </div>
+            <script type="text/javascript">
+                var timeDelta = 1792442649000 - new Date().getTime();
+                var LocalizationStrings = {
+                    timeunits: {
+                        short: {
+                            year: "a",
+                            month: "M",
+                            week: "s",
+                            day: "j",
+                            hour: "h",
+                            minute: "m",
+                            second: "s",
+                        },
+                    },
+                    status: { ready: "termin\u00e9" },
+                    decimalPoint: ",",
+                    thousandSeperator: ".",
+                    unitMega: "M",
+                    unitKilo: "K",
+                    unitMilliard: "Md",
+                    question: "Question",
+                    error: "Erreur",
+                    loading: "Chargement...",
+                    notice: "Note",
+                    yes: "Oui",
+                    no: "Non",
+                    ok: "Ok",
+                    attention: "Attention",
+                    outlawWarning:
+                        "Vous \u00eates sur le point d`attaquer un joueur plus puissant. Si vous le faites, votre protection contre les attaques sera suspendue pendant 7 jours et tous les joueurs pourront vous attaquer sans subir de sanctions. \u00cates-vous s\u00fbr de vouloir continuer\u00a0?",
+                    lastSlotWarningMoon:
+                        "La construction de ce b\u00e2timent occupera votre dernier terrain \u00e0 b\u00e2tir. Agrandissez votre base lunaire pour obtenir plus de terrains. Souhaitez-vous quand m\u00eame construire ce b\u00e2timent\u00a0?",
+                    lastSlotWarningPlanet:
+                        "La construction de ce b\u00e2timent occupera votre dernier terrain \u00e0 b\u00e2tir. D\u00e9veloppez votre terraformeur ou achetez une extension plan\u00e9taire pour obtenir plus de terrains. Souhaitez-vous quand m\u00eame construire ce b\u00e2timent ?",
+                    forcedVacationWarning:
+                        "Confirmez votre compte de lobby et recevez de l`Antimati\u00e8re dans chaque univers\u00a0!",
+                    planetMoveBreakUpWarning:
+                        "Attention ! Cette mission pourrait ne pas \u00eatre termin\u00e9e au moment du d\u00e9m\u00e9nagement et entra\u00eener l`annulation de celui-ci. Voulez-vous vraiment lancer cette mission ?",
+                    moreDetails: "Plus de d\u00e9tails",
+                    lessDetails: "Moins de d\u00e9tails",
+                    planetOrder: {
+                        lock: "Verrouiller le classement",
+                        unlock: "D\u00e9verrouiller le classement",
+                    },
+                    darkMatter: "Antimati\u00e8re (AM)",
+                    errorNotEnoughDM:
+                        "Vous n`avez pas assez d`antimati\u00e8re ! Souhaitez-vous en acheter maintenant\u00a0?",
+                    activateItem: {
+                        upgradeItemQuestion:
+                            "Voulez-vous vraiment remplacer l`objet existant\u00a0? Vous perdez alors l`ancien bonus.",
+                        upgradeItemQuestionHeader: "Remplacer l`objet\u00a0?",
+                    },
+                    characterClassItem: {
+                        buyAndActivateItemQuestion:
+                            "Souhaitez-vous activer la classe #characterClassName# en \u00e9change de #darkmatter#\u00a0unit\u00e9s d`antimati\u00e8re\u00a0? Votre classe actuelle sera perdue.",
+                        activateItemQuestion:
+                            "Souhaitez-vous activer la classe #characterClassName#\u00a0? Votre classe actuelle sera perdue.",
+                    },
+                    allianceClassItem: {
+                        buyAndActivateItemQuestion:
+                            "Souhaitez-vous activer la classe d`alliance #allianceClassName# en \u00e9change de #darkmatter#\u00a0unit\u00e9s d`antimati\u00e8re\u00a0? La classe d`alliance actuelle sera supprim\u00e9e.",
+                        activateItemQuestion:
+                            "Souhaitez-vous activer la classe d`alliance #allianceClassName#\u00a0? La classe d`alliance actuelle sera supprim\u00e9e.",
+                        appendCurrentClassQuestion:
+                            "<br><br>Classe d`alliance actuelle\u00a0: #currentAllianceClassName#<br><br>Derni\u00e8re modification le\u00a0: #lastAllianceClassChange#",
+                    },
+                    scrapperOfferItem: {
+                        buyAndActivateItemQuestion:
+                            "Souhaitez-vous activer cette offre pour #darkmatter#\u00a0unit\u00e9s d`antimati\u00e8re\u00a0? Ceci remplacera votre offre actuelle aupr\u00e8s du ferrailleur.",
+                        activateItemQuestion:
+                            "Souhaitez-vous activer cette offre\u00a0? Ceci remplacera votre offre actuelle aupr\u00e8s du ferrailleur.",
+                    },
+                    LOCA_ALL_NETWORK_ATTENTION: "Attention",
+                    LOCA_ALL_YES: "Oui",
+                    LOCA_ALL_NO: "Non",
+                    redirectMessage:
+                        "En suivant ce lien, vous quitterez OGame. Voulez-vous continuer\u00a0?",
+                };
+                $("a.icon_link.recallFleet").click(function (e) {
+                    e.preventDefault();
+                    var fleetId = $(this).attr("data-fleet-id");
+                    errorBoxDecision("Rappel", "Rappeler flotte", "Oui", "Non", function () {
+                        $.post(
+                            ajaxRecallFleetURI,
+                            { fleetId: fleetId, token: token },
+                            (response) => {
+                                let data = JSON.parse(response);
+                                token = data.newAjaxToken;
+
+                                if (data.success) {
+                                    let currentUrl = window.location.href;
+                                    let params = new URLSearchParams(currentUrl);
+                                    let currentComponent = params.get("component");
+
+                                    switch (currentComponent) {
+                                        case "movement":
+                                            window.location.reload();
+                                            return;
+                                        case "galaxy":
+                                            if (
+                                                submitForm &&
+                                                typeof submitForm === "function" &&
+                                                typeof galaxy !== "undefined" &&
+                                                typeof system !== "undefined"
+                                            ) {
+                                                submitForm();
+                                            }
+                                            break;
+                                    }
+
+                                    getAjaxEventbox();
+                                    refreshFleetEvents(true);
+                                }
+                            },
+                        );
+                    });
+                    return false;
+                });
+                (function ($) {})(jQuery);
+            </script>
+
+
+        </div>
+        <div id="suppliescomponent" class="maincontent">
+            <div id="supplies">
+                <header data-anchor="technologyDetails" data-technologydetails-size="large" style="background: url('https://s274-fr.ogame.gameforge.com/headerCache/supplies/gas_1_3_4.jpg');"><h2>Ressources - planète mère</h2><div id="slot01" class="slot "><a href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=resourcesettings">
+                            Paramétrage de la production
+                        </a></div></header>
+                <div id="technologydetails_wrapper"><div id="technologydetails_content"></div></div>
+                <div id="technologies">
+                    <h3>
+                        Appro. &amp; Alim.
+                    </h3>
+                    <ul id="producers" class="icons">
+                        <li class="technology metalMine hasDetails tooltip hideTooltipOnMouseenter js_hideTipOnMobile ipiHintable ipiHintActive" data-technology="1" data-status="on" data-is-spaceprovider="" aria-label="Mine de métal" data-ipi-hint="ipiTechnologymetalMine" data-tooltip-title="Mine de métal"><span class="icon sprite sprite_medium medium metalMine"><button class="upgrade tooltip hideOthers js_hideTipOnMobile" aria-label="Mine de métal : développer au niveau 2" data-technology="1" data-is-spaceprovider="" data-tooltip-title="Mine de métal : développer au niveau 2"></button><span class="level" data-value="1" data-bonus="0"><span class="stockAmount">{{ planet.getBuildingByName('Mine de métal').level }}</span><span class="bonus"></span></span></span>
+                        </li>
+                        <li class="technology crystalMine  hasDetails tooltip hideTooltipOnMouseenter js_hideTipOnMobile ipiHintable" data-technology="2" data-status="on" data-is-spaceprovider="" aria-label="Mine de cristal" data-ipi-hint="ipiTechnologycrystalMine" data-tooltip-title="Mine de cristal"><span class="icon sprite sprite_medium medium crystalMine"><button class="upgrade tooltip hideOthers js_hideTipOnMobile" aria-label="Mine de cristal : développer au niveau 1" data-technology="2" data-is-spaceprovider="" data-tooltip-title="Mine de cristal : développer au niveau 1"></button><span class="level" data-value="0" data-bonus="0"><span class="stockAmount">{{ planet.getBuildingByName('Mine de cristal').level }}</span><span class="bonus"></span></span></span>
+                        </li>
+                        <li class="technology deuteriumSynthesizer  hasDetails tooltip hideTooltipOnMouseenter js_hideTipOnMobile ipiHintable" data-technology="3" data-status="on" data-is-spaceprovider="" aria-label="Synthétiseur de deutérium" data-ipi-hint="ipiTechnologydeuteriumSynthesizer" data-tooltip-title="Synthétiseur de deutérium"><span class="icon sprite sprite_medium medium deuteriumSynthesizer"><button class="upgrade tooltip hideOthers js_hideTipOnMobile" aria-label="Synthétiseur de deutérium : développer au niveau 2" data-technology="3" data-is-spaceprovider="" data-tooltip-title="Synthétiseur de deutérium : développer au niveau 2"></button><span class="level" data-value="1" data-bonus="0"><span class="stockAmount">{{ planet.getBuildingByName('Synthétiseur de deutérium').level }}</span><span class="bonus"></span></span></span>
+                        </li>
+                        <li class="technology solarPlant  hasDetails tooltip hideTooltipOnMouseenter js_hideTipOnMobile ipiHintable" data-technology="4" data-status="on" data-is-spaceprovider="" aria-label="Centrale électrique solaire" data-ipi-hint="ipiTechnologysolarPlant" data-tooltip-title="Centrale électrique solaire"><span class="icon sprite sprite_medium medium solarPlant"><button class="upgrade tooltip hideOthers js_hideTipOnMobile" aria-label="Centrale électrique solaire : développer au niveau 4" data-technology="4" data-is-spaceprovider="" data-tooltip-title="Centrale électrique solaire : développer au niveau 4"></button><span class="level" data-value="3" data-bonus="0"><span class="stockAmount">{{ planet.getBuildingByName('Centrale électrique solaire').level }}</span><span class="bonus"></span></span></span>
+                        </li>
+                        <li class="technology fusionPlant  hasDetails tooltip hideTooltipOnMouseenter js_hideTipOnMobile ipiHintable" data-technology="12" data-status="off" data-is-spaceprovider="" aria-label="Centrale électrique de fusion" data-ipi-hint="ipiTechnologyfusionPlant" data-tooltip-title="Centrale électrique de fusion&lt;br/&gt;Prérequis non remplis"><span class="icon sprite sprite_medium medium fusionPlant"><span class="level" data-value="0" data-bonus="0"><span class="stockAmount">{{ planet.getBuildingByName('Centrale électrique de fusion').level }}</span><span class="bonus"></span></span></span>
+                        </li>
+                        <li class="technology solarSatellite  hasDetails tooltip hideTooltipOnMouseenter js_hideTipOnMobile ipiHintable" data-technology="212" data-status="off" data-is-spaceprovider="" aria-label="Satellite solaire" data-ipi-hint="ipiTechnologysolarSatellite" data-tooltip-title="Satellite solaire (0)&lt;br/&gt;Prérequis non remplis"><span class="icon sprite sprite_medium medium solarSatellite"><span class="amount" data-value="0" data-bonus="0"><span class="stockAmount">{{ planet.getVesselByName('Satellite solaire').number }}</span><span class="bonus"></span></span></span>
+                        </li>
+                        {# <li class="technology resbuggy  hasDetails tooltip hideTooltipOnMouseenter js_hideTipOnMobile ipiHintable" data-technology="217" data-status="off" data-is-spaceprovider="" aria-label="Foreuse" data-ipi-hint="ipiTechnologyresbuggy" data-tooltip-title="Foreuse (0)&lt;br/&gt;Prérequis non remplis"><span class="icon sprite sprite_medium medium resbuggy"><span class="amount" data-value="0" data-bonus="0"><span class="stockAmount">0</span><span class="bonus"></span></span></span>
+                        </li>             #}
+                        <li class="technology metalStorage  hasDetails tooltip hideTooltipOnMouseenter js_hideTipOnMobile ipiHintable" data-technology="22" data-status="on" data-is-spaceprovider="" aria-label="Hangar de métal" data-ipi-hint="ipiTechnologymetalStorage" data-tooltip-title="Hangar de métal"><span class="icon sprite sprite_small small metalStorage"><button class="upgrade tooltip hideOthers js_hideTipOnMobile" aria-label="Hangar de métal : développer au niveau 5" data-technology="22" data-is-spaceprovider="" data-tooltip-title="Hangar de métal : développer au niveau 5"></button><span class="level" data-value="4" data-bonus="0"><span class="stockAmount">{{ planet.getBuildingByName('Hangar de métal').level }}</span><span class="bonus"></span></span></span>
+                        </li>
+                        <li class="technology crystalStorage  hasDetails tooltip hideTooltipOnMouseenter js_hideTipOnMobile ipiHintable" data-technology="23" data-status="on" data-is-spaceprovider="" aria-label="Hangar de cristal" data-ipi-hint="ipiTechnologycrystalStorage" data-tooltip-title="Hangar de cristal"><span class="icon sprite sprite_small small crystalStorage"><button class="upgrade tooltip hideOthers js_hideTipOnMobile" aria-label="Hangar de cristal : développer au niveau 3" data-technology="23" data-is-spaceprovider="" data-tooltip-title="Hangar de cristal : développer au niveau 3"></button><span class="level" data-value="2" data-bonus="0"><span class="stockAmount">{{ planet.getBuildingByName('Hangar de cristal').level }}</span><span class="bonus"></span></span></span>
+                        </li>
+                        <li class="technology deuteriumStorage  hasDetails tooltip hideTooltipOnMouseenter js_hideTipOnMobile ipiHintable" data-technology="24" data-status="on" data-is-spaceprovider="" aria-label="Réservoir de deutérium" data-ipi-hint="ipiTechnologydeuteriumStorage" data-tooltip-title="Réservoir de deutérium"><span class="icon sprite sprite_small small deuteriumStorage"><button class="upgrade tooltip hideOthers js_hideTipOnMobile" aria-label="Réservoir de deutérium : développer au niveau 2" data-technology="24" data-is-spaceprovider="" data-tooltip-title="Réservoir de deutérium : développer au niveau 2"></button><span class="level" data-value="1" data-bonus="0"><span class="stockAmount">{{ planet.getBuildingByName('Réservoir de deutérium').level }}</span><span class="bonus"></span></span></span>
+                        </li>        
+                    </ul>
+                </div>
+            </div>
+
+            <div id="productionboxBottom">
+                <div class="productionBoxBuildings boxColumn building">
+                    <div id="productionboxbuildingcomponent" class="productionboxbuilding injectedComponent parent supplies"><div class="content-box-s">
+                            <div class="header">
+                                <h3>Bâtiment</h3>
+                            </div>
+                            <div class="content">
+                                <table cellspacing="0" cellpadding="0" class="construction active">
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="2" class="idle">
+                                                <a class="tooltip js_hideTipOnMobile" href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=supplies" data-tooltip-title="Pour l`instant, il n`y a aucune construction en cours sur cette planète. Cliquez ici pour afficher la production de la planète.">
+                                                    Aucun bâtiment en construction.
+                                                    <br>
+                                                    (Ressources)
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="footer"></div>
+                        </div>
+                        <script type="text/javascript">
+                            var scheduleBuildListEntryUrl =
+                                "https://s274-fr.ogame.gameforge.com/game/index.php?page=componentOnly&component=buildlistactions&action=scheduleEntry&asJson=1";
+                            var LOCA_ERROR_INQUIRY_NOT_WORKED_TRYAGAIN =
+                                "La dernière requête n`a pas encore été traitée. Veuillez réessayer.";
+                            redirectPremiumLink =
+                                "https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&component=officersmess&openDetail=1";
+
+                            window.token = "bb2a476e71bd3e1c3f41363e53508026";
+                        </script>
+                    </div>
+                </div>
+                <div class="productionBoxShips boxColumn ship">
+        
+                    <div id="productionboxshipyardcomponent" class="productionboxshipyard injectedComponent parent supplies"><div class="content-box-s">
+                            <div class="header">
+                                <h3>Chantier spatial</h3>
+                            </div>
+                            <div class="content">
+                                <table cellspacing="0" cellpadding="0" class="construction active">
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="2" class="idle">
+                                                <a class="tooltip js_hideTipOnMobile" href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=shipyard" data-tooltip-title="Aucune production de vaisseaux ou d`unités de défense en cours sur cette planète. Cliquez ici pour accéder au chantier spatial.">
+                                                    Aucun(e) vaisseau/défense en construction.
+                                                    <br>
+                                                    (Chantier spatial)
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="footer"></div>
+                        </div>
+                        <script type="text/javascript">
+                            var scheduleBuildListEntryUrl =
+                                "https://s274-fr.ogame.gameforge.com/game/index.php?page=componentOnly&component=buildlistactions&action=scheduleEntry&asJson=1";
+                            var LOCA_ERROR_INQUIRY_NOT_WORKED_TRYAGAIN =
+                                "La dernière requête n`a pas encore été traitée. Veuillez réessayer.";
+                            redirectPremiumLink =
+                                "https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&component=officersmess&openDetail=1";
+
+                            window.token = "bb2a476e71bd3e1c3f41363e53508026";
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                var planetMoveInProgress = false;
+                var lastBuildingSlot = { showWarning: false, slotWarning: "" };
+            </script>
+        </div>
+        {# <div id="technologydetailscomponent" class="technologydetails injectedComponent parent supplies">
+            <script type="text/javascript">
+                var loca = {
+                    locaDemolishStructureQuestion:
+                        "Voulez-vous vraiment d\u00e9molir TECHNOLOGY_NAME d`un niveau ?",
+                    LOCA_UNIT_KILO: "K",
+                    LOCA_UNIT_MILLION: "M",
+                    LOCA_UNIT_MILLIARD: "Md",
+                    LOCA_ALL_METAL: "M\u00e9tal",
+                    LOCA_ALL_CRYSTAL: "Cristal",
+                    LOCA_ALL_DEUTERIUM: "Deut\u00e9rium",
+                    LOCA_ALL_ENERGY: "Energie",
+                    LOCA_ALL_LIFEFORM: "Forme de vie",
+                    LOCA_ALL_LEVEL: "Niveau",
+                    LOCA_ALL_SHIPDEFENSECOUNT: "Nombre :",
+                    LOCA_ALL_DETAIL_PRODUCTIONTIME: "Temps de production :",
+                    LOCA_RESEARCH_DETAIL_RESEARCHTIME: "Dur\u00e9e de recherche :",
+                    LOCA_ALL_DETAIL_TIMESINCEPRODUCTIONPOSSIBLE: "Construction possible dans :",
+                    LOCA_RESEARCH_DETAIL_TIMESINCERESEARCHPOSSIBLE:
+                        "Lancement de la recherche possible :",
+                    LOCA_ALL_DETAIL_NOW: "maintenant",
+                    LOCA_ALL_UNKOWN: "inconnu",
+                    LOCA_TECHINFO_RESEARCHLAB_SUM:
+                        "Niveau total des laboratoires de recherche\u00a0:",
+                    LOCA_TECHINFO_PRODUCTION: "Production",
+                    LOCA_RESOURCES_ENERGY_NEEDED: "\u00c9nergie n\u00e9cessaire",
+                    LOCA_FLEET_SPEED_MAX_SHORT: "max.",
+                    LOCA_ALL_DETAIL_BUTTONTEXT_UPGRADE: "D\u00e9velopper",
+                    LOCA_ALL_DETAIL_BUTTONTEXT_ADDTOBUILDLIST: "Ajouter",
+                    LOCA_ALL_DETAIL_BUTTONTEXT_FACTORYBLOCKED: "Usine occup\u00e9e",
+                    LOCA_ALL_DETAIL_BUTTONTEXT_RESEARCH: "Rechercher",
+                    LOCA_ALL_DETAIL_BUTTONTEXT_BUILD: "Construire",
+                    LOCA_ALL_DETAIL_TEAROFF: "D\u00e9molir",
+                    LOCA_DEMOLISH_COSTS: "Frais de d\u00e9molition",
+                    LOCA_ALL_DURATION: "Dur\u00e9e",
+                    LOCA_TECH_IONTECHNOLOGY_BONUS_TEXT: "Bonus technologie \u00e0 ions",
+                    LOCA_BUILDLIST_MSG_LIST_VACTION:
+                        "Vous ne pouvez pas construire en \u00e9tant en mode vacances.",
+                    LOCA_ALL_NO_STRUCTURE_ON_MOON:
+                        "Il n`est pas possible de construire ce b\u00e2timent sur une lune !",
+                    LOCA_BUILDLIST_MSG_LIST_PLANET: "Mauvais type de plan\u00e8te.",
+                    LOCA_SHIPYARD_ERROR_REQUIRES: "Pr\u00e9requis non remplis",
+                    LOCA_RESEARCH_ERROR_NOT_ENOUGH_RESOURCES: "Pas assez de ressources!",
+                    LOCA_RESOURCES_ENERGY_WARNING:
+                        "Nous avons besoin de plus d`\u00e9nergie\u00a0! Construisez plus de centrales ou de satellites solaires.",
+                    LOCA_NOT_ENOUGH_CAPACITY: "Pas assez de capacit\u00e9 de stockage.",
+                    LOCA_PRODUCTION_DEACTIVATED:
+                        "Une ou plusieurs productions sont d\u00e9sactiv\u00e9es",
+                    LOCA_ALL_BUILDLIST_FULL: "La liste des constructions est pleine.",
+                    LOCA_BUILDLIST_MSG_LIST_FULL_MOON: "Cette lune est d\u00e9ja remplie.",
+                    LOCA_BUILDLIST_MSG_LIST_FULL: "La plan\u00e8te est remplie.",
+                    LOCA_BUILDLIST_MSG_LIST_RESERCH: "Une recherche est en cours !",
+                    LOCA_BUILDLIST_MSG_LIST_PRODUCTION: "Le chantier est en train de produire.",
+                    LOCA_BUILDLIST_MSG_LIST_RESOURCES: "Vous n`avez pas assez de ressources",
+                    LOCA_ERROR_ROCKETS_IN_PRODUCTION: "Les missiles sont en construction!",
+                    LOCA_ALL_RESEARCHLIST_FULL: "La liste des recherches est pleine.",
+                    LOCA_RESEARCH_ERROR_NO_RESEARCHLAB: "Laboratoire en chantier",
+                    LOCA_SHIPYARD_ERROR_UPGRADE:
+                        "Le chantier spatial est en train d`\u00eatre agrandi",
+                    LOCA_SHIPYARD_ERROR_NANI_BUILDING: "L`usine de nanites est en chantier",
+                    LOCA_DEFENSE_ERROR_ONLY_ONE_SHILD:
+                        "Les boucliers ne peuvent \u00eatre construits qu`une fois chacun.",
+                    LOCA_ERROR_ROCKETSILO_IN_PRODUCTION:
+                        "Vous construisez d\u00e9j\u00e0 le silo de missiles!",
+                    LOCA_ROCKETSILO_NOT_ENOUGH_CAPACITY:
+                        "Il n`y a plus de place pour d`autres missiles. Agrandissez d`abord votre silo.",
+                    LOCA_ERROR_ROCKETSILO_DESTROY_IN_BUILDLIST:
+                        "D\u00e9molition impossible tant que des fus\u00e9es sont dans la liste de construction\u00a0!",
+                    LOCA_ERROR_ROCKETSILO_DESTROY:
+                        "La d\u00e9molition n`est possible que si aucune fus\u00e9e ne se trouve dans le silo.",
+                    LOCA_REQUIRED_CORRECT_CLASS:
+                        "Pour construire, vous devez activer la classe ad\u00e9quate.",
+                    LOCA_BUTTON_START_WITH_DM: "Commencer avec de l`AM",
+                    LOCA_OFFICERS_MESS_ORDER_DM: "Se procurer de l`antimati\u00e8re",
+                    LOCA_ALL_ERROR: "Erreur",
+                    LOCA_TECHINFO_STORAGE_CAPACITY: "Capacit\u00e9 de stockage",
+                    LOCA_HEADER_GETCOMMANDER: "Recruter commandant",
+                    LOCA_INFO_BUILDLIST:
+                        "Pour pouvoir utiliser la liste de construction, vous devez disposer d`un commandant. Voulez-vous consulter les infos sur les avantages du commandant ?",
+                    LOCA_FLEET_CURRENTLY_OCCUPIED: "La flotte est actuellement au combat.",
+                    LOCA_ALL_POPULATION: "Population",
+                    LOCA_NOT_BUILDABLE_NO_POPULATION: "La population est trop faible.",
+                    LOCA_LIFEFORM_BUILDLIST_RUNNING:
+                        "#techname#\u00a0est en cours d`extension.\n",
+                    LOCA_PLANET_CURRENTLY_OCCUPIED:
+                        "La plan\u00e8te est actuellement en guerre.",
+                    LOCA_ALL_DETAIL_COSTPERUNIT: "Co\u00fbts par unit\u00e9 :",
+                    LOCA_RESOURCESETTINGS_STORAGE_CAPACITY: "Capacit\u00e9 de stockage",
+                    LOCA_BUY_RESOURCES_TO_FILL_STORAGE:
+                        "Procurez-vous des ressources pour r\u00e9approvisionner directement votre entrep\u00f4t",
+                    LOCA_LOOK_AT_OFFERS: "Voir les offres",
+                    LOCA_DESTROY_ROCKETS_TO_GET_FREE_STORAGE:
+                        "D\u00e9molissez des missiles pour faire de la place dans votre silo",
+                    LOCA_ROCKETS_DESTROY: "D\u00e9molir missiles",
+                    WRECKFIELD_NO_WRECKFIELD_HERE: "Il n`y a pas d`\u00e9paves.",
+                    LOCA_WRECKFIELD_BURNS_UP_IN:
+                        "L`\u00e9pave se d\u00e9sint\u00e8gre dans\u00a0:",
+                    LOCA_REPAIRABLE_SHIPS: "Vaisseaux r\u00e9parables",
+                    WRECKFIELD_REMAINING_REPAIR_TIME: "Temps de r\u00e9paration restant",
+                    LOCA_REPAIRED_SHIPS: "Vaisseaux r\u00e9par\u00e9s",
+                    LOCA_IN_TIME: "dans",
+                    WRECKFIELD_LET_BURN_UP: "Laisser se d\u00e9sint\u00e9grer",
+                    LOCA_START_REPAIRS: "Lancer la r\u00e9paration",
+                    LOCA_TECH_DOCK_NAME: "Dock spatial",
+                    WRECKFIELD_REALLY_BURN_UP:
+                        "L`\u00e9pave va sombrer dans l`atmosph\u00e8re de la plan\u00e8te et s`y d\u00e9sint\u00e9grer. Apr\u00e8s la collision, une r\u00e9paration sera impossible. Voulez-vous vraiment laisser l`\u00e9pave se d\u00e9sint\u00e9grer\u00a0?",
+                    LOCA_ALL_YES: "Oui",
+                    LOCA_ALL_NO: "Non",
+                    LOCA_ALL_NOTICE: "Note",
+                    LOCA_ALL_NETWORK_ATTENTION: "Attention",
+                    LOCA_RECOMMISSION: "R\u00e9cup\u00e9rer",
+                    LOCA_NETWORK_DETAILS: "D\u00e9tails",
+                    LOCA_ALL_SHIPS: "Vaisseaux",
+                    LOCA_ALL_DETAIL_TECHTREE: "Arbre tech",
+                    LOCA_ALL_DETAIL_OPENTECHTREE: "Afficher arbre tech",
+                    LOCA_ALL_NO_REQUIREMENTS: "Aucune condition requise",
+                    LOCA_ALL_DETAIL_MOREDETAILS: "Plus de d\u00e9tails",
+                    LOCA_PRODUCTION_NOT_ENOUGH_CAPACITY:
+                        "Cette production d\u00e9passe les capacit\u00e9s des hangars !",
+                    LOCA_ALL_BUILD_STOCK_DECISION:
+                        "Voulez-vous d\u00e9velopper votre entrep\u00f4t\u00a0?",
+                    LOCA_ALL_CANCEL: "annuler",
+                    LOCA_CHARACTER_CLASS_STATE_ACTIVE: "Activ\u00e9",
+                    LOCA_CHARACTER_CLASS_BUTTON_SELECT: "Activer",
+                    LOCA_CHARACTER_CLASS_BUTTON_DEACTIVATE: "D\u00e9sactiver",
+                    LOCA_LIFEFORM_PREVIOUS_TIER_NOT_FULL:
+                        "Le niveau pr\u00e9c\u00e9dent n`a pas \u00e9t\u00e9 compl\u00e9t\u00e9.\n",
+                    LOCA_REQUIRED_CLASS_FOR_SHIP:
+                        "Pour pouvoir construire ce vaisseau, la classe #classname# doit \u00eatre s\u00e9lectionn\u00e9.",
+                    LOCA_LIFEFORM_BONUS_CAP_REACHED_WARNING:
+                        "Un ou plusieurs des bonus associ\u00e9s sont d\u00e9j\u00e0 \u00e9puis\u00e9s. Voulez-vous r\u00e9aliser la construction malgr\u00e9 tout\u00a0?",
+                };
+                var technologyDetailsEndpoint =
+                    "https:\/\/s274-fr.ogame.gameforge.com\/game\/index.php?page=ingame&component=technologydetails&action=getDetails&ajax=1";
+                var technologyDetails = new TechnologyDetails({
+                    technologyDetailsEndpoint: technologyDetailsEndpoint,
+                    loca: loca,
+                });
+
+                technologyDetails.init();
+            </script>
+        </div> #}
+    {# </div> #}
+    </div>
+    {{ include('parts/right.html.twig') }}
+    </div>
+{% endblock %}

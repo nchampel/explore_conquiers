@@ -321,4 +321,15 @@ class Planet
 
         return null; // Retourne null si le bâtiment n'est pas encore construit sur la planète
     }
+
+    public function getVesselByName(string $name): ?PlanetVessel // Adapte le nom de ton entité de liaison
+    {
+        foreach ($this->planetVessels as $planetVessel) {
+            if ($planetVessel->getVessel()->getName() === $name) {
+                return $planetVessel;
+            }
+        }
+
+        return null; // Retourne null si le bâtiment n'est pas encore construit sur la planète
+    }
 }
