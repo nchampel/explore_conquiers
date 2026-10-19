@@ -738,334 +738,334 @@ Emplacements de sauvegarde pour simulations de combat +20"
 
                 {% include('parts/topBottom.html.twig') %}
             </div>
-                {% include('parts/left.html.twig') %}
+            {% include('parts/left.html.twig') %}
             
-                <div id="middle">
+            <div id="middle">
                                                                 
+                <div
+                    id='eventlistcomponent'
+                    class=""
+                >
                     <div
-                        id='eventlistcomponent'
-                        class=""
+                        id="eventboxContent"
+                        style="display: none;"
                     >
-                        <div
-                            id="eventboxContent"
-                            style="display: none;"
-                        >
-                            <div id="eventListWrap">
-                                <div id="eventHeader">
-                                    <a class="close_details eventToggle" href="javascript:toggleEvents();">
-                                    </a>
-                                    <h2>Événements</h2>
-                                </div>
-                                <table id="eventContent">
-                                    <tbody>
-                                    </tbody>
-                                </table>
-                                <div id="eventFooter"></div>
+                        <div id="eventListWrap">
+                            <div id="eventHeader">
+                                <a class="close_details eventToggle" href="javascript:toggleEvents();">
+                                </a>
+                                <h2>Événements</h2>
                             </div>
+                            <table id="eventContent">
+                                <tbody>
+                                </tbody>
+                            </table>
+                            <div id="eventFooter"></div>
                         </div>
-                        <script type="text/javascript">
-                            var timeDelta = 1791921181000 - new Date().getTime();
-                            var LocalizationStrings = {
-                                timeunits: {
-                                    short: {
-                                        year: "a",
-                                        month: "M",
-                                        week: "s",
-                                        day: "j",
-                                        hour: "h",
-                                        minute: "m",
-                                        second: "s",
-                                    },
-                                },
-                                status: { ready: "termin\u00e9" },
-                                decimalPoint: ",",
-                                thousandSeperator: ".",
-                                unitMega: "M",
-                                unitKilo: "K",
-                                unitMilliard: "Md",
-                                question: "Question",
-                                error: "Erreur",
-                                loading: "Chargement...",
-                                notice: "Note",
-                                yes: "Oui",
-                                no: "Non",
-                                ok: "Ok",
-                                attention: "Attention",
-                                outlawWarning:
-                                    "Vous \u00eates sur le point d`attaquer un joueur plus puissant. Si vous le faites, votre protection contre les attaques sera suspendue pendant 7 jours et tous les joueurs pourront vous attaquer sans subir de sanctions. \u00cates-vous s\u00fbr de vouloir continuer\u00a0?",
-                                lastSlotWarningMoon:
-                                    "La construction de ce b\u00e2timent occupera votre dernier terrain \u00e0 b\u00e2tir. Agrandissez votre base lunaire pour obtenir plus de terrains. Souhaitez-vous quand m\u00eame construire ce b\u00e2timent\u00a0?",
-                                lastSlotWarningPlanet:
-                                    "La construction de ce b\u00e2timent occupera votre dernier terrain \u00e0 b\u00e2tir. D\u00e9veloppez votre terraformeur ou achetez une extension plan\u00e9taire pour obtenir plus de terrains. Souhaitez-vous quand m\u00eame construire ce b\u00e2timent ?",
-                                forcedVacationWarning:
-                                    "Confirmez votre compte de lobby et recevez de l`Antimati\u00e8re dans chaque univers\u00a0!",
-                                planetMoveBreakUpWarning:
-                                    "Attention ! Cette mission pourrait ne pas \u00eatre termin\u00e9e au moment du d\u00e9m\u00e9nagement et entra\u00eener l`annulation de celui-ci. Voulez-vous vraiment lancer cette mission ?",
-                                moreDetails: "Plus de d\u00e9tails",
-                                lessDetails: "Moins de d\u00e9tails",
-                                planetOrder: {
-                                    lock: "Verrouiller le classement",
-                                    unlock: "D\u00e9verrouiller le classement",
-                                },
-                                darkMatter: "Antimati\u00e8re (AM)",
-                                errorNotEnoughDM:
-                                    "Vous n`avez pas assez d`antimati\u00e8re ! Souhaitez-vous en acheter maintenant\u00a0?",
-                                activateItem: {
-                                    upgradeItemQuestion:
-                                        "Voulez-vous vraiment remplacer l`objet existant\u00a0? Vous perdez alors l`ancien bonus.",
-                                    upgradeItemQuestionHeader: "Remplacer l`objet\u00a0?",
-                                },
-                                characterClassItem: {
-                                    buyAndActivateItemQuestion:
-                                        "Souhaitez-vous activer la classe #characterClassName# en \u00e9change de #darkmatter#\u00a0unit\u00e9s d`antimati\u00e8re\u00a0? Votre classe actuelle sera perdue.",
-                                    activateItemQuestion:
-                                        "Souhaitez-vous activer la classe #characterClassName#\u00a0? Votre classe actuelle sera perdue.",
-                                },
-                                allianceClassItem: {
-                                    buyAndActivateItemQuestion:
-                                        "Souhaitez-vous activer la classe d`alliance #allianceClassName# en \u00e9change de #darkmatter#\u00a0unit\u00e9s d`antimati\u00e8re\u00a0? La classe d`alliance actuelle sera supprim\u00e9e.",
-                                    activateItemQuestion:
-                                        "Souhaitez-vous activer la classe d`alliance #allianceClassName#\u00a0? La classe d`alliance actuelle sera supprim\u00e9e.",
-                                    appendCurrentClassQuestion:
-                                        "<br><br>Classe d`alliance actuelle\u00a0: #currentAllianceClassName#<br><br>Derni\u00e8re modification le\u00a0: #lastAllianceClassChange#",
-                                },
-                                scrapperOfferItem: {
-                                    buyAndActivateItemQuestion:
-                                        "Souhaitez-vous activer cette offre pour #darkmatter#\u00a0unit\u00e9s d`antimati\u00e8re\u00a0? Ceci remplacera votre offre actuelle aupr\u00e8s du ferrailleur.",
-                                    activateItemQuestion:
-                                        "Souhaitez-vous activer cette offre\u00a0? Ceci remplacera votre offre actuelle aupr\u00e8s du ferrailleur.",
-                                },
-                                LOCA_ALL_NETWORK_ATTENTION: "Attention",
-                                LOCA_ALL_YES: "Oui",
-                                LOCA_ALL_NO: "Non",
-                                redirectMessage:
-                                    "En suivant ce lien, vous quitterez OGame. Voulez-vous continuer\u00a0?",
-                            };
-                            $("a.icon_link.recallFleet").click(function (e) {
-                                e.preventDefault();
-                                var fleetId = $(this).attr("data-fleet-id");
-                                errorBoxDecision("Rappel", "Rappeler flotte", "Oui", "Non", function () {
-                                    $.post(
-                                        ajaxRecallFleetURI,
-                                        { fleetId: fleetId, token: token },
-                                        (response) => {
-                                            let data = JSON.parse(response);
-                                            token = data.newAjaxToken;
-
-                                            if (data.success) {
-                                                let currentUrl = window.location.href;
-                                                let params = new URLSearchParams(currentUrl);
-                                                let currentComponent = params.get("component");
-
-                                                switch (currentComponent) {
-                                                    case "movement":
-                                                        window.location.reload();
-                                                        return;
-                                                    case "galaxy":
-                                                        if (
-                                                            submitForm &&
-                                                            typeof submitForm === "function" &&
-                                                            typeof galaxy !== "undefined" &&
-                                                            typeof system !== "undefined"
-                                                        ) {
-                                                            submitForm();
-                                                        }
-                                                        break;
-                                                }
-
-                                                getAjaxEventbox();
-                                                refreshFleetEvents(true);
-                                            }
-                                        },
-                                    );
-                                });
-                                return false;
-                            });
-                            (function ($) {})(jQuery);
-                        </script>
-
-
                     </div>
-                    <div
-                        id='overviewcomponent'
-                        class="maincontent"
-                    >
-                        <div id="inhalt">
-                            <div id="planet" style="background-image:url(https://gf1.geo.gfsrv.net/cdnf3/8f799339969560e123999ccfb4a39b.png);">
-                                <div
-                                    id="spaceObjectHeaderCurrentPlanet"
-                                    class="overviewGraphic"
-                                    style="background-image: url(https://gf1.geo.gfsrv.net/cdn34/82dc01843b5e8a9bc9881a08ff7af6.png);"
-                                ></div>
-                                <div id="spaceObjectHeaderGraphicOverlay"></div>
-                                <div id="spaceObjectHeaderActionIcon" class="overview"></div>
+                    <script type="text/javascript">
+                        var timeDelta = 1791921181000 - new Date().getTime();
+                        var LocalizationStrings = {
+                            timeunits: {
+                                short: {
+                                    year: "a",
+                                    month: "M",
+                                    week: "s",
+                                    day: "j",
+                                    hour: "h",
+                                    minute: "m",
+                                    second: "s",
+                                },
+                            },
+                            status: { ready: "termin\u00e9" },
+                            decimalPoint: ",",
+                            thousandSeperator: ".",
+                            unitMega: "M",
+                            unitKilo: "K",
+                            unitMilliard: "Md",
+                            question: "Question",
+                            error: "Erreur",
+                            loading: "Chargement...",
+                            notice: "Note",
+                            yes: "Oui",
+                            no: "Non",
+                            ok: "Ok",
+                            attention: "Attention",
+                            outlawWarning:
+                                "Vous \u00eates sur le point d`attaquer un joueur plus puissant. Si vous le faites, votre protection contre les attaques sera suspendue pendant 7 jours et tous les joueurs pourront vous attaquer sans subir de sanctions. \u00cates-vous s\u00fbr de vouloir continuer\u00a0?",
+                            lastSlotWarningMoon:
+                                "La construction de ce b\u00e2timent occupera votre dernier terrain \u00e0 b\u00e2tir. Agrandissez votre base lunaire pour obtenir plus de terrains. Souhaitez-vous quand m\u00eame construire ce b\u00e2timent\u00a0?",
+                            lastSlotWarningPlanet:
+                                "La construction de ce b\u00e2timent occupera votre dernier terrain \u00e0 b\u00e2tir. D\u00e9veloppez votre terraformeur ou achetez une extension plan\u00e9taire pour obtenir plus de terrains. Souhaitez-vous quand m\u00eame construire ce b\u00e2timent ?",
+                            forcedVacationWarning:
+                                "Confirmez votre compte de lobby et recevez de l`Antimati\u00e8re dans chaque univers\u00a0!",
+                            planetMoveBreakUpWarning:
+                                "Attention ! Cette mission pourrait ne pas \u00eatre termin\u00e9e au moment du d\u00e9m\u00e9nagement et entra\u00eener l`annulation de celui-ci. Voulez-vous vraiment lancer cette mission ?",
+                            moreDetails: "Plus de d\u00e9tails",
+                            lessDetails: "Moins de d\u00e9tails",
+                            planetOrder: {
+                                lock: "Verrouiller le classement",
+                                unlock: "D\u00e9verrouiller le classement",
+                            },
+                            darkMatter: "Antimati\u00e8re (AM)",
+                            errorNotEnoughDM:
+                                "Vous n`avez pas assez d`antimati\u00e8re ! Souhaitez-vous en acheter maintenant\u00a0?",
+                            activateItem: {
+                                upgradeItemQuestion:
+                                    "Voulez-vous vraiment remplacer l`objet existant\u00a0? Vous perdez alors l`ancien bonus.",
+                                upgradeItemQuestionHeader: "Remplacer l`objet\u00a0?",
+                            },
+                            characterClassItem: {
+                                buyAndActivateItemQuestion:
+                                    "Souhaitez-vous activer la classe #characterClassName# en \u00e9change de #darkmatter#\u00a0unit\u00e9s d`antimati\u00e8re\u00a0? Votre classe actuelle sera perdue.",
+                                activateItemQuestion:
+                                    "Souhaitez-vous activer la classe #characterClassName#\u00a0? Votre classe actuelle sera perdue.",
+                            },
+                            allianceClassItem: {
+                                buyAndActivateItemQuestion:
+                                    "Souhaitez-vous activer la classe d`alliance #allianceClassName# en \u00e9change de #darkmatter#\u00a0unit\u00e9s d`antimati\u00e8re\u00a0? La classe d`alliance actuelle sera supprim\u00e9e.",
+                                activateItemQuestion:
+                                    "Souhaitez-vous activer la classe d`alliance #allianceClassName#\u00a0? La classe d`alliance actuelle sera supprim\u00e9e.",
+                                appendCurrentClassQuestion:
+                                    "<br><br>Classe d`alliance actuelle\u00a0: #currentAllianceClassName#<br><br>Derni\u00e8re modification le\u00a0: #lastAllianceClassChange#",
+                            },
+                            scrapperOfferItem: {
+                                buyAndActivateItemQuestion:
+                                    "Souhaitez-vous activer cette offre pour #darkmatter#\u00a0unit\u00e9s d`antimati\u00e8re\u00a0? Ceci remplacera votre offre actuelle aupr\u00e8s du ferrailleur.",
+                                activateItemQuestion:
+                                    "Souhaitez-vous activer cette offre\u00a0? Ceci remplacera votre offre actuelle aupr\u00e8s du ferrailleur.",
+                            },
+                            LOCA_ALL_NETWORK_ATTENTION: "Attention",
+                            LOCA_ALL_YES: "Oui",
+                            LOCA_ALL_NO: "Non",
+                            redirectMessage:
+                                "En suivant ce lien, vous quitterez OGame. Voulez-vous continuer\u00a0?",
+                        };
+                        $("a.icon_link.recallFleet").click(function (e) {
+                            e.preventDefault();
+                            var fleetId = $(this).attr("data-fleet-id");
+                            errorBoxDecision("Rappel", "Rappeler flotte", "Oui", "Non", function () {
+                                $.post(
+                                    ajaxRecallFleetURI,
+                                    { fleetId: fleetId, token: token },
+                                    (response) => {
+                                        let data = JSON.parse(response);
+                                        token = data.newAjaxToken;
 
-                                <div id="detailWrapper">
-                                    <div id="header_text">
-                                        <h2>
-                                            <a href="javascript:void(0);" class="openPlanetRenameGiveupBox">
-                                                <p class="planetNameOverview">Vue d`ensemble - </p>
-                                                <span id="planetNameHeader">
-                                                    {{ planet.name }}
-                                                </span>
-                                                <img
-                                                    class="hinted tooltip"
-                                                    title="Abandonner / renommer Planète"
-                                                    src="https://gf3.geo.gfsrv.net/cdne7/1f57d944fff38ee51d49c027f574ef.gif"
-                                                    width="16"
-                                                    height="16"
-                                                />
-                                            </a>
-                                        </h2>
-                                    </div>
-                                    <div id="detail" class="detail_screen">
-                                        <div id="techDetailLoading"></div>
-                                    </div>
-                                    <div id="planetdata">
+                                        if (data.success) {
+                                            let currentUrl = window.location.href;
+                                            let params = new URLSearchParams(currentUrl);
+                                            let currentComponent = params.get("component");
 
-                                        <div class="overlay"></div>
-                                        <div id="planetDetails">
-                                            <table cellpadding="0" cellspacing="0" width="100%">
-                                                <tr>
-                                                    <td class="desc">
-                                                        {# <span id="diameterField">Occupation :</span> #}
-                                                        <span id="diameterField"></span>
-                                                    </td>
-                                                    <td class="data">
-                                                        {# <span id="diameterContentField">x / {{ planet.fields }}</span> #}
-                                                        <span id="diameterContentField"></span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="desc">
-                                                        {# <span id="temperatureField">Température :</span> #}
-                                                        <span id="temperatureField"></span>
-                                                    </td>
-                                                    <td class="data">
-                                                        {# <span id="temperatureContentField">{{ planet.temperature }} °C</span> #}
-                                                        <span id="temperatureContentField"></span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="desc">
-                                                        {# <span id="positionField">Position :</span> #}
-                                                        <span id="positionField"></span>
-                                                    </td>
-                                                    <td class="data">
-                                                        {# <span id="positionContentField">[{{ planet.galaxy }}:{{ planet.gSystem }}:{{ planet.position }}]</span> #}
-                                                        <span id="positionContentField"></span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="desc">
-                                                        {# <span id="scoreField"></span>Points :</td> #}
-                                                        <span id="scoreField"></span></td>
-                                                    <td class="data">
-                                                        {# <span id="scoreContentField">à faire</span> #}
-                                                        <span id="scoreContentField"></span>
-                                                    </td>
-                                                </tr>
+                                            switch (currentComponent) {
+                                                case "movement":
+                                                    window.location.reload();
+                                                    return;
+                                                case "galaxy":
+                                                    if (
+                                                        submitForm &&
+                                                        typeof submitForm === "function" &&
+                                                        typeof galaxy !== "undefined" &&
+                                                        typeof system !== "undefined"
+                                                    ) {
+                                                        submitForm();
+                                                    }
+                                                    break;
+                                            }
 
-                                                {# <tr>
+                                            getAjaxEventbox();
+                                            refreshFleetEvents(true);
+                                        }
+                                    },
+                                );
+                            });
+                            return false;
+                        });
+                        (function ($) {})(jQuery);
+                    </script>
+
+
+                </div>
+                <div
+                    id='overviewcomponent'
+                    class="maincontent"
+                >
+                    <div id="inhalt">
+                        <div id="planet" style="background-image:url(https://gf1.geo.gfsrv.net/cdnf3/8f799339969560e123999ccfb4a39b.png);">
+                            <div
+                                id="spaceObjectHeaderCurrentPlanet"
+                                class="overviewGraphic"
+                                style="background-image: url(https://gf1.geo.gfsrv.net/cdn34/82dc01843b5e8a9bc9881a08ff7af6.png);"
+                            ></div>
+                            <div id="spaceObjectHeaderGraphicOverlay"></div>
+                            <div id="spaceObjectHeaderActionIcon" class="overview"></div>
+
+                            <div id="detailWrapper">
+                                <div id="header_text">
+                                    <h2>
+                                        <a href="javascript:void(0);" class="openPlanetRenameGiveupBox">
+                                            <p class="planetNameOverview">Vue d`ensemble - </p>
+                                            <span id="planetNameHeader">
+                                                {{ planet.name }}
+                                            </span>
+                                            <img
+                                                class="hinted tooltip"
+                                                title="Abandonner / renommer Planète"
+                                                src="https://gf3.geo.gfsrv.net/cdne7/1f57d944fff38ee51d49c027f574ef.gif"
+                                                width="16"
+                                                height="16"
+                                            />
+                                        </a>
+                                    </h2>
+                                </div>
+                                <div id="detail" class="detail_screen">
+                                    <div id="techDetailLoading"></div>
+                                </div>
+                                <div id="planetdata">
+
+                                    <div class="overlay"></div>
+                                    <div id="planetDetails">
+                                        <table cellpadding="0" cellspacing="0" width="100%">
+                                            <tr>
+                                                <td class="desc">
+                                                    {# <span id="diameterField">Occupation :</span> #}
+                                                    <span id="diameterField"></span>
+                                                </td>
+                                                <td class="data">
+                                                    {# <span id="diameterContentField">x / {{ planet.fields }}</span> #}
+                                                    <span id="diameterContentField"></span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="desc">
+                                                    {# <span id="temperatureField">Température :</span> #}
+                                                    <span id="temperatureField"></span>
+                                                </td>
+                                                <td class="data">
+                                                    {# <span id="temperatureContentField">{{ planet.temperature }} °C</span> #}
+                                                    <span id="temperatureContentField"></span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="desc">
+                                                    {# <span id="positionField">Position :</span> #}
+                                                    <span id="positionField"></span>
+                                                </td>
+                                                <td class="data">
+                                                    {# <span id="positionContentField">[{{ planet.galaxy }}:{{ planet.gSystem }}:{{ planet.position }}]</span> #}
+                                                    <span id="positionContentField"></span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="desc">
+                                                    {# <span id="scoreField"></span>Points :</td> #}
+                                                    <span id="scoreField"></span></td>
+                                                <td class="data">
+                                                    {# <span id="scoreContentField">à faire</span> #}
+                                                    <span id="scoreContentField"></span>
+                                                </td>
+                                            </tr>
+
+                                            {# <tr>
                                             <td class="desc">
                                                 <span id="honorField"></span></td>
                                             <td class="data ">
                                                 <span id="honorContentField"></span>
                                             </td>
                                         </tr> #}
-                                            </table>
-                                        </div>
-                                        <div id="planetOptions">
+                                        </table>
+                                    </div>
+                                    <div id="planetOptions">
     
-                                            <div class="planetMoveStart fleft" style="display: inline">
-                                                <a
-                                                    class="tooltipLeft dark_highlight_tablet fleft"
-                                                    style="display: inline-block"
-                                                    href='https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=galaxy'
-                                                    title='Un déménagement vous permet de transférer votre planète vers une autre position, dans un système aussi éloigné que vous le souhaitez. &lt;br /&gt;
+                                        <div class="planetMoveStart fleft" style="display: inline">
+                                            <a
+                                                class="tooltipLeft dark_highlight_tablet fleft"
+                                                style="display: inline-block"
+                                                href='https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=galaxy'
+                                                title='Un déménagement vous permet de transférer votre planète vers une autre position, dans un système aussi éloigné que vous le souhaitez. &lt;br /&gt;
 &lt;br /&gt;
 Le transfert a lieu 24 heures après son activation. Pendant ce temps, vous pouvez utiliser normalement votre planète. Un décompte vous indique le temps restant avant le transfert. &lt;br /&gt;
 &lt;br /&gt;
 Lorsque le décompte est terminé et que la planète est transférée, aucune de vos flottes qui y sont stationnées ne peut être active. Vous ne pouvez pas poursuivre de constructions, de réparations ou de recherches pendant le transfert. Si un ordre de construction, un ordre de réparation ou une flotte sont actifs, le transfert sera interrompu.&lt;br /&gt;
   &lt;br /&gt;
 Une fois le transfert exécuté, 240.000 unités d&amp;#96;antimatière vous seront déduites. La planète, les bâtiments et les ressources stockées seront transférés immédiatement. Vos flottes suivront automatiquement à la vitesse du vaisseau le plus lent. La porte de saut spatial d&amp;#96;une lune transférée sera désactivée pendant 24 heures.'
-                                                    data-tooltip-button="Galaxie"
-                                                >
-                                                    <span class="planetMoveIcons settings planetMoveDefault icon fleft"></span>
-                                                    <span class="planetMoveOverviewMoveLink">Déménager</span>
-                                                </a>
-                                            </div>
-
-                                            <a class="dark_highlight_tablet float_right openPlanetRenameGiveupBox ipiHintable" href="javascript:void(0);" data-ipi-hint="ipiPlanetMoveRename">
-                                                <span class="planetMoveOverviewGivUpLink">Abandonner/renommer</span>
-                                                <span class="planetMoveIcons settings planetMoveGiveUp icon"></span>
+                                                data-tooltip-button="Galaxie"
+                                            >
+                                                <span class="planetMoveIcons settings planetMoveDefault icon fleft"></span>
+                                                <span class="planetMoveOverviewMoveLink">Déménager</span>
                                             </a>
                                         </div>
 
+                                        <a class="dark_highlight_tablet float_right openPlanetRenameGiveupBox ipiHintable" href="javascript:void(0);" data-ipi-hint="ipiPlanetMoveRename">
+                                            <span class="planetMoveOverviewGivUpLink">Abandonner/renommer</span>
+                                            <span class="planetMoveIcons settings planetMoveGiveUp icon"></span>
+                                        </a>
                                     </div>
+
                                 </div>
-
-                                <buffBar id="buffBar" class="sliderWrapper">
-                                    <div data-uuid="" data-id="" class="add_item">
-                                        <a class="activate_item border3px tooltip" href="javascript:void(0);" ref="1" title="Objets pouvant être activés "></a>
-                                    </div>
-                                    <div class="pagination-controls">
-                                        <button id="prev" class="buttonPrev">&laquo;</button>
-                                        <button id="next" class="buttonNext">&raquo;</button>
-                                    </div>
-                                    <ul class="active_items hidden">
-                                        <li>
-                                        </li>
-                                    </ul>
-                                </buffBar>
-                                <script>
-                                    $(document).ready(() => {
-                                        initBuffBar();
-                                    });
-                                </script>
-
                             </div>
-                            <div class="c-left"></div>
-                            <div class="c-right"></div>
-                            <div id="productionboxBottom">
-                                <div class="productionBoxBuildings boxColumn building">
-                                    <div id='productionboxbuildingcomponent' class='productionboxbuilding injectedComponent parent overview'><div class="content-box-s">
-                                            <div class="header">
-                                                <h3>Bâtiment</h3>
-                                            </div>
-                                            <div class="content">
-                                                <table cellspacing="0" cellpadding="0" class="construction active">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td colspan="2" class="idle">
-                                                                <a
-                                                                    class="tooltip js_hideTipOnMobile"
-                                                                    title="Pour l`instant, il n`y a aucune construction en cours sur cette planète. Cliquez ici pour afficher la production de la planète."
-                                                                    href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=supplies"
-                                                                >
-                                                                    Aucun bâtiment en construction.
-                                                                    <br/>
-                                                                    (Ressources)
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="footer"></div>
-                                        </div>
-                                        <script type="text/javascript">
-                                            var scheduleBuildListEntryUrl =
-                                                "https://s274-fr.ogame.gameforge.com/game/index.php?page=componentOnly&component=buildlistactions&action=scheduleEntry&asJson=1";
-                                            var LOCA_ERROR_INQUIRY_NOT_WORKED_TRYAGAIN =
-                                                "La dernière requête n`a pas encore été traitée. Veuillez réessayer.";
-                                            redirectPremiumLink =
-                                                "https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&component=officersmess&openDetail=1";
 
-                                            window.token = "e186d54a2378abc3943d2c1a4086812a";
-                                        </script>
+                            <buffBar id="buffBar" class="sliderWrapper">
+                                <div data-uuid="" data-id="" class="add_item">
+                                    <a class="activate_item border3px tooltip" href="javascript:void(0);" ref="1" title="Objets pouvant être activés "></a>
+                                </div>
+                                <div class="pagination-controls">
+                                    <button id="prev" class="buttonPrev">&laquo;</button>
+                                    <button id="next" class="buttonNext">&raquo;</button>
+                                </div>
+                                <ul class="active_items hidden">
+                                    <li>
+                                    </li>
+                                </ul>
+                            </buffBar>
+                            <script>
+                                $(document).ready(() => {
+                                    initBuffBar();
+                                });
+                            </script>
+
+                        </div>
+                        <div class="c-left"></div>
+                        <div class="c-right"></div>
+                        <div id="productionboxBottom">
+                            <div class="productionBoxBuildings boxColumn building">
+                                <div id='productionboxbuildingcomponent' class='productionboxbuilding injectedComponent parent overview'><div class="content-box-s">
+                                        <div class="header">
+                                            <h3>Bâtiment</h3>
+                                        </div>
+                                        <div class="content">
+                                            <table cellspacing="0" cellpadding="0" class="construction active">
+                                                <tbody>
+                                                    <tr>
+                                                        <td colspan="2" class="idle">
+                                                            <a
+                                                                class="tooltip js_hideTipOnMobile"
+                                                                title="Pour l`instant, il n`y a aucune construction en cours sur cette planète. Cliquez ici pour afficher la production de la planète."
+                                                                href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=supplies"
+                                                            >
+                                                                Aucun bâtiment en construction.
+                                                                <br/>
+                                                                (Ressources)
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="footer"></div>
                                     </div>
-                                    {# <div id='productionboxlfbuildingcomponent' class='productionboxlfbuilding injectedComponent parent overview'><div class="content-box-s">
+                                    <script type="text/javascript">
+                                        var scheduleBuildListEntryUrl =
+                                            "https://s274-fr.ogame.gameforge.com/game/index.php?page=componentOnly&component=buildlistactions&action=scheduleEntry&asJson=1";
+                                        var LOCA_ERROR_INQUIRY_NOT_WORKED_TRYAGAIN =
+                                            "La dernière requête n`a pas encore été traitée. Veuillez réessayer.";
+                                        redirectPremiumLink =
+                                            "https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&component=officersmess&openDetail=1";
+
+                                        window.token = "e186d54a2378abc3943d2c1a4086812a";
+                                    </script>
+                                </div>
+                                {# <div id='productionboxlfbuildingcomponent' class='productionboxlfbuilding injectedComponent parent overview'><div class="content-box-s">
                                         <div class="header">
                                             <h3>Bâtiments des formes de vie
                                             </h3>
@@ -1091,8 +1091,8 @@ Une fois le transfert exécuté, 240.000 unités d&amp;#96;antimatière vous ser
                                             </table>
                                         </div> 
                                          <div class="footer"></div>#}
-                                    {# </div> #}
-                                    {# <script type="text/javascript">
+                                {# </div> #}
+                                {# <script type="text/javascript">
                                         var scheduleBuildListEntryUrl =
                                             "https://s274-fr.ogame.gameforge.com/game/index.php?page=componentOnly&component=buildlistactions&action=scheduleEntry&asJson=1";
                                         var LOCA_ERROR_INQUIRY_NOT_WORKED_TRYAGAIN =
@@ -1102,46 +1102,46 @@ Une fois le transfert exécuté, 240.000 unités d&amp;#96;antimatière vous ser
 
                                         window.token = "e186d54a2378abc3943d2c1a4086812a";
                                     </script> #}
-                                </div> 
-                                {# </div> #}
-                                <div class="productionBoxResearch boxColumn research">
-                                    <div id='productionboxresearchcomponent' class='productionboxresearch injectedComponent parent overview'><div class="content-box-s">
-                                            <div class="header">
-                                                <h3>Recherche</h3>
-                                            </div>
-                                            <div class="content">
-                                                <table cellspacing="0" cellpadding="0" class="construction active">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td colspan="2" class="idle">
-                                                                <a
-                                                                    class="tooltip js_hideTipOnMobile"
-                                                                    title="Aucune recherche en cours pour l`instant. Cliquez ici pour accéder à votre laboratoire."
-                                                                    href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=research"
-                                                                >
-                                                                    Aucune recherche en cours pour l`instant !
-                                                                    <br/>
-                                                                    (Recherche)
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="footer"></div>
+                            </div> 
+                            {# </div> #}
+                            <div class="productionBoxResearch boxColumn research">
+                                <div id='productionboxresearchcomponent' class='productionboxresearch injectedComponent parent overview'><div class="content-box-s">
+                                        <div class="header">
+                                            <h3>Recherche</h3>
                                         </div>
-                                        <script type="text/javascript">
-                                            var scheduleBuildListEntryUrl =
-                                                "https://s274-fr.ogame.gameforge.com/game/index.php?page=componentOnly&component=buildlistactions&action=scheduleEntry&asJson=1";
-                                            var LOCA_ERROR_INQUIRY_NOT_WORKED_TRYAGAIN =
-                                                "La dernière requête n`a pas encore été traitée. Veuillez réessayer.";
-                                            redirectPremiumLink =
-                                                "https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&component=officersmess&openDetail=1";
-
-                                            window.token = "e186d54a2378abc3943d2c1a4086812a";
-                                        </script>
+                                        <div class="content">
+                                            <table cellspacing="0" cellpadding="0" class="construction active">
+                                                <tbody>
+                                                    <tr>
+                                                        <td colspan="2" class="idle">
+                                                            <a
+                                                                class="tooltip js_hideTipOnMobile"
+                                                                title="Aucune recherche en cours pour l`instant. Cliquez ici pour accéder à votre laboratoire."
+                                                                href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=research"
+                                                            >
+                                                                Aucune recherche en cours pour l`instant !
+                                                                <br/>
+                                                                (Recherche)
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="footer"></div>
                                     </div>
-                                    {# <div id='productionboxlfresearchcomponent' class='productionboxlfresearch injectedComponent parent overview'><div class="content-box-s">
+                                    <script type="text/javascript">
+                                        var scheduleBuildListEntryUrl =
+                                            "https://s274-fr.ogame.gameforge.com/game/index.php?page=componentOnly&component=buildlistactions&action=scheduleEntry&asJson=1";
+                                        var LOCA_ERROR_INQUIRY_NOT_WORKED_TRYAGAIN =
+                                            "La dernière requête n`a pas encore été traitée. Veuillez réessayer.";
+                                        redirectPremiumLink =
+                                            "https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&component=officersmess&openDetail=1";
+
+                                        window.token = "e186d54a2378abc3943d2c1a4086812a";
+                                    </script>
+                                </div>
+                                {# <div id='productionboxlfresearchcomponent' class='productionboxlfresearch injectedComponent parent overview'><div class="content-box-s">
                                         <div class="header">
                                             <h3>Recherche des formes de vie
                                             </h3>
@@ -1179,49 +1179,49 @@ Une fois le transfert exécuté, 240.000 unités d&amp;#96;antimatière vous ser
                                         window.token = "e186d54a2378abc3943d2c1a4086812a";
                                     </script>
                                 </div> #}
-                                </div>
-                                <div class="productionBoxShips boxColumn ship">
+                            </div>
+                            <div class="productionBoxShips boxColumn ship">
         
-                                    <div id='productionboxshipyardcomponent' class='productionboxshipyard injectedComponent parent overview'><div class="content-box-s">
-                                            <div class="header">
-                                                <h3>Chantier spatial</h3>
-                                            </div>
-                                            <div class="content">
-                                                <table cellspacing="0" cellpadding="0" class="construction active">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td colspan="2" class="idle">
-                                                                <a
-                                                                    class="tooltip js_hideTipOnMobile"
-                                                                    title="Aucune production de vaisseaux ou d`unités de défense en cours sur cette planète. Cliquez ici pour accéder au chantier spatial."
-                                                                    href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=shipyard"
-                                                                >
-                                                                    Aucun(e) vaisseau/défense en construction.
-                                                                    <br/>
-                                                                    (Chantier spatial)
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="footer"></div>
+                                <div id='productionboxshipyardcomponent' class='productionboxshipyard injectedComponent parent overview'><div class="content-box-s">
+                                        <div class="header">
+                                            <h3>Chantier spatial</h3>
                                         </div>
-                                        <script type="text/javascript">
-                                            var scheduleBuildListEntryUrl =
-                                                "https://s274-fr.ogame.gameforge.com/game/index.php?page=componentOnly&component=buildlistactions&action=scheduleEntry&asJson=1";
-                                            var LOCA_ERROR_INQUIRY_NOT_WORKED_TRYAGAIN =
-                                                "La dernière requête n`a pas encore été traitée. Veuillez réessayer.";
-                                            redirectPremiumLink =
-                                                "https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&component=officersmess&openDetail=1";
-
-                                            window.token = "e186d54a2378abc3943d2c1a4086812a";
-                                        </script>
+                                        <div class="content">
+                                            <table cellspacing="0" cellpadding="0" class="construction active">
+                                                <tbody>
+                                                    <tr>
+                                                        <td colspan="2" class="idle">
+                                                            <a
+                                                                class="tooltip js_hideTipOnMobile"
+                                                                title="Aucune production de vaisseaux ou d`unités de défense en cours sur cette planète. Cliquez ici pour accéder au chantier spatial."
+                                                                href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=shipyard"
+                                                            >
+                                                                Aucun(e) vaisseau/défense en construction.
+                                                                <br/>
+                                                                (Chantier spatial)
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="footer"></div>
                                     </div>
+                                    <script type="text/javascript">
+                                        var scheduleBuildListEntryUrl =
+                                            "https://s274-fr.ogame.gameforge.com/game/index.php?page=componentOnly&component=buildlistactions&action=scheduleEntry&asJson=1";
+                                        var LOCA_ERROR_INQUIRY_NOT_WORKED_TRYAGAIN =
+                                            "La dernière requête n`a pas encore été traitée. Veuillez réessayer.";
+                                        redirectPremiumLink =
+                                            "https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&component=officersmess&openDetail=1";
+
+                                        window.token = "e186d54a2378abc3943d2c1a4086812a";
+                                    </script>
                                 </div>
-                            </div> {# ici #}
-                        </div>
-                        <script type="text/javascript">
+                            </div>
+                        </div> {# ici #}
+                    </div>
+                    <script type="text/javascript">
                     function openPlanetRenameGiveupBox() {
                         openOverlay(
                             "https:\/\/s274-fr.ogame.gameforge.com\/game\/index.php?page=ajax&component=planetlayer&ajax=1",
@@ -1379,200 +1379,200 @@ Une fois le transfert exécuté, 240.000 unités d&amp;#96;antimatière vous ser
                         "https:\/\/s274-fr.ogame.gameforge.com\/game\/index.php?page=ajax&component=buffactivation&ajax=1";
                 </script>
 
-                        <script type="text/javascript">
-                            var animatedOverview = "1";
-                            var planetMoveLoca = {
-                                askTitle: "D\u00e9m\u00e9nager Plan\u00e8te",
-                                askCancel:
-                                    "\u00cates-vous s\u00fbr de vouloir annuler le d\u00e9placement de plan\u00e8te\u00a0? Le temps d`attente normal restera le m\u00eame.",
-                                yes: "Oui",
-                                no: "Non",
-                                success: "Le d\u00e9placement de plan\u00e8te a \u00e9t\u00e9 annul\u00e9.",
-                                error: "Erreur",
-                            };
-                            var planetMoveCooldown = -1791921181;
+                    <script type="text/javascript">
+                        var animatedOverview = "1";
+                        var planetMoveLoca = {
+                            askTitle: "D\u00e9m\u00e9nager Plan\u00e8te",
+                            askCancel:
+                                "\u00cates-vous s\u00fbr de vouloir annuler le d\u00e9placement de plan\u00e8te\u00a0? Le temps d`attente normal restera le m\u00eame.",
+                            yes: "Oui",
+                            no: "Non",
+                            success: "Le d\u00e9placement de plan\u00e8te a \u00e9t\u00e9 annul\u00e9.",
+                            error: "Erreur",
+                        };
+                        var planetMoveCooldown = -1791921181;
 
-                            // Reset counters to zero here and not in overview.js because due to LazyLoader, the overview.js is parsed only once
-                            // and not everytime the player clicks on the Overview menu link
-                            var currentIndex = 0;
-                            var currentChar = 0;
-                            var linetwo = 0;
+                        // Reset counters to zero here and not in overview.js because due to LazyLoader, the overview.js is parsed only once
+                        // and not everytime the player clicks on the Overview menu link
+                        var currentIndex = 0;
+                        var currentChar = 0;
+                        var linetwo = 0;
 
-                            initOverview();
-                            initType();
+                        initOverview();
+                        initType();
 
-                            //OGAME Birthday Event
+                        //OGAME Birthday Event
 
-                            $("#planet")
-                                .find("h2 a")
-                                .hover(
-                                    function () {
-                                        $("#planet").find("h2 a img").toggleClass("hinted");
-                                    },
-                                    function () {
-                                        $("#planet").find("h2 a img").toggleClass("hinted");
-                                    },
-                                );
-                        </script>
-                    </div>
+                        $("#planet")
+                            .find("h2 a")
+                            .hover(
+                                function () {
+                                    $("#planet").find("h2 a img").toggleClass("hinted");
+                                },
+                                function () {
+                                    $("#planet").find("h2 a img").toggleClass("hinted");
+                                },
+                            );
+                    </script>
                 </div>
-                {% include('parts/right.html.twig') %}    
+            </div>
+            {% include('parts/right.html.twig') %}    
         
-            </div>
-            <div id="bottom">
+        </div>
+        <div id="bottom">
                             
-                <div
-                    id='errorboxcomponent'
-                    class=""
-                >
-                    <div id="decisionTB" style="display:none;">
-                        <div id="errorBoxDecision" class="errorBox TBfixedPosition">
-                            <div class="head"><h4 id="errorBoxDecisionHead">-</h4></div>
-                            <div class="middle">
-                                <span id="errorBoxDecisionContent">-</span>
-                                <div class="response">
-                                    <div style="float:left; width:180px;">
-                                        <a href="javascript:void(0);" class="yes"><span id="errorBoxDecisionYes">.</span></a>
-                                    </div>
-                                    <div style="float:left; width:180px;">
-                                        <a href="javascript:void(0);" class="no"><span id="errorBoxDecisionNo">.</span></a>
-                                    </div>
-                                    <br class="clearfloat"/>
-                                </div>
-                            </div>
-                            <div class="foot"></div>
-                        </div>
-                    </div>
-
-                    <div id="fadeBox" class="fadeBox fixedPostion" style="display:none;" role="alert">
-                        <span id="fadeBoxStyle" class="success"></span>
-                        <p id="fadeBoxContent"></p>
-                    </div>
-
-                    <div id="notifyTB" style="display:none;">
-                        <div id="errorBoxNotify" class="errorBox TBfixedPosition">
-                            <div class="head"><h4 id="errorBoxNotifyHead">-</h4></div>
-                            <div class="middle">
-                                <span id="errorBoxNotifyContent">-</span>
-                                <div class="response">
-                                    <div>
-                                        <a href="javascript:void(0);" class="ok">
-                                            <span id="errorBoxNotifyOk">.</span>
-                                        </a>
-                                    </div>
-                                    <br class="clearfloat"/>
-                                </div>
-                            </div>
-                            <div class="foot"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <script type="text/javascript">
-                initIndex();
-            </script>
-                        
             <div
-                id='chatbarcomponent'
+                id='errorboxcomponent'
                 class=""
             >
-                <script type="text/javascript">
-                    var bigChatLink =
-                        "https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&component=chat";
-                    var ajaxChatToken = "c70be6977e829732e46ae8315de1ecad";
-                    var chatUrl =
-                        "https:\/\/s274-fr.ogame.gameforge.com\/game\/index.php?page=ingame&component=chat&asJson=1";
-                    var chatLoca = {
-                        TEXT_EMPTY: "Mais o\u00f9 est le message ?",
-                        TEXT_TOO_LONG: "Le message est trop long.",
-                        SAME_USER: "Vous ne pouvez pas vous \u00e9crire vous-m\u00eame.",
-                        IGNORED_USER: "Vous avez ignor\u00e9 ce joueur.",
-                        NO_DATABASE_CONNECTION:
-                            "Une erreur inconnue est apparue, votre derni\u00e8re action n`a malheureusement pas pu \u00eatre effectu\u00e9e!",
-                        INVALID_PARAMETERS:
-                            "Une erreur inconnue est apparue, votre derni\u00e8re action n`a malheureusement pas pu \u00eatre effectu\u00e9e!",
-                        SEND_FAILED:
-                            "Une erreur inconnue est apparue, votre derni\u00e8re action n`a malheureusement pas pu \u00eatre effectu\u00e9e!",
-                        LOCA_ALL_ERROR_NOTACTIVATED:
-                            "Cette fonction n`est disponible qu`apr\u00e8s activation de votre compte.",
-                        X_NEW_CHATS: "#+# conversation(s) non-lue(s)",
-                        MORE_USERS: "Plus",
-                    };
-
-                    var visibleChats = { players: [], associations: [] };
-
-                    (function ($) {
-                        ogame.chat.showPlayerList("#chatBarPlayerList .cb_playerlist_box"); //list in chat bar
-                        ogame.chat.showPlayerList("#sideBar"); // list in chat
-
-                        var initChatAsyncInterval = window.setInterval(initChatAsync, 100);
-
-                        function initChatAsync() {
-                            if (
-                                ogame.chat.isLoadingPlayerList === false &&
-                                ogame.chat.playerList !== null
-                            ) {
-                                clearInterval(initChatAsyncInterval);
-                                ogame.chat.initChatBar(107514);
-                                ogame.chat.initChat(107514, false);
-                                ogame.chat.updateCustomScrollbar($(".scrollContainer"));
-                            }
-                        }
-                    })(jQuery);
-                </script>
-                <div id="chatBar">
-                    <ul class="chat_bar_list">
-                        <li id="chatBarPlayerList" class="chat_bar_pl_list_item">
-                            <div class="cb_playerlist_box" style="display:none">
+                <div id="decisionTB" style="display:none;">
+                    <div id="errorBoxDecision" class="errorBox TBfixedPosition">
+                        <div class="head"><h4 id="errorBoxDecisionHead">-</h4></div>
+                        <div class="middle">
+                            <span id="errorBoxDecisionContent">-</span>
+                            <div class="response">
+                                <div style="float:left; width:180px;">
+                                    <a href="javascript:void(0);" class="yes"><span id="errorBoxDecisionYes">.</span></a>
+                                </div>
+                                <div style="float:left; width:180px;">
+                                    <a href="javascript:void(0);" class="no"><span id="errorBoxDecisionNo">.</span></a>
+                                </div>
+                                <br class="clearfloat"/>
                             </div>
-                            <span class="onlineCount">0 joueurs en ligne</span>
-                        </li>
-                    </ul><!-- END Chat Bar List -->
+                        </div>
+                        <div class="foot"></div>
+                    </div>
+                </div>
 
-                    <script type="text/javascript">
+                <div id="fadeBox" class="fadeBox fixedPostion" style="display:none;" role="alert">
+                    <span id="fadeBoxStyle" class="success"></span>
+                    <p id="fadeBoxContent"></p>
+                </div>
+
+                <div id="notifyTB" style="display:none;">
+                    <div id="errorBoxNotify" class="errorBox TBfixedPosition">
+                        <div class="head"><h4 id="errorBoxNotifyHead">-</h4></div>
+                        <div class="middle">
+                            <span id="errorBoxNotifyContent">-</span>
+                            <div class="response">
+                                <div>
+                                    <a href="javascript:void(0);" class="ok">
+                                        <span id="errorBoxNotifyOk">.</span>
+                                    </a>
+                                </div>
+                                <br class="clearfloat"/>
+                            </div>
+                        </div>
+                        <div class="foot"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            initIndex();
+        </script>
+                        
+        <div
+            id='chatbarcomponent'
+            class=""
+        >
+            <script type="text/javascript">
+                var bigChatLink =
+                    "https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&component=chat";
+                var ajaxChatToken = "c70be6977e829732e46ae8315de1ecad";
+                var chatUrl =
+                    "https:\/\/s274-fr.ogame.gameforge.com\/game\/index.php?page=ingame&component=chat&asJson=1";
+                var chatLoca = {
+                    TEXT_EMPTY: "Mais o\u00f9 est le message ?",
+                    TEXT_TOO_LONG: "Le message est trop long.",
+                    SAME_USER: "Vous ne pouvez pas vous \u00e9crire vous-m\u00eame.",
+                    IGNORED_USER: "Vous avez ignor\u00e9 ce joueur.",
+                    NO_DATABASE_CONNECTION:
+                        "Une erreur inconnue est apparue, votre derni\u00e8re action n`a malheureusement pas pu \u00eatre effectu\u00e9e!",
+                    INVALID_PARAMETERS:
+                        "Une erreur inconnue est apparue, votre derni\u00e8re action n`a malheureusement pas pu \u00eatre effectu\u00e9e!",
+                    SEND_FAILED:
+                        "Une erreur inconnue est apparue, votre derni\u00e8re action n`a malheureusement pas pu \u00eatre effectu\u00e9e!",
+                    LOCA_ALL_ERROR_NOTACTIVATED:
+                        "Cette fonction n`est disponible qu`apr\u00e8s activation de votre compte.",
+                    X_NEW_CHATS: "#+# conversation(s) non-lue(s)",
+                    MORE_USERS: "Plus",
+                };
+
+                var visibleChats = { players: [], associations: [] };
+
+                (function ($) {
+                    ogame.chat.showPlayerList("#chatBarPlayerList .cb_playerlist_box"); //list in chat bar
+                    ogame.chat.showPlayerList("#sideBar"); // list in chat
+
+                    var initChatAsyncInterval = window.setInterval(initChatAsync, 100);
+
+                    function initChatAsync() {
+                        if (
+                            ogame.chat.isLoadingPlayerList === false &&
+                            ogame.chat.playerList !== null
+                        ) {
+                            clearInterval(initChatAsyncInterval);
+                            ogame.chat.initChatBar(107514);
+                            ogame.chat.initChat(107514, false);
+                            ogame.chat.updateCustomScrollbar($(".scrollContainer"));
+                        }
+                    }
+                })(jQuery);
+            </script>
+            {# <div id="chatBar">
+                <ul class="chat_bar_list">
+                    <li id="chatBarPlayerList" class="chat_bar_pl_list_item">
+                        <div class="cb_playerlist_box" style="display:none">
+                        </div>
+                        <span class="onlineCount">0 joueurs en ligne</span>
+                    </li>
+                </ul><!-- END Chat Bar List -->
+
+                <script type="text/javascript">
 
     </script>
+            </div> #}
+        </div>
+        <div id="siteFooter">
+            <div class="content" style="font-size:10px">
+                <div class="fleft textLeft">
+                    <span>13.0.1-r2hf</span>
+                    <a class="homeLink" href="http://www.gameforge.com/" target="_blank">© 2002 Gameforge 4D GmbH. Tous droits réservés.</a>
+                </div>
+                <div class="fright textRight">
+                    <a
+                        href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ajax&component=serversettings&ajax=1"
+                        class="overlay"
+                        data-overlay-title="Paramètres du serveur"
+                        data-overlay-class="serversettingsoverlay"
+                        data-overlay-popup-width="400"
+                        data-overlay-popup-height="510"
+                    >
+                        Paramètres du serveur</a>|
+                    <a href="https://discord.gg/OGame" target="_blank">Discord</a>|
+                    <a href="https://board.fr.ogame.gameforge.com/" target="_blank">Forum</a>|
+                    <a
+                        class="overlay"
+                        href="https://s274-fr.ogame.gameforge.com/game/index.php?page=standalone&amp;component=ruleslayer&amp;ajax=1"
+                        data-overlay-iframe="true"
+                        data-iframe-width="450"
+                        data-overlay-title="Règles"
+                    >Règles</a>|
+                    <a href="https://agbserver.gameforge.com/rewrite.php?locale=fr&amp;type=imprint&amp;product=ogame" target="_blank">Mentions légales</a>
                 </div>
             </div>
-            <div id="siteFooter">
-                <div class="content" style="font-size:10px">
-                    <div class="fleft textLeft">
-                        <span>13.0.1-r2hf</span>
-                        <a class="homeLink" href="http://www.gameforge.com/" target="_blank">© 2002 Gameforge 4D GmbH. Tous droits réservés.</a>
-                    </div>
-                    <div class="fright textRight">
-                        <a
-                            href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ajax&component=serversettings&ajax=1"
-                            class="overlay"
-                            data-overlay-title="Paramètres du serveur"
-                            data-overlay-class="serversettingsoverlay"
-                            data-overlay-popup-width="400"
-                            data-overlay-popup-height="510"
-                        >
-                            Paramètres du serveur</a>|
-                        <a href="https://discord.gg/OGame" target="_blank">Discord</a>|
-                        <a href="https://board.fr.ogame.gameforge.com/" target="_blank">Forum</a>|
-                        <a
-                            class="overlay"
-                            href="https://s274-fr.ogame.gameforge.com/game/index.php?page=standalone&amp;component=ruleslayer&amp;ajax=1"
-                            data-overlay-iframe="true"
-                            data-iframe-width="450"
-                            data-overlay-title="Règles"
-                        >Règles</a>|
-                        <a href="https://agbserver.gameforge.com/rewrite.php?locale=fr&amp;type=imprint&amp;product=ogame" target="_blank">Mentions légales</a>
-                    </div>
-                </div>
-            </div>
+        </div>
 
 
-            {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{ path('app_admin_show') }}">admin</a>
-                <a href="{{ path('app_admin_generate_planets') }}">générer planètes</a>
-                <a href="{{ path('app_defence_index') }}">défense</a>
-                <a href="{{ path('app_vessel_index') }}">vaisseaux</a>
-                <a href="{{ path('app_building_index') }}">bâtiments</a>
-                <a href="{{ path('app_research_index') }}">recherches</a>
-            {% endif %}
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('app_admin_show') }}">admin</a>
+            <a href="{{ path('app_admin_generate_planets') }}">générer planètes</a>
+            <a href="{{ path('app_defence_index') }}">défense</a>
+            <a href="{{ path('app_vessel_index') }}">vaisseaux</a>
+            <a href="{{ path('app_building_index') }}">bâtiments</a>
+            <a href="{{ path('app_research_index') }}">recherches</a>
+        {% endif %}
 {% endblock %}
 
     

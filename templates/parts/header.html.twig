@@ -15,7 +15,7 @@
         <script type="text/javascript" src="{{ asset('js/incrementResources.js') }}"></script>
         <script type="text/javascript">
         // ici pour la maj des ressources par rapport à la BDD
-            startResourceAutoUpdate(planetId, 20000);
+            startResourceAutoUpdate(planetId, 60000);
             // ici pour l'incrémentation
             // incrementResourcesByDB(planetId);
             // fetchResourcesProductions({{ planet.id }});
@@ -212,82 +212,82 @@
         ajaxResourceboxURI =
             "https://s274-fr.ogame.gameforge.com/game/index.php?page=componentOnly&component=resourcesbar&action=fetchResources&asJson=1";
 
-        (function ($) {
-            reloadResources({
-                resources: {
-                    population: {
-                        amount: 210,
-                        storage: 210,
-                        protected: 100,
-                        safeCapacity: 100,
-                        growthRate: 0.0044444444444444444,
-                        capableToFeed: 233,
-                        needFood: 0,
-                        singleFoodConsumption: 9.523809523809524e-5,
-                        tooltip:
-                            'Population|<table class="resourceTooltip"><tr><th>Disponible<\/th><td><span class="overmark">210<\/span><\/td><\/tr><tr><th>Formes de vie N2<\/th><td><span class="">0<\/span><\/td><\/tr><tr><th>Formes de vie N3<\/th><td><span class="">0<\/span><\/td><\/tr><tr><th>Logement\n<\/th><td><span class="overmark">210<\/span><\/td><\/tr><tr><th>Rassasi\u00e9s<\/th><td><span class="undermark">233<\/span><\/td><\/tr><tr><th>Affam\u00e9s<\/th><td><span class="overmark">0<\/span><\/td><\/tr><tr><th>Taux de croissance<\/th><td><span class="">\u00b10,004<\/span><\/td><\/tr><tr><th>Emplacement de bunker\n<\/th><td><span class="middlemark">100<\/span><\/td><\/tr><\/table>',
-                    },
-                    food: {
-                        amount: 10,
-                        storage: 10,
-                        protected: 0,
-                        capableToFeed: 233,
-                        production: 0.022222222222222223,
-                        extraproduction: 0,
-                        consumption: 0,
-                        vacationMode: "",
-                        tooltip:
-                            'Nourriture|<table class="resourceTooltip"><tr><th>Disponible<\/th><td><span class="overmark">10<\/span><\/td><\/tr><tr><th>Capacit\u00e9 de stockage<\/th><td><span class="overmark">10<\/span><\/td><\/tr><tr><th>Surproduction<\/th><td><span class="undermark">0<\/span><\/td><\/tr><tr><th>Consommation<\/th><td><span class="overmark">0<\/span><\/td><\/tr><tr><th>Consomm\u00e9 dans<\/th><td><span class="overmark timeTillFoodRunsOut">~<\/span><\/td><\/tr><\/table>',
-                    },
-                    metal: {
-                        amount: 6747,
-                        storage: 10000,
-                        protected: 0,
-                        baseProduction: 0.06666666666666667,
-                        production: 0.06666666666666667,
-                        tooltip:
-                            'M\u00e9tal|<table class="resourceTooltip"><tr><th>Disponible<\/th><td><span class="">6.747<\/span><\/td><\/tr><tr><th>Capacit\u00e9 de stockage<\/th><td><span class="">10.000<\/span><\/td><\/tr><tr><th>Production actuelle\u00a0:<\/th><td><span class="undermark">+240<\/span><\/td><\/tr><tr><th>Capacit\u00e9 de la cachette\u00a0:<\/th><td><span class="overermark">0<\/span><\/td><\/tr><\/table>',
-                        shopUrl:
-                            "https:\/\/s274-fr.ogame.gameforge.com\/game\/index.php?page=ingame&component=shop#category=d8d49c315fa620d9c7f1f19963970dea59a0e3be&item=859d82d316b83848f7365d21949b3e1e63c7841f&page=shop&panel1-1=",
-                    },
-                    crystal: {
-                        amount: 3873,
-                        storage: 10000,
-                        protected: 0,
-                        baseProduction: 0.03333333333333333,
-                        production: 0.03333333333333333,
-                        tooltip:
-                            'Cristal|<table class="resourceTooltip"><tr><th>Disponible<\/th><td><span class="">3.873<\/span><\/td><\/tr><tr><th>Capacit\u00e9 de stockage<\/th><td><span class="">10.000<\/span><\/td><\/tr><tr><th>Production actuelle\u00a0:<\/th><td><span class="undermark">+120<\/span><\/td><\/tr><tr><th>Capacit\u00e9 de la cachette\u00a0:<\/th><td><span class="overermark">0<\/span><\/td><\/tr><\/table>',
-                        shopUrl:
-                            "https:\/\/s274-fr.ogame.gameforge.com\/game\/index.php?page=ingame&component=shop#category=d8d49c315fa620d9c7f1f19963970dea59a0e3be&item=bb2f6843226ef598f0b567b92c51b283de90aa48&page=shop&panel1-1=",
-                    },
-                    deuterium: {
-                        amount: 0,
-                        storage: 10000,
-                        protected: 0,
-                        baseProduction: 0,
-                        production: 0,
-                        tooltip:
-                            'Deut\u00e9rium|<table class="resourceTooltip"><tr><th>Disponible<\/th><td><span class="">0<\/span><\/td><\/tr><tr><th>Capacit\u00e9 de stockage<\/th><td><span class="">10.000<\/span><\/td><\/tr><tr><th>Production actuelle\u00a0:<\/th><td><span class="overmark">0<\/span><\/td><\/tr><tr><th>Capacit\u00e9 de la cachette\u00a0:<\/th><td><span class="overermark">0<\/span><\/td><\/tr><\/table>',
-                        shopUrl:
-                            "https:\/\/s274-fr.ogame.gameforge.com\/game\/index.php?page=ingame&component=shop#category=d8d49c315fa620d9c7f1f19963970dea59a0e3be&item=cb72ed207dd871832a850ee29f1c1f83aa3f4f36&page=shop&panel1-1=",
-                    },
-                    energy: {
-                        amount: 0,
-                        tooltip:
-                            'Energie|<table class="resourceTooltip"><tr><th>Disponible<\/th><td><span class="">0<\/span><\/td><\/tr><tr><th>Production actuelle\u00a0:<\/th><td><span class="overmark">0<\/span><\/td><\/tr><tr><th>Consommation<\/th><td><span class="overmark">0<\/span><\/td><\/tr><\/table>',
-                    },
-                    darkmatter: {
-                        amount: 8000,
-                        tooltip:
-                            'Antimati\u00e8re (AM)|<table class="resourceTooltip"><tr><th>Disponible<\/th><td><span class="">8.000<\/span><\/td><\/tr><tr><th>Achet\u00e9e<\/th><td><span class="">0<\/span><\/td><\/tr><tr><th>Trouv\u00e9e<\/th><td><span class="">8.000<\/span><\/td><\/tr><\/table>',
-                        classes: "overlay",
-                        link: "https:\/\/s274-fr.ogame.gameforge.com\/game\/index.php?page=payment",
-                        img: "https:\/\/gf1.geo.gfsrv.net\/cdnc5\/401d1a91ff40dc7c8acfa4377d3d65.gif",
-                    },
-                },
-                honorScore: 0,
-            });
-        })(jQuery);
+        // (function ($) {
+        //     reloadResources({
+        //         resources: {
+        //             population: {
+        //                 amount: 210,
+        //                 storage: 210,
+        //                 protected: 100,
+        //                 safeCapacity: 100,
+        //                 growthRate: 0.0044444444444444444,
+        //                 capableToFeed: 233,
+        //                 needFood: 0,
+        //                 singleFoodConsumption: 9.523809523809524e-5,
+        //                 tooltip:
+        //                     'Population|<table class="resourceTooltip"><tr><th>Disponible<\/th><td><span class="overmark">210<\/span><\/td><\/tr><tr><th>Formes de vie N2<\/th><td><span class="">0<\/span><\/td><\/tr><tr><th>Formes de vie N3<\/th><td><span class="">0<\/span><\/td><\/tr><tr><th>Logement\n<\/th><td><span class="overmark">210<\/span><\/td><\/tr><tr><th>Rassasi\u00e9s<\/th><td><span class="undermark">233<\/span><\/td><\/tr><tr><th>Affam\u00e9s<\/th><td><span class="overmark">0<\/span><\/td><\/tr><tr><th>Taux de croissance<\/th><td><span class="">\u00b10,004<\/span><\/td><\/tr><tr><th>Emplacement de bunker\n<\/th><td><span class="middlemark">100<\/span><\/td><\/tr><\/table>',
+        //             },
+        //             food: {
+        //                 amount: 10,
+        //                 storage: 10,
+        //                 protected: 0,
+        //                 capableToFeed: 233,
+        //                 production: 0.022222222222222223,
+        //                 extraproduction: 0,
+        //                 consumption: 0,
+        //                 vacationMode: "",
+        //                 tooltip:
+        //                     'Nourriture|<table class="resourceTooltip"><tr><th>Disponible<\/th><td><span class="overmark">10<\/span><\/td><\/tr><tr><th>Capacit\u00e9 de stockage<\/th><td><span class="overmark">10<\/span><\/td><\/tr><tr><th>Surproduction<\/th><td><span class="undermark">0<\/span><\/td><\/tr><tr><th>Consommation<\/th><td><span class="overmark">0<\/span><\/td><\/tr><tr><th>Consomm\u00e9 dans<\/th><td><span class="overmark timeTillFoodRunsOut">~<\/span><\/td><\/tr><\/table>',
+        //             },
+        //             metal: {
+        //                 amount: 6747,
+        //                 storage: 10000,
+        //                 protected: 0,
+        //                 baseProduction: 0.06666666666666667,
+        //                 production: 0.06666666666666667,
+        //                 tooltip:
+        //                     'M\u00e9tal|<table class="resourceTooltip"><tr><th>Disponible<\/th><td><span class="">6.747<\/span><\/td><\/tr><tr><th>Capacit\u00e9 de stockage<\/th><td><span class="">10.000<\/span><\/td><\/tr><tr><th>Production actuelle\u00a0:<\/th><td><span class="undermark">+240<\/span><\/td><\/tr><tr><th>Capacit\u00e9 de la cachette\u00a0:<\/th><td><span class="overermark">0<\/span><\/td><\/tr><\/table>',
+        //                 shopUrl:
+        //                     "https:\/\/s274-fr.ogame.gameforge.com\/game\/index.php?page=ingame&component=shop#category=d8d49c315fa620d9c7f1f19963970dea59a0e3be&item=859d82d316b83848f7365d21949b3e1e63c7841f&page=shop&panel1-1=",
+        //             },
+        //             crystal: {
+        //                 amount: 3873,
+        //                 storage: 10000,
+        //                 protected: 0,
+        //                 baseProduction: 0.03333333333333333,
+        //                 production: 0.03333333333333333,
+        //                 tooltip:
+        //                     'Cristal|<table class="resourceTooltip"><tr><th>Disponible<\/th><td><span class="">3.873<\/span><\/td><\/tr><tr><th>Capacit\u00e9 de stockage<\/th><td><span class="">10.000<\/span><\/td><\/tr><tr><th>Production actuelle\u00a0:<\/th><td><span class="undermark">+120<\/span><\/td><\/tr><tr><th>Capacit\u00e9 de la cachette\u00a0:<\/th><td><span class="overermark">0<\/span><\/td><\/tr><\/table>',
+        //                 shopUrl:
+        //                     "https:\/\/s274-fr.ogame.gameforge.com\/game\/index.php?page=ingame&component=shop#category=d8d49c315fa620d9c7f1f19963970dea59a0e3be&item=bb2f6843226ef598f0b567b92c51b283de90aa48&page=shop&panel1-1=",
+        //             },
+        //             deuterium: {
+        //                 amount: 0,
+        //                 storage: 10000,
+        //                 protected: 0,
+        //                 baseProduction: 0,
+        //                 production: 0,
+        //                 tooltip:
+        //                     'Deut\u00e9rium|<table class="resourceTooltip"><tr><th>Disponible<\/th><td><span class="">0<\/span><\/td><\/tr><tr><th>Capacit\u00e9 de stockage<\/th><td><span class="">10.000<\/span><\/td><\/tr><tr><th>Production actuelle\u00a0:<\/th><td><span class="overmark">0<\/span><\/td><\/tr><tr><th>Capacit\u00e9 de la cachette\u00a0:<\/th><td><span class="overermark">0<\/span><\/td><\/tr><\/table>',
+        //                 shopUrl:
+        //                     "https:\/\/s274-fr.ogame.gameforge.com\/game\/index.php?page=ingame&component=shop#category=d8d49c315fa620d9c7f1f19963970dea59a0e3be&item=cb72ed207dd871832a850ee29f1c1f83aa3f4f36&page=shop&panel1-1=",
+        //             },
+        //             energy: {
+        //                 amount: 0,
+        //                 tooltip:
+        //                     'Energie|<table class="resourceTooltip"><tr><th>Disponible<\/th><td><span class="">0<\/span><\/td><\/tr><tr><th>Production actuelle\u00a0:<\/th><td><span class="overmark">0<\/span><\/td><\/tr><tr><th>Consommation<\/th><td><span class="overmark">0<\/span><\/td><\/tr><\/table>',
+        //             },
+        //             darkmatter: {
+        //                 amount: 8000,
+        //                 tooltip:
+        //                     'Antimati\u00e8re (AM)|<table class="resourceTooltip"><tr><th>Disponible<\/th><td><span class="">8.000<\/span><\/td><\/tr><tr><th>Achet\u00e9e<\/th><td><span class="">0<\/span><\/td><\/tr><tr><th>Trouv\u00e9e<\/th><td><span class="">8.000<\/span><\/td><\/tr><\/table>',
+        //                 classes: "overlay",
+        //                 link: "https:\/\/s274-fr.ogame.gameforge.com\/game\/index.php?page=payment",
+        //                 img: "https:\/\/gf1.geo.gfsrv.net\/cdnc5\/401d1a91ff40dc7c8acfa4377d3d65.gif",
+        //             },
+        //         },
+        //         honorScore: 0,
+        //     });
+        // })(jQuery);
     </script>
 </div>

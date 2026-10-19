@@ -13,9 +13,9 @@ class PlanetResource
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'planetResources')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Planet $planet = null;
+    // #[ORM\ManyToOne(inversedBy: 'planetResources')]
+    // #[ORM\JoinColumn(nullable: false)]
+    // private ?Planet $planet = null;
 
     #[ORM\Column]
     private ?int $metal = null;
@@ -29,22 +29,26 @@ class PlanetResource
     #[ORM\Column]
     private ?int $satellite = 0;
 
+    #[ORM\OneToOne(inversedBy: 'planetResource', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Planet $planet = null;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getPlanet(): ?Planet
-    {
-        return $this->planet;
-    }
+    // public function getPlanet(): ?Planet
+    // {
+    //     return $this->planet;
+    // }
 
-    public function setPlanet(?Planet $planet): static
-    {
-        $this->planet = $planet;
+    // public function setPlanet(?Planet $planet): static
+    // {
+    //     $this->planet = $planet;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getMetal(): ?int
     {
@@ -90,6 +94,18 @@ class PlanetResource
     public function setSatellite(int $satellite): static
     {
         $this->satellite = $satellite;
+
+        return $this;
+    }
+
+    public function getPlanet(): ?Planet
+    {
+        return $this->planet;
+    }
+
+    public function setPlanet(Planet $planet): static
+    {
+        $this->planet = $planet;
 
         return $this;
     }

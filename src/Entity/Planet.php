@@ -35,8 +35,8 @@ class Planet
     #[ORM\Column]
     private ?int $temperature = null;
 
-    #[ORM\OneToMany(mappedBy: 'planet', targetEntity: PlanetResource::class, orphanRemoval: true)]
-    private Collection $planetResources;
+    // #[ORM\OneToMany(mappedBy: 'planet', targetEntity: PlanetResource::class, orphanRemoval: true)]
+    // private Collection $planetResources;
 
     #[ORM\Column]
     private ?bool $isDestroyed = false;
@@ -53,10 +53,13 @@ class Planet
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $name = null;
 
+    #[ORM\OneToOne(mappedBy: 'planet', cascade: ['persist', 'remove'])]
+    private ?PlanetResource $planetResource = null;
+
     public function __construct()
     {
         $this->planetBuildings = new ArrayCollection();
-        $this->planetResources = new ArrayCollection();
+        // $this->planetResources = new ArrayCollection();
         $this->planetVessels = new ArrayCollection();
         $this->planetDefences = new ArrayCollection();
     }
@@ -165,35 +168,35 @@ class Planet
         return $this;
     }
 
-    /**
-     * @return Collection<int, PlanetResource>
-     */
-    public function getPlanetResources(): Collection
-    {
-        return $this->planetResources;
-    }
+    // /**
+    //  * @return Collection<int, PlanetResource>
+    //  */
+    // public function getPlanetResources(): Collection
+    // {
+    //     return $this->planetResources;
+    // }
 
-    public function addPlanetResource(PlanetResource $planetResource): static
-    {
-        if (!$this->planetResources->contains($planetResource)) {
-            $this->planetResources->add($planetResource);
-            $planetResource->setPlanet($this);
-        }
+    // public function addPlanetResource(PlanetResource $planetResource): static
+    // {
+    //     if (!$this->planetResources->contains($planetResource)) {
+    //         $this->planetResources->add($planetResource);
+    //         $planetResource->setPlanet($this);
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function removePlanetResource(PlanetResource $planetResource): static
-    {
-        if ($this->planetResources->removeElement($planetResource)) {
-            // set the owning side to null (unless already changed)
-            if ($planetResource->getPlanet() === $this) {
-                $planetResource->setPlanet(null);
-            }
-        }
+    // public function removePlanetResource(PlanetResource $planetResource): static
+    // {
+    //     if ($this->planetResources->removeElement($planetResource)) {
+    //         // set the owning side to null (unless already changed)
+    //         if ($planetResource->getPlanet() === $this) {
+    //             $planetResource->setPlanet(null);
+    //         }
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function isIsDestroyed(): ?bool
     {
@@ -289,5 +292,33 @@ class Planet
         $this->name = $name;
 
         return $this;
+    }
+
+    public function getPlanetResource(): ?PlanetResource
+    {
+        return $this->planetResource;
+    }
+
+    public function setPlanetResource(PlanetResource $planetResource): static
+    {
+        // set the owning side of the relation if necessary
+        if ($planetResource->getPlanet() !== $this) {
+            $planetResource->setPlanet($this);
+        }
+
+        $this->planetResource = $planetResource;
+
+        return $this;
+    }
+
+    public function getBuildingByName(string $name): ?PlanetBuilding // Adapte le nom de ton entité de liaison
+    {
+        foreach ($this->planetBuildings as $planetBuilding) {
+            if ($planetBuilding->getBuilding()->getName() === $name) {
+                return $planetBuilding;
+            }
+        }
+
+        return null; // Retourne null si le bâtiment n'est pas encore construit sur la planète
     }
 }

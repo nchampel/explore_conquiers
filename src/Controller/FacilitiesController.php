@@ -20,12 +20,17 @@ class FacilitiesController extends AbstractController
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
         $planet = $planetRepository->findOneBy(["user" => $user]);
-        $resources = $planetResourceRepository->findOneBy(["planet" => $planet]);
+        // $resources = $planetResourceRepository->findOneBy(["planet" => $planet]);
         
         return $this->render('facilities/index.html.twig', [
             'user' => $user,
             'planet' => $planet,
-            'resources' => $resources,
+            // 'resources' => $resources,
+            'resources' => $planet->getPlanetResource(),
+            // 'buildings' => $planet->getPlanetBuildings(),
+            // 'defences' => $planet->getPlanetDefences(),
+            // 'vessels' => $planet->getPlanetVessels(),
+            // 'researches' => $user->getResearchesPlayer(),
             'component' => 'facilities',
         ]);
     }

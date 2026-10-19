@@ -42,12 +42,17 @@ class HomeController extends AbstractController
         if(!$user){
             return $this->redirectToRoute('app_login');
         }
+        // va récupérer la première planète du joueur en id croissant
         $planet = $planetRepository->findOneBy(["user" => $user]);
-        $resources = $planetResourceRepository->findOneBy(["planet" => $planet]);
+        // $resources = $planetResourceRepository->findOneBy(["planet" => $planet]);
         return $this->render('home/homeGameOg.html.twig', [
             'user' => $user,
             'planet' => $planet,
-            'resources' => $resources,
+            'resources' => $planet->getPlanetResource(),
+            // 'buildings' => $planet->getPlanetBuildings(),
+            // 'defences' => $planet->getPlanetDefences(),
+            // 'vessels' => $planet->getPlanetVessels(),
+            // 'researches' => $user->getResearchesPlayer(),
             'component' => 'overview',
             'occupation' => $buildingService->getBuildingsCountByPlanet($planet),
         ]);

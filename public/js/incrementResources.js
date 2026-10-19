@@ -152,8 +152,8 @@ function updateResourcesUI() {
     if (!resourceConfig) return;
 
     for (const key in resourceConfig) {
-        console.log('updateResourcesUI');
-        console.log(resourceConfig);
+        // console.log('updateResourcesUI');
+        // console.log(resourceConfig);
         const res = resourceConfig[key];
         const element = document.getElementById(res.selector);
         if (element) {
@@ -183,21 +183,21 @@ function startSimulationLoop() {
                 
                 // Calcul par milliseconde (prod/min -> /60 -> /1000)
                 const incrementByMs = (res.productionByMinute / 60) / 1000;
-                console.log('incrementByMs');
-                console.log(incrementByMs);
+                // console.log('incrementByMs');
+                // console.log(incrementByMs);
 
                 
                 res.acc += elapsedTimeMs * incrementByMs;
-                console.log('res.acc');
-                console.log(res.acc);
+                // console.log('res.acc');
+                // console.log(res.acc);
                 
                 const toBeAdded = Math.floor(res.acc);
-                console.log('toBeAdded');
-                console.log(toBeAdded);
+                // console.log('toBeAdded');
+                // console.log(toBeAdded);
 
                 if (toBeAdded > 0) {
-                    console.log('res.currentValue');
-                    console.log(res.currentValue);
+                    // console.log('res.currentValue');
+                    // console.log(res.currentValue);
                     res.currentValue += toBeAdded;
                     res.acc -= toBeAdded; // On garde le reste des décimales
                 }
@@ -214,9 +214,9 @@ async function syncResourcesFromDB(planetId) {
     try {
         const resourcesFromDB = await fetchResources(planetId);
         if (!resourcesFromDB) return;
-        console.log('resourcesFromDB');
-        console.log(resourcesFromDB);
-        console.log(resourcesFromDB.metal);
+        // console.log('resourcesFromDB');
+        // console.log(resourcesFromDB);
+        // console.log(resourcesFromDB.metal);
 
         // Si c'est le tout premier appel, on initialise tout (valeurs ET productions fixes)
         if (!resourceConfig) {
@@ -241,8 +241,8 @@ async function syncResourcesFromDB(planetId) {
                     selector: 'resources_deuterium'
                 }
             };
-            console.log('if (!resourceConfig)');
-            console.log(resourceConfig);
+            // console.log('if (!resourceConfig)');
+            // console.log(resourceConfig);
             
             // On lance la simulation front pour la première fois
             startSimulationLoop();

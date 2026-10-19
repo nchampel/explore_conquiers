@@ -38,13 +38,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $planets;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: ResearchPlayer::class, orphanRemoval: true)]
-    private Collection $researchPlayers;
+    private Collection $researchesPlayer;
 
     public function __construct()
     {
         $this->planetBuildings = new ArrayCollection();
         $this->planets = new ArrayCollection();
-        $this->researchPlayers = new ArrayCollection();
+        $this->researchesPlayer = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -148,7 +148,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->planetBuildings->contains($planetBuilding)) {
             $this->planetBuildings->add($planetBuilding);
-            $planetBuilding->setUser($this);
+            // $planetBuilding->setUser($this);
         }
 
         return $this;
@@ -158,9 +158,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->planetBuildings->removeElement($planetBuilding)) {
             // set the owning side to null (unless already changed)
-            if ($planetBuilding->getUser() === $this) {
-                $planetBuilding->setUser(null);
-            }
+            // if ($planetBuilding->getUser() === $this) {
+            //     $planetBuilding->setUser(null);
+            // }
         }
 
         return $this;
@@ -199,15 +199,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, ResearchPlayer>
      */
-    public function getResearchPlayers(): Collection
+    public function getResearchesPlayer(): Collection
     {
-        return $this->researchPlayers;
+        return $this->researchesPlayer;
     }
 
     public function addResearchPlayer(ResearchPlayer $researchPlayer): static
     {
-        if (!$this->researchPlayers->contains($researchPlayer)) {
-            $this->researchPlayers->add($researchPlayer);
+        if (!$this->researchesPlayer->contains($researchPlayer)) {
+            $this->researchesPlayer->add($researchPlayer);
             $researchPlayer->setUser($this);
         }
 
@@ -216,7 +216,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function removeResearchPlayer(ResearchPlayer $researchPlayer): static
     {
-        if ($this->researchPlayers->removeElement($researchPlayer)) {
+        if ($this->researchesPlayer->removeElement($researchPlayer)) {
             // set the owning side to null (unless already changed)
             if ($researchPlayer->getUser() === $this) {
                 $researchPlayer->setUser(null);
