@@ -6625,6 +6625,7 @@ div.buildingimg {
     /*background-size: 4000px 6000px;*/
 }
 
+/* ici pour redimmensionner les images */
 .sprite_before.sprite_medium::before,
 .sprite_after.sprite_medium::after,
 .sprite.sprite_medium {
@@ -42295,6 +42296,16 @@ a#message_alert_box_default,
     display: block;
     padding: 3px 5px;
 }
+
+/* #technologydetails > .required {
+    position: absolute;
+    top: 203px; 
+    box-sizing: border-box;
+    width: 100%;
+    height: 95px;
+    display: block;
+    padding: 3px 5px;
+} */
 
 #technologydetails.large {
     height: 300px;
