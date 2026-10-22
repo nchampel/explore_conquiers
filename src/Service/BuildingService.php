@@ -101,17 +101,13 @@ class BuildingService
         $array["deuterium"] = floor($building->getDeuterium() * $factor ** ($level + 1 - 1));
         return $array;
     }
-    // public function calculateResourcesToBuild(int $level, Building $building): array{
-    //     $array = [];
-        
-    //     return $array;
-    // }
+    
     // private function get
     public function getTechnologiesSupplies(int $technologyId, Planet $planet): array{
         $array = [];
         $buildingId = $this->getTechnoIDCorrespondence($technologyId);
         // $buildingPlanet = $planet->getBuildingByName("Mine de cristal");
-        $this->logger->info($buildingId);
+        // $this->logger->info($buildingId);
         $buildingPlanet = $planet->getBuildingById($buildingId);
         $building = $buildingPlanet->getBuilding();
 

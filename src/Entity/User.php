@@ -225,4 +225,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getResearchByName(string $name): ?ResearchPlayer // Adapte le nom de ton entité de liaison
+    {
+        foreach ($this->researchesPlayer as $researchPlayer) {
+            if ($researchPlayer->getResearch()->getName() === $name) {
+                return $researchPlayer;
+            }
+        }
+
+        return null; // Retourne null si le bâtiment n'est pas encore construit sur la planète
+    }
 }
