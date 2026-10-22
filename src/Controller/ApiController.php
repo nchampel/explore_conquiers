@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\Planet;
-use App\Service\TechonologyService;
+// use App\Entity\Planet;
+use App\Repository\PlanetRepository;
+use App\Service\BuildingService;
+// use App\Service\TechnologyService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,17 +14,41 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/game')]
 class ApiController extends AbstractController
 {
-    public function __construct(private TechonologyService $techonologyService, private Planet $planet) {
+    public function __construct(private BuildingService $buildingService){
+    }
+    private function getLiResourceForBuild(array $buildingNeededResources): string{
+        $lisElement = "";
+        $typeFr = "";
+        foreach($buildingNeededResources as $type => $resource){
+            switch($type){
+                case "metal":
+                    $typeFr = "Métal";
+                    break;
+                case "crystal":
+                    $typeFr = "Cristal";
+                    break;
+                case "deuterium":
+                    $typeFr = "Deutérium";
+                    break;
+            }
+            if($resource != 0){
+                $lisElement .= "<li class=\"resource " . $type . " icon sufficient tooltip js_hideTipOnMobile\"\n      data-value=\"" . $resource . "\"\n   aria-label=\"" . $resource . " " . $typeFr . "\"\n     title=\"" . $resource . " " . $typeFr . "\"\n     >\n     " . $resource . "\n        </li>";
+            }
+        }
+        return $lisElement;
     }
     #[Route('/api/ajax', name: 'app_api', methods:["GET"])]
-    public function index(Request $request): Response
+    public function index(Request $request, PlanetRepository $planetRepository): Response
     {
         // var_dump($request->getContent());
         // $technologyId = json_decode($request->getContent(), true)["technology"];
         // data-target=\"https://s274-fr.ogame.gameforge.com/game/index.php?page=ajax&amp;component=technologytree&amp;ajax=1&amp;technologyId=2&amp;tab=technologytree\"\n 
         // enlever overlay si souci
+        $planetId = $request->query->get('planetId');
+        $planet = $planetRepository->findOneBy(["id" => $planetId]);
         $technologyId = $request->query->get('technology');
-        $technologiesData = $this->techonologyService->getTechonologiesSupplies($technologyId);
+        $technologyDatas = $this->buildingService->getTechnologiesSupplies($technologyId, $planet);
+        $lisElement = $this->getLiResourceForBuild($technologyDatas["buildingNeededResources"]);
 
         // il faut récupérer le niveau du bâtiment sur cette planète
         // $planet = 
@@ -30,23 +56,23 @@ class ApiController extends AbstractController
         return $this->json([
     "content" => [
         "technologydetails" => "    <div id=\"technologydetails\" data-technology-id=\"" . $technologyId . "\">\n
-            <div class=\"sprite sprite_large building " . $technologiesData["buildingNameEn"] . "\">\n
+            <div class=\"sprite sprite_large building " . $technologyDatas["buildingNameEn"] . "\">\n
              <button 
              class=\"technology_tree no_prerequisites tooltip js_hideTipOnMobile overlay ipiHintable\"\n 
               aria-label=\"Afficher arbre tech\"\n   
               title=\"Aucune condition requise\"\n  
               
               data-target=\"http://localhost:8000/game/api/tree/ajax\"\n 
-               data-ipi-hint=\"ipiTechnologyTree" . $technologiesData["buildingNameEn"] . "\"\n  
+               data-ipi-hint=\"ipiTechnologyTree" . $technologyDatas["buildingNameEn"] . "\"\n  
                 >\n  
                  Arbre tech\n      
                   </button>\n  
                   </div>\n   
                      <div class=\"content\">\n        
                          <button class=\"close\">✖</button>\n\n         
-                            <h3>" . $technologiesData["buildingName"] . "</h3>\n\n         
+                            <h3>" . $technologyDatas["buildingName"] . "</h3>\n\n         
                                <div class=\"information\">\n     
-                                    <span class=\"level\" data-value=\"1\">\n       Niveau 0\n        </span>\n \n   
+                                    <span class=\"level\" data-value=\"1\">\n       Niveau " . $technologyDatas["buildingLevel"] . "\n        </span>\n \n   
                                     <ul class=\"narrow\">\n  
                                         <li class=\"build_duration\">\n       
                                             <strong>Temps de production :</strong>  \n 
@@ -62,13 +88,12 @@ class ApiController extends AbstractController
                                     <div class=\"costs\">\n 
                                      <p>Nécessaire pour le niveau 1 :</p>\n   
                                       <ul class=\"ipiHintable\" data-ipi-hint=\"\">\n       
-                                        <li class=\"resource metal icon sufficient tooltip js_hideTipOnMobile\"\n      data-value=\"48\"\n   aria-label=\"48 Métal\"\n     title=\"48 Métal\"\n     >\n     48\n        </li>
-                                        <li class=\"resource crystal icon sufficient tooltip js_hideTipOnMobile\"\n      data-value=\"24\"\n      aria-label=\"24 Cristal\"\n       title=\"24 Cristal\"\n     >\n      24\n    </li>  
-                                     </ul>\n   
+                                        " . $lisElement . "  
+                                      </ul>\n   
                                     </div>\n\n                \n      
                                     <div class=\"build-it_wrap\">\n         
-                                    <div class=\"ipiHintable\" data-ipi-hint=\"ipiTechnologyUpgrade" . $technologiesData["buildingNameEn"] . "\">\n     
-                                         <button class=\"upgrade\"  data-technology=\"2\">\n     
+                                    <div class=\"ipiHintable\" data-ipi-hint=\"ipiTechnologyUpgrade" . $technologyDatas["buildingNameEn"] . "\">\n     
+                                         <button class=\"upgrade\"  data-technology=\"" . $technologyId . "\">\n     
                                            <span class=\"tooltip\" title=\"\">Développer</span>\n     
                                        </button>\n       
                                     </div>\n     

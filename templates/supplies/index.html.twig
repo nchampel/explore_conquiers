@@ -384,9 +384,14 @@
                                     if (!url) return;
 
                                     try {
-                                        console.log("Appel vers l'URL :", url);
+                                        // console.log("Appel vers l'URL :", url);
+                                        // Exemple : Ajouter des paramètres GET dynamiques à l'URL existante
+                                        // const urlObj = new URL(url, window.location.origin);
+                                        // urlObj.searchParams.append('planet', {{ planet.id }});
+                                        // urlObj.searchParams.append('autre_param', '123');
 
                                         const response = await fetch(url, {
+                                        // const response = await fetch(urlObj.toString(), {
                                             method: 'GET',
                                             headers: { 'X-Requested-With': 'XMLHttpRequest' }
                                         });
@@ -617,6 +622,7 @@
                                 url: 'http://localhost:8000/game/api/ajax',
                                 data: {
                                     technology: technologyId,
+                                    planetId: {{ planet.id }},
                                 },
                             // }).done(function (data) {
                             }).done(function (json) {
