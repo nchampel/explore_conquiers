@@ -9,7 +9,7 @@ use Psr\Log\LoggerInterface;
 
 class BuildingService
 {
-    public function __construct(private PlanetBuildingRepository $planetBuildingRepository, private LoggerInterface $logger) {
+    public function __construct(private PlanetBuildingRepository $planetBuildingRepository, private LoggerInterface $logger, private ConstantService $constantService) {
     }
     public function getBuildingsCountByPlanet(Planet $planet): int{
         $buildings = $this->planetBuildingRepository->findBy(["planet" => $planet]);
@@ -93,6 +93,23 @@ class BuildingService
         }
         return 0;
     }
+    public function getEnergyType(int $buildingId): string{
+        switch($buildingId){
+            case 1:
+            case 2:
+            case 3:
+                // synthétiseur de deutérium
+                return "consumption";
+                break;
+            case 4:
+            case 5:
+                // centrale électrique de fusion
+                return "prod";
+                break;
+            default:
+                return "energy not involved";
+        }
+    }
     public function getResourcesToBuild(int $level, Building $building): array{
         $array = [];
         $factor = $this->getFactorNeededResource($building->getId());
@@ -100,6 +117,45 @@ class BuildingService
         $array["crystal"] = floor($building->getCrystal() * $factor ** ($level + 1 - 1));
         $array["deuterium"] = floor($building->getDeuterium() * $factor ** ($level + 1 - 1));
         return $array;
+    }
+    private function getFormattedTime(int $seconds){
+        if ($seconds <= 0) {
+            return '0s';
+        }
+
+        // Définition des unités en secondes
+        $units = [
+            'sem' => 7 * 24 * 3600, // 604 800 secondes
+            'j'   => 24 * 3600,     // 86 400 secondes
+            'h'   => 3600,          // 3600 secondes
+            'm'   => 60,            // 60 secondes
+            's'   => 1              // 1 seconde
+        ];
+
+        $parts = [];
+
+        foreach ($units as $unitName => $unitValue) {
+            // Si le nombre de secondes est supérieur ou égal à l'unité
+            if ($seconds >= $unitValue) {
+                $count = intdiv($seconds, $unitValue); // Division entière
+                $seconds %= $unitValue;               // Reste de la division
+                $parts[] = "{$count}{$unitName}";
+            }
+        }
+
+        return implode(' ', $parts);
+
+    }
+    public function getTimeToBuild(array $neededResources, Planet $planet): array{
+        // $array = [];
+        // $factor = $this->getFactorNeededResource($building->getId());
+        // $array["metal"] = floor($building->getMetal() * $factor ** ($level + 1 - 1));
+        // $array["crystal"] = floor($building->getCrystal() * $factor ** ($level + 1 - 1));
+        // $array["deuterium"] = floor($building->getDeuterium() * $factor ** ($level + 1 - 1));
+        
+        $time = floor(($neededResources["metal"] + $neededResources["crystal"]) / 2500 * 1 / (1 + $planet->getBuildingByName("Usine de robots")->getLevel()) * 0.5 ** $planet->getBuildingByName("Usine de nanites")->getLevel() * 3600 / $this->constantService->getSpeedGame());
+        $timeFormatted = $this->getFormattedTime($time);
+        return ["buildingTime" => $time, "buildingTimeFormatted" => $timeFormatted];
     }
     
     // private function get
@@ -110,6 +166,9 @@ class BuildingService
         // $this->logger->info($buildingId);
         $buildingPlanet = $planet->getBuildingById($buildingId);
         $building = $buildingPlanet->getBuilding();
+
+        $neededResources = $this->getResourcesToBuild($buildingPlanet->getLevel(), $building);
+        $time = $this->getTimeToBuild($neededResources, $planet);
 
         // $neededMetal = $building->getMetal();
         // $neededResources = ["metal" => $neededMetal, "crystal"  => 0, "deuterium" => 0];
@@ -151,7 +210,9 @@ class BuildingService
         }
         $array["buildingName"] = $building->getName();
         $array["buildingLevel"] = $buildingPlanet->getLevel();
-        $array["buildingNeededResources"] = $this->getResourcesToBuild($buildingPlanet->getLevel(), $building);
+        $array["buildingNeededResources"] = $neededResources;
+        $array["buildingTime"] = $time["buildingTime"];
+        $array["buildingTimeFormatted"] = $time["buildingTimeFormatted"];
         return $array;
     }
 }

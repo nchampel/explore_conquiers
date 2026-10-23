@@ -70,28 +70,48 @@ class ApiController extends AbstractController
         $planet = $planetRepository->findOneBy(["id" => $planetId]);
         $technologyId = $request->query->get('technology');
         $type = $this->getTechnologyType($technologyId);
+        $idBuildingForMyDB = $this->buildingService->getTechnoIDCorrespondence($technologyId);
         switch($type){
             case "building":
                 $technologyDatas = $this->buildingService->getTechnologiesSupplies($technologyId, $planet);
-                $entity = $planet->getBuildingById($this->buildingService->getTechnoIDCorrespondence($technologyId))->getBuilding();
+                $entity = $planet->getBuildingById($idBuildingForMyDB)->getBuilding();
                 break;
             case "vessel":
                 $technologyDatas = $this->vesselService->getTechnologiesSupplies($technologyId, $planet);
                 $entity = $planet->getVesselById($this->vesselService->getTechnoIDCorrespondence($technologyId))->getVessel();
                 break;
+            default:
+                $technologyDatas = [];
+                $entity = "";
         }
         $lisElement = $this->getLiResourceForBuild($technologyDatas["buildingNeededResources"]);
 
         // on vérifie si le bâtiment a les prérequis remplis
 
         $isPrerequisitesMet = $this->technologyService->isPrerequisitesMet($user, $planet, $entity, $type);
-
-        // $t = true;
         $activeTechTree = $isPrerequisitesMet["hasPrerequisites"] ? "" : "no_prerequisites";
 
         // niveau ou nombre
 
         $levelOrNumber = $type == "building" ? "Niveau" : "Nombre";
+
+        // énergie ou pas
+
+        $energyType = $this->buildingService->getEnergyType($idBuildingForMyDB);
+        $energyOrProductionOrNot = $energyType == "prod" ? "Production :" : ($energyType == "consumption" ? "Énergie nécessaire :" : "");
+        $energyText = "<li class=\"additional_energy_consumption\">\n   
+                                            <strong>" . $energyOrProductionOrNot . "</strong>     \n 
+                                               <span class=\"value tooltip\"\n   data-value=\"11\"\n     title=\"\"\n    >11  \n   </span>\n    \n   
+                                        </li>\n   ";
+
+        $necesaryText = "Nécessaire pour le niveau " . $technologyDatas["buildingLevel"] + 1; 
+        $costText = "Coûts par unité "; 
+        $necesaryOrCost = $type == "building" ? $necesaryText : $costText;
+
+        $energyOrNot = $type == "building" ? $energyText : "";
+
+        $dataValueInformation = $type == "building" ? $technologyDatas["buildingLevel"] + 1: $technologyDatas["buildingLevel"]; // pour def et recherche faudra voir les valeurs data-value dans information
+        $classInformation = $type == "building" ? "level": "amount";
 
         // il faut récupérer le niveau du bâtiment sur cette planète
         // $planet = 
@@ -115,21 +135,18 @@ class ApiController extends AbstractController
                          <button class=\"close\">✖</button>\n\n         
                             <h3>" . $technologyDatas["buildingName"] . "</h3>\n\n         
                                <div class=\"information\">\n     
-                                    <span class=\"level\" data-value=\"1\">\n       " . $levelOrNumber . " " . $technologyDatas["buildingLevel"] . "\n        </span>\n \n   
+                                    <span class=\"" . $classInformation . "\" data-value=\"" . $dataValueInformation . "\">\n       " . $levelOrNumber . " " . $technologyDatas["buildingLevel"] . "\n        </span>\n \n   
                                     <ul class=\"narrow\">\n  
                                         <li class=\"build_duration\">\n       
                                             <strong>Temps de production :</strong>  \n 
-                                            <time class=\"value tooltip\"\n  datetime=\"PT3S\"\n  title=\"\"\n  >3s   
+                                            <time class=\"value tooltip\"\n  datetime=\"PT3S\"\n  title=\"\"\n  >" . $technologyDatas["buildingTimeFormatted"] . "  
                                             <span class=\"bonus\" data-value=\"0\">\n            (-0%)\n        </span>\n    \n   
                                             </time>\n    \n                            
                                         </li>\n           
-                                        <li class=\"additional_energy_consumption\">\n   
-                                            <strong>Énergie nécessaire:</strong>     \n 
-                                               <span class=\"value tooltip\"\n   data-value=\"11\"\n     title=\"\"\n    >11  \n   </span>\n    \n   
-                                        </li>\n       
+                                        " . $energyOrNot . "     
                                     </ul>\n     \n    
                                     <div class=\"costs\">\n 
-                                     <p>Nécessaire pour le niveau 1 :</p>\n   
+                                     <p>" . $necesaryOrCost . " :</p>\n   
                                       <ul class=\"ipiHintable\" data-ipi-hint=\"\">\n       
                                         " . $lisElement . "  
                                       </ul>\n   
