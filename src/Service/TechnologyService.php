@@ -21,7 +21,7 @@ class TechnologyService
         $prerequisitesList = $this->prerequisitesList($entity, $type);
 
         if(!$prerequisitesList){
-            return ["displayTree" => false, "prerequisitesList" => []];
+            return ["hasPrerequisites" => false, "prerequisitesList" => [], "isUnlocked" => "on"];
         }
 
         foreach($prerequisitesList as $element){
@@ -35,7 +35,7 @@ class TechnologyService
             }
         }
         
-        return ["isPrerequisitesMet" => true, "prerequisitesList" => $prerequisitesList, "displayTree" => true];
+        return ["isPrerequisitesMet" => $result, "prerequisitesList" => $prerequisitesList, "hasPrerequisites" => true, "isUnlocked" => $result ? "on" : "off"];
     }
 
     private function prerequisitesList(Vessel|Research|Building|Defence $entity, string $type): array|bool{
@@ -57,6 +57,19 @@ class TechnologyService
                                 ["type" => "building", "name" => "Laboratoire de recherche", "level" => 1],
                                 ["type" => "research", "name" => "Technologie énergétique", "level" => 3],
                         ];
+                    default:
+                        return [];
+                }
+            case "vessel":
+                switch($entity->getId()){
+                    case 14:
+                        return [
+                                ["type" => "building", "name" => "Usine de robots", "level" => 2],
+                                ["type" => "building", "name" => "Chantier spatial", "level" => 1],
+                                // ["type" => "research", "name" => "Technologie énergétique", "level" => 3],
+                        ];
+                    
+                        
                     default:
                         return [];
                 }

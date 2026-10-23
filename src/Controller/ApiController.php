@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Repository\PlanetRepository;
 use App\Service\BuildingService;
 use App\Service\TechnologyService;
+use App\Service\VesselService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/game')]
 class ApiController extends AbstractController
 {
-    public function __construct(private BuildingService $buildingService, private TechnologyService $technologyService){
+    public function __construct(private BuildingService $buildingService, private TechnologyService $technologyService, private VesselService $vesselService){
     }
     private function getLiResourceForBuild(array $buildingNeededResources): string{
         $lisElement = "";
@@ -38,15 +39,16 @@ class ApiController extends AbstractController
         return $lisElement;
     }
     private function getTechnologyType(int $technologyId): string{
-        switch($this->buildingService->getTechnoIDCorrespondence($technologyId)){
+        // switch($this->buildingService->getTechnoIDCorrespondence($technologyId)){
+        switch($technologyId){
             case 1:
             case 2:
             case 3:
             case 4:
-            case 6:
-            case 7:
-            case 8:
-            case 5:
+            case 12:
+            case 22:
+            case 23:
+            case 24:
                 return "building";
             case 212:
                 return "vessel";
@@ -73,6 +75,10 @@ class ApiController extends AbstractController
                 $technologyDatas = $this->buildingService->getTechnologiesSupplies($technologyId, $planet);
                 $entity = $planet->getBuildingById($this->buildingService->getTechnoIDCorrespondence($technologyId))->getBuilding();
                 break;
+            case "vessel":
+                $technologyDatas = $this->vesselService->getTechnologiesSupplies($technologyId, $planet);
+                $entity = $planet->getVesselById($this->vesselService->getTechnoIDCorrespondence($technologyId))->getVessel();
+                break;
         }
         $lisElement = $this->getLiResourceForBuild($technologyDatas["buildingNeededResources"]);
 
@@ -81,7 +87,11 @@ class ApiController extends AbstractController
         $isPrerequisitesMet = $this->technologyService->isPrerequisitesMet($user, $planet, $entity, $type);
 
         // $t = true;
-        $displayTechTree = $isPrerequisitesMet["displayTree"] ? "" : "no_prerequisites";
+        $activeTechTree = $isPrerequisitesMet["hasPrerequisites"] ? "" : "no_prerequisites";
+
+        // niveau ou nombre
+
+        $levelOrNumber = $type == "building" ? "Niveau" : "Nombre";
 
         // il faut récupérer le niveau du bâtiment sur cette planète
         // $planet = 
@@ -91,7 +101,7 @@ class ApiController extends AbstractController
         "technologydetails" => "    <div id=\"technologydetails\" data-technology-id=\"" . $technologyId . "\">\n
             <div class=\"sprite sprite_large building " . $technologyDatas["buildingNameEn"] . "\">\n
              <button 
-             class=\"technology_tree " . $displayTechTree . " tooltip js_hideTipOnMobile overlay ipiHintable\"\n 
+             class=\"technology_tree " . $activeTechTree . " tooltip js_hideTipOnMobile overlay ipiHintable\"\n 
               aria-label=\"Afficher arbre tech\"\n   
               title=\"Aucune condition requise\"\n  
               
@@ -105,7 +115,7 @@ class ApiController extends AbstractController
                          <button class=\"close\">✖</button>\n\n         
                             <h3>" . $technologyDatas["buildingName"] . "</h3>\n\n         
                                <div class=\"information\">\n     
-                                    <span class=\"level\" data-value=\"1\">\n       Niveau " . $technologyDatas["buildingLevel"] . "\n        </span>\n \n   
+                                    <span class=\"level\" data-value=\"1\">\n       " . $levelOrNumber . " " . $technologyDatas["buildingLevel"] . "\n        </span>\n \n   
                                     <ul class=\"narrow\">\n  
                                         <li class=\"build_duration\">\n       
                                             <strong>Temps de production :</strong>  \n 
@@ -136,7 +146,7 @@ class ApiController extends AbstractController
                                           <div class=\"required\"></div>
                                   <div class=\"description\">\n     \n      \n  
                                     <div class=\"txt_box\">\n   
-                                       <button class=\"details tooltip js_hideTipOnMobile overlay\"\n aria-label=\"Plus de détails\"\n    title=\"Plus de détails\"\n data-target=\"https://s274-fr.ogame.gameforge.com/game/index.php?page=ajax&amp;component=technologytree&amp;ajax=1&amp;technologyId=2&amp;tab=technologyinformation\"\n   data-overlay-title=\"Mine de cristal\"\n  >\n      
+                                       <button class=\"details tooltip js_hideTipOnMobile overlay\"\n aria-label=\"Plus de détails\"\n    title=\"Plus de détails\"\n data-target=\"https://s274-fr.ogame.gameforge.com/game/index.php?page=ajax&amp;component=technologytree&amp;ajax=1&amp;technologyId=2&amp;tab=technologyinformation\"\n   data-overlay-title=\"" . $technologyDatas["buildingName"] . "\"\n  >\n      
                                          ?\n     
                                          </button>\n    
                                           <span class=\"text\">\n        Principale ressource pour les installations électroniques et pour les alliages.                 </span>\n            </div>\n            \n\n                    </div>\n    </div>\n\n"

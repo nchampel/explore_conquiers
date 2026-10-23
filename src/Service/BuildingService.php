@@ -43,15 +43,15 @@ class BuildingService
                 break;
             case 22:
                 // hangar de métal
-                return 5;
+                return 6;
                 break;
             case 23:
                 // hangar de cristal
-                return 5;
+                return 7;
                 break;
             case 24:
                 // réservoir de deutérium
-                return 5;
+                return 8;
                 break;
         }
         return 0;

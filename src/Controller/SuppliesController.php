@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 use App\Repository\PlanetRepository;
+use App\Service\BuildingService;
+use App\Service\TechnologyService;
+use App\Service\VesselService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SuppliesController extends AbstractController
 {
     #[Route('/supplies', name: 'app_supplies')]
-    public function index(PlanetRepository $planetRepository): Response
+    public function index(PlanetRepository $planetRepository, TechnologyService $technologyService, BuildingService $buildingService, VesselService $vesselService): Response
     {
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
@@ -28,6 +31,9 @@ class SuppliesController extends AbstractController
             // 'vessels' => $planet->getPlanetVessels(),
             // 'researches' => $user->getResearchesPlayer(),
             'component' => 'supplies',
+            'technologyService' => $technologyService,
+            'buildingService' => $buildingService,
+            'vesselService' => $vesselService,
         ]);
     }
 }
