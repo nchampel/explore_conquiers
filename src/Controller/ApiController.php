@@ -3,10 +3,14 @@
 namespace App\Controller;
 
 // use App\Entity\Planet;
+
+use App\Entity\Planet;
+use App\Entity\PlanetBuilding;
 use App\Repository\PlanetRepository;
 use App\Service\BuildingService;
 use App\Service\TechnologyService;
 use App\Service\VesselService;
+use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,8 +61,8 @@ class ApiController extends AbstractController
                 return "";
         }
     }
-    #[Route('/api/ajax', name: 'app_api', methods:["GET"])]
-    public function index(Request $request, PlanetRepository $planetRepository): Response
+    #[Route('/api/ajax/{planet}', name: 'app_api', methods:["GET"])]
+    public function index(Request $request, Planet $planet): Response
     {
         // var_dump($request->getContent());
         // $technologyId = json_decode($request->getContent(), true)["technology"];
@@ -66,9 +70,9 @@ class ApiController extends AbstractController
         // enlever overlay si souci
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
-        $planetId = $request->query->get('planetId');
+        // $planetId = $request->query->get('planetId');
         // $type = $request->query->get('type');
-        $planet = $planetRepository->findOneBy(["id" => $planetId]);
+        // $planet = $planetRepository->findOneBy(["id" => $planetId]);
         $technologyId = $request->query->get('technology');
         $type = $this->getTechnologyType($technologyId);
         $idBuildingForMyDB = $this->buildingService->getTechnoIDCorrespondence($technologyId);
@@ -106,34 +110,31 @@ class ApiController extends AbstractController
         $energy = "";
         $energyText = "";
 
-        if($type == "building"){
-
-            $energy = $technologyDatas["buildingNextConsumption"] - $technologyDatas["buildingConsumption"];
-    
-            $energyText = "<li class=\"additional_energy_consumption\">\n   
-                                                <strong>" . $energyOrProductionOrNot . "</strong>     \n 
-                                                   <span class=\"value tooltip\"\n   data-value=\"" . $energy . "\"\n     title=\"\"\n    >" . $energy . "  \n   </span>\n    \n   
-                                            </li>\n   ";
-        }
-
-
+        
+        
         $necesaryText = "Nécessaire pour le niveau " . $technologyDatas["buildingLevel"] + 1; 
         $costText = "Coûts par unité "; 
         $necesaryOrCost = $type == "building" ? $necesaryText : $costText;
-
+        
         $energyOrNot = $type == "building" ? $energyText : "";
-
+        
         $dataValueInformation = $type == "building" ? $technologyDatas["buildingLevel"] + 1: $technologyDatas["buildingLevel"]; // pour def et recherche faudra voir les valeurs data-value dans information
         $classInformation = $type == "building" ? "level": "amount";
 
+        $displayEnergy = false;
+        if($type == "building"){
+            $displayEnergy = true;
+        }
+        
         // good critical full
-
+        
         $storage = "";
-        $colorFill = "good";
-
+        $storageValue = $technologyDatas["storageCapacity"];
+        
         $this->logger->info($idBuildingForMyDB);
-
+        
         if($idBuildingForMyDB == 6 || $idBuildingForMyDB == 7 || $idBuildingForMyDB == 8) {
+            $displayEnergy = false;
             switch($idBuildingForMyDB){
                 case 6:
                     $resourceFormatted = number_format($planet->getPlanetResource()->getMetal(), 0, '', ' ');
@@ -153,16 +154,25 @@ class ApiController extends AbstractController
                     break;
             }
 
+            if($resource >= $storageValue){
+                $colorFill = "full";
+            } else if($resource >= $storageValue * 0.9){
+                $colorFill = "critical";
+            } else {
+                // original 90%
+                $colorFill = "good";
+            }
+
             // low chgt de couleur
             // high rouge
 
             $storage = '<div class="capacity">
                         <span class="label">Capacité de stockage:</span>
                         <div class="progressBar">
-                                                                <meter min="0" max="1108" low="1100" high="1107.9" optimum="0" value="' . $resource . '"></meter>
+                                                                <meter min="0" max="' . $storageValue . '" low="' . $storageValue * 0.9 . '" high="' . $storageValue - 0.1 . '" optimum="0" value="' . $resource . '"></meter>
                                                                 </div>
                         <span class="description">
-                            <span class="' . $colorFill . '">' . $resourceFormatted . '</span> / 2400
+                            <span class="' . $colorFill . '">' . $resourceFormatted . '</span> / ' . number_format($storageValue, 0, '', ' ') . '
                         </span>
                     </div>' . 
                     '<div class="fill_capacity_info">
@@ -170,6 +180,16 @@ class ApiController extends AbstractController
                         
                     </div>';
         }
+
+        if($type == "building" && $displayEnergy){
+    
+                $energy = $technologyDatas["buildingNextConsumption"] - $technologyDatas["buildingConsumption"];
+        
+                $energyText = "<li class=\"additional_energy_consumption\">\n   
+                                                    <strong>" . $energyOrProductionOrNot . "</strong>     \n 
+                                                       <span class=\"value tooltip\"\n   data-value=\"" . $energy . "\"\n     title=\"\"\n    >" . $energy . "  \n   </span>\n    \n   
+                                                </li>\n   ";
+            }
 
 
 
@@ -234,6 +254,54 @@ class ApiController extends AbstractController
     {
         return $this->render('api/index.html.twig', [
             // 'buildings' => $buildingRepository->findAll(),
+        ]);
+    }
+    #[Route('/api/building/upgrade/{planetBuilding}', name: 'api_building_upgrade', methods: ['POST'])]
+    public function upgrade(PlanetBuilding $planetBuilding, EntityManagerInterface $entityManager): Response
+    {
+        // $id->getBuildingByName('')->get
+        $user = $this->getUser();
+        $planet = $planetBuilding->getPlanet();
+        // $building = $buildingRepository->find($id);
+
+
+        // if (!$building || $building->getUser() !== $user) {
+        //     return $this->json(['success' => false, 'message' => 'Bâtiment introuvable.'], 404);
+        // }
+
+        // 1. Calculer le coût du prochain niveau
+        // $cost = $building->getNextLevelCost(); // Méthode à créer dans votre entité
+
+        // 2. Vérifier si le joueur a les ressources
+        // if (!$user->hasEnoughResources($cost)) {
+        //     return $this->json(['success' => false, 'message' => 'Ressources insuffisantes.'], 400);
+        // }
+
+        // 3. Déduire les ressources et lancer la construction
+        // $user->deductResources($cost);
+        
+        // $durationInSeconds = $building->calculateUpgradeDuration(); // Ex: 60 secondes
+        // $finConstruction = new \DateTime("+{$durationInSeconds} seconds");
+        
+        // $building->setConstructionEndsAt($finConstruction);
+        // $building->setIsBuilding(true);
+
+        // il faudra vérifier si le bâtiment a été débloqué
+        $result = $this->buildingService->buildBuilding($planetBuilding, $planet);
+        $durationInSeconds = $result["buildingTime"]["buildingTime"];
+        $parisTimezone = new \DateTimeZone('Europe/Paris');
+        $endTime = new \DateTime("+$durationInSeconds seconds", $parisTimezone);
+
+        $planetBuilding->setConstructionEndsAt($endTime);
+        if($result != "pas assez de ressources pour construire"){
+
+            $entityManager->flush();
+        }
+
+        return $this->json([
+            'success' => $result["msg"] == "construction en cours" ? true : false,
+            // 'duration' => $durationInSeconds,
+            // 'endsAt' => $finConstruction->getTimestamp() * 1000 // Timestamp en millisecondes pour JS
         ]);
     }
 }

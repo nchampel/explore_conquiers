@@ -4,23 +4,26 @@ namespace App\Service;
 
 use App\Entity\Building;
 use App\Entity\Planet;
+use App\Entity\PlanetBuilding;
+use App\Entity\PlanetVessel;
 use App\Repository\PlanetBuildingRepository;
 use Psr\Log\LoggerInterface;
 
 class BuildingService
 {
-    public function __construct(private PlanetBuildingRepository $planetBuildingRepository, private LoggerInterface $logger, private ConstantService $constantService) {
-    }
-    public function getBuildingsCountByPlanet(Planet $planet): int{
+    public function __construct(private PlanetBuildingRepository $planetBuildingRepository, private LoggerInterface $logger, private ConstantService $constantService) {}
+    public function getBuildingsCountByPlanet(Planet $planet): int
+    {
         $buildings = $this->planetBuildingRepository->findBy(["planet" => $planet]);
         $count = 0;
-        foreach($buildings as $building) {
+        foreach ($buildings as $building) {
             $count += $building->getLevel();
         }
         return $count;
     }
-    public function getTechnoIDCorrespondence(int $technology): int{
-        switch($technology){
+    public function getTechnoIDCorrespondence(int $technology): int
+    {
+        switch ($technology) {
             case 1:
                 // mine de métal
                 return 1;
@@ -48,8 +51,9 @@ class BuildingService
         }
         return 0;
     }
-    public function getDescription(int $buildingId): string{
-        switch($buildingId){
+    public function getDescription(int $buildingId): string
+    {
+        switch ($buildingId) {
             case 1:
                 // mine de métal
                 return "Principale ressource dans la construction de bâtiments et de vaisseaux.";
@@ -77,8 +81,9 @@ class BuildingService
         }
         return 0;
     }
-    public function getFactorNeededResource(int $buildingId): float{
-        switch($buildingId){
+    public function getFactorNeededResource(int $buildingId): float
+    {
+        switch ($buildingId) {
             case 1:
                 // mine de métal
                 return 1.5;
@@ -114,8 +119,9 @@ class BuildingService
         }
         return 0;
     }
-    public function getFactorConsumption(int $buildingId): float{
-        switch($buildingId){
+    public function getFactorConsumption(int $buildingId): float
+    {
+        switch ($buildingId) {
             case 1:
                 // mine de métal
                 return 10;
@@ -131,14 +137,15 @@ class BuildingService
         }
         return 0;
     }
-    public function getEnergyType(int $buildingId): string{
-        switch($buildingId){
+    public function getEnergyType(int $buildingId): string
+    {
+        switch ($buildingId) {
             case 1:
             case 2:
             case 3:
                 // synthétiseur de deutérium
                 return "consumption";
-                case 4:
+            case 4:
             case 5:
                 // centrale électrique de fusion
                 return "prod";
@@ -146,7 +153,8 @@ class BuildingService
                 return "energy not involved";
         }
     }
-    public function getResourcesToBuild(int $level, Building $building): array{
+    public function getResourcesToBuild(int $level, Building $building): array
+    {
         $array = [];
         $factor = $this->getFactorNeededResource($building->getId());
         $array["metal"] = floor($building->getMetal() * $factor ** ($level + 1 - 1));
@@ -154,13 +162,16 @@ class BuildingService
         $array["deuterium"] = floor($building->getDeuterium() * $factor ** ($level + 1 - 1));
         return $array;
     }
-    public function getConsumptionBuilding(int $level, Building $building): int{
+    public function getConsumptionBuilding(int $level, Building $building): int
+    {
         return $this->getFactorConsumption($building->getId()) * ($level) * 1.1 ** ($level);
     }
-    public function getNextConsumptionBuilding(int $level, Building $building): int{
+    public function getNextConsumptionBuilding(int $level, Building $building): int
+    {
         return $this->getFactorConsumption($building->getId()) * ($level + 1) * 1.1 ** ($level + 1);
     }
-    private function getFormattedTime(int $seconds){
+    private function getFormattedTime(int $seconds)
+    {
         if ($seconds <= 0) {
             return '0s';
         }
@@ -186,40 +197,47 @@ class BuildingService
         }
 
         return implode(' ', $parts);
-
     }
-    public function getTimeToBuild(array $neededResources, Planet $planet): array{
+    public function getTimeToBuild(array $neededResources, Planet $planet): array
+    {
         // $array = [];
         // $factor = $this->getFactorNeededResource($building->getId());
         // $array["metal"] = floor($building->getMetal() * $factor ** ($level + 1 - 1));
         // $array["crystal"] = floor($building->getCrystal() * $factor ** ($level + 1 - 1));
         // $array["deuterium"] = floor($building->getDeuterium() * $factor ** ($level + 1 - 1));
-        
+
         $time = floor(($neededResources["metal"] + $neededResources["crystal"]) / 2500 * 1 / (1 + $planet->getBuildingByName("Usine de robots")->getLevel()) * 0.5 ** $planet->getBuildingByName("Usine de nanites")->getLevel() * 3600 / $this->constantService->getSpeedGame());
         $timeFormatted = $this->getFormattedTime($time);
         return ["buildingTime" => $time, "buildingTimeFormatted" => $timeFormatted];
     }
-    
+    public function getStorageCapacity(int $level): int
+    {
+
+        $capacity = 5000 * floor(2.5 * 2.71828 ** (20 * $level / 33));
+        return $capacity;
+    }
+
     // private function get
-    public function getTechnologiesSupplies(int $technologyId, Planet $planet): array{
+    public function getTechnologiesSupplies(int $technologyId, Planet $planet): array
+    {
         $array = [];
         $buildingId = $this->getTechnoIDCorrespondence($technologyId);
-        // $buildingPlanet = $planet->getBuildingByName("Mine de cristal");
+        // $planetBuilding = $planet->getBuildingByName("Mine de cristal");
         // $this->logger->info($buildingId);
-        $buildingPlanet = $planet->getBuildingById($buildingId);
-        $building = $buildingPlanet->getBuilding();
+        $planetBuilding = $planet->getBuildingById($buildingId);
+        $building = $planetBuilding->getBuilding();
 
-        $neededResources = $this->getResourcesToBuild($buildingPlanet->getLevel(), $building);
+        $neededResources = $this->getResourcesToBuild($planetBuilding->getLevel(), $building);
         $time = $this->getTimeToBuild($neededResources, $planet);
 
         // $neededMetal = $building->getMetal();
         // $neededResources = ["metal" => $neededMetal, "crystal"  => 0, "deuterium" => 0];
-        switch($buildingId){
+        switch ($buildingId) {
             case 1:
                 // $this->logger->info($buildingId);
                 $array["buildingNameEn"] = "metalMine";
                 $array["buttonTitle"] = "Aucune condition requise";
-                
+
                 break;
             case 2:
                 $array["buildingNameEn"] = "crystalMine";
@@ -251,13 +269,40 @@ class BuildingService
                 break;
         }
         $array["buildingName"] = $building->getName();
-        $array["buildingLevel"] = $buildingPlanet->getLevel();
+        $array["buildingLevel"] = $planetBuilding->getLevel();
         $array["buildingNeededResources"] = $neededResources;
         $array["buildingTime"] = $time["buildingTime"];
         $array["buildingTimeFormatted"] = $time["buildingTimeFormatted"];
-        $array["buildingConsumption"] = $this->getConsumptionBuilding($buildingPlanet->getLevel(), $building);
-        $array["buildingNextConsumption"] = $this->getNextConsumptionBuilding($buildingPlanet->getLevel(), $building);
+        $array["buildingConsumption"] = $this->getConsumptionBuilding($planetBuilding->getLevel(), $building);
+        $array["buildingNextConsumption"] = $this->getNextConsumptionBuilding($planetBuilding->getLevel(), $building);
         $array["description"] = $this->getDescription($buildingId);
+        $array["storageCapacity"] = $this->getStorageCapacity($planetBuilding->getLevel());
         return $array;
+    }
+    private function getBuildingTime(PlanetBuilding $planetBuilding){
+        $level = $planetBuilding->getLevel();
+    }
+    public function buildBuilding(PlanetBuilding $planetBuilding, Planet $planet)
+    {
+        $planetResource = $planet->getPlanetResource();
+        $neededResources = $this->getResourcesToBuild($planetBuilding->getLevel(), $planetBuilding->getBuilding());
+        $time = $this->getTimeToBuild($neededResources, $planet);
+        $metal = $planetResource->getMetal();
+        $crystal = $planetResource->getCrystal();
+        $deuterium =$planetResource->getDeuterium();
+        if (
+            $neededResources["metal"] > $metal ||
+            $neededResources["crystal"] > $crystal ||
+            $neededResources["deuterium"] > $deuterium
+        ) {
+            return ["msg" => "pas assez de ressources pour construire", "buildingTime" => null];
+        }
+        $planetResource->setMetal($metal - $neededResources["metal"]);
+        $planetResource->setCrystal($crystal - $neededResources["crystal"]);
+        $planetResource->setDeuterium($deuterium - $neededResources["deuterium"]);
+        $planetBuilding->setLevel($planetBuilding->getLevel() + 1);
+
+        return ["msg" => "construction en cours", "buildingTime" => $time];
+
     }
 }

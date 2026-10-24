@@ -42055,6 +42055,10 @@ a#message_alert_box_default,
     justify-content: space-around;
 }
 
+#technologydetails .capacity .label, #technologydetails .capacity .description {
+    line-height: 2px;
+}
+
 #technologydetails .fill_capacity_info {
     background-color: #293742;
     float: left;
@@ -42116,7 +42120,7 @@ a#message_alert_box_default,
     position: absolute;
     /* position: relative; */
     left: 10px;
-    top: 27px;
+    top: 25px;
     display: block;
     /* width: 100%;
     height: 100%; */

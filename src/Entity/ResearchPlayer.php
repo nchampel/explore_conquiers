@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ResearchPlayerRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ResearchPlayerRepository::class)]
@@ -26,6 +27,9 @@ class ResearchPlayer
 
     #[ORM\Column]
     private ?bool $isUnlocked = false;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $researchEndsAt = null;
 
     public function getId(): ?int
     {
@@ -76,6 +80,18 @@ class ResearchPlayer
     public function setIsUnlocked(bool $isUnlocked): static
     {
         $this->isUnlocked = $isUnlocked;
+
+        return $this;
+    }
+
+    public function getResearchEndsAt(): ?\DateTimeInterface
+    {
+        return $this->researchEndsAt;
+    }
+
+    public function setResearchEndsAt(?\DateTimeInterface $researchEndsAt): static
+    {
+        $this->researchEndsAt = $researchEndsAt;
 
         return $this;
     }

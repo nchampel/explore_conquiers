@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\PlanetDefenceRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PlanetDefenceRepository::class)]
@@ -26,6 +27,9 @@ class PlanetDefence
 
     #[ORM\Column]
     private ?bool $isUnlocked = false;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $constructionEndsAt = null;
 
     public function getId(): ?int
     {
@@ -76,6 +80,18 @@ class PlanetDefence
     public function setIsUnlocked(bool $isUnlocked): static
     {
         $this->isUnlocked = $isUnlocked;
+
+        return $this;
+    }
+
+    public function getConstructionEndsAt(): ?\DateTimeInterface
+    {
+        return $this->constructionEndsAt;
+    }
+
+    public function setConstructionEndsAt(?\DateTimeInterface $constructionEndsAt): static
+    {
+        $this->constructionEndsAt = $constructionEndsAt;
 
         return $this;
     }
