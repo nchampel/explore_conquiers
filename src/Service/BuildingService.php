@@ -24,35 +24,56 @@ class BuildingService
             case 1:
                 // mine de métal
                 return 1;
-                break;
             case 2:
                 // mine de cristal
                 return 2;
-                break;
             case 3:
                 // synthétiseur de deutérium
                 return 3;
-                break;
             case 4:
                 // centrale électrique solaire
                 return 4;
-                break;
             case 12:
                 // centrale électrique de fusion
                 return 5;
-                break;
             case 22:
                 // hangar de métal
                 return 6;
-                break;
             case 23:
                 // hangar de cristal
                 return 7;
-                break;
             case 24:
                 // réservoir de deutérium
                 return 8;
-                break;
+        }
+        return 0;
+    }
+    public function getDescription(int $buildingId): string{
+        switch($buildingId){
+            case 1:
+                // mine de métal
+                return "Principale ressource dans la construction de bâtiments et de vaisseaux.";
+            case 2:
+                // mine de cristal
+                return "Principale ressource pour les installations électroniques et pour les alliages.";
+            case 3:
+                // synthétiseur de deutérium
+                return "Extrait la petite quantité de deutérium de l`eau d`une planète.";
+            case 4:
+                // centrale électrique solaire
+                return "Les centrales électriques solaires transforment les rayons de soleil en énergie. Presque tous les bâtiments ont besoin d`énergie pour fonctionner.";
+            case 5:
+                // centrale électrique de fusion
+                return "La centrale électrique de fusion produit de l`énergie en fusionnant 2 atomes d`hydrogène en un atome d`hélium.";
+            case 6:
+                // hangar de métal
+                return "Hangar pour minerai avant le traitement.";
+            case 7:
+                // hangar de cristal
+                return "Hangar pour cristal avant le traitement.";
+            case 8:
+                // réservoir de deutérium
+                return "Réservoirs géants pour le stockage de deutérium.";
         }
         return 0;
     }
@@ -93,6 +114,23 @@ class BuildingService
         }
         return 0;
     }
+    public function getFactorConsumption(int $buildingId): float{
+        switch($buildingId){
+            case 1:
+                // mine de métal
+                return 10;
+            case 2:
+                // mine de cristal
+                return 10;
+            case 3:
+                // synthétiseur de deutérium
+                return 20;
+            case 5:
+                // centrale électrique de fusion
+                return 10;
+        }
+        return 0;
+    }
     public function getEnergyType(int $buildingId): string{
         switch($buildingId){
             case 1:
@@ -100,12 +138,10 @@ class BuildingService
             case 3:
                 // synthétiseur de deutérium
                 return "consumption";
-                break;
-            case 4:
+                case 4:
             case 5:
                 // centrale électrique de fusion
                 return "prod";
-                break;
             default:
                 return "energy not involved";
         }
@@ -117,6 +153,12 @@ class BuildingService
         $array["crystal"] = floor($building->getCrystal() * $factor ** ($level + 1 - 1));
         $array["deuterium"] = floor($building->getDeuterium() * $factor ** ($level + 1 - 1));
         return $array;
+    }
+    public function getConsumptionBuilding(int $level, Building $building): int{
+        return $this->getFactorConsumption($building->getId()) * ($level) * 1.1 ** ($level);
+    }
+    public function getNextConsumptionBuilding(int $level, Building $building): int{
+        return $this->getFactorConsumption($building->getId()) * ($level + 1) * 1.1 ** ($level + 1);
     }
     private function getFormattedTime(int $seconds){
         if ($seconds <= 0) {
@@ -213,6 +255,9 @@ class BuildingService
         $array["buildingNeededResources"] = $neededResources;
         $array["buildingTime"] = $time["buildingTime"];
         $array["buildingTimeFormatted"] = $time["buildingTimeFormatted"];
+        $array["buildingConsumption"] = $this->getConsumptionBuilding($buildingPlanet->getLevel(), $building);
+        $array["buildingNextConsumption"] = $this->getNextConsumptionBuilding($buildingPlanet->getLevel(), $building);
+        $array["description"] = $this->getDescription($buildingId);
         return $array;
     }
 }

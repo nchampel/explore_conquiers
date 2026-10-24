@@ -157,7 +157,7 @@ function updateResourcesUI() {
         const res = resourceConfig[key];
         const element = document.getElementById(res.selector);
         if (element) {
-            element.textContent = Math.floor(res.currentValue);
+            element.textContent = Math.floor(res.currentValue).toLocaleString('fr-FR').replace(/\s/g, ' ');
         }
     }
 }

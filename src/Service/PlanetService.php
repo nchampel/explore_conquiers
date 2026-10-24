@@ -116,12 +116,12 @@ class PlanetService
 
     }
 
-    private function getSatelliteProduction(int $temperature): int{
-        return round(($temperature / 4 + 20) /60);
+    public function getSatelliteProduction(int $temperature): int{
+        return floor((($temperature / 4) + 20) / 1); // j'avais mis 60 à la place de 1
     }
 
     private function getDeuteriumProductionPerMinute(int $temperature, int $refineryDeuteriumLevel): int{
-        return round(((10 * $refineryDeuteriumLevel * 1.1 ** $refineryDeuteriumLevel) * (1.28 - (0.002 * $temperature))) / 60) * $this->constantService->getSpeedGame()->getValue();
+        return floor(((10 * $refineryDeuteriumLevel * 1.1 ** $refineryDeuteriumLevel) * (1.28 - (0.002 * $temperature))) / 60) * $this->constantService->getSpeedGame();
     }
 
     public function generatePlanets(int $galaxy){

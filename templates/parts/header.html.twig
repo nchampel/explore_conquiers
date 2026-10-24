@@ -38,7 +38,7 @@
             >
                 <div class="resourceIcon metal"></div>
                 <span class="value">
-                    <span id="resources_metal" data-raw="{{ resources.metal }}" class="">{{ resources.metal }}</span>
+                    <span id="resources_metal" data-raw="{{ resources.metal }}" class="">{{ resources.metal|number_format(0, '', ' ') }}</span>
                 </span>
             </div>
         </div>
@@ -52,7 +52,7 @@
             >
                 <div class="resourceIcon crystal"></div>
                 <span class="value">
-                    <span id="resources_crystal" data-raw="{{ resources.crystal }}" class="">{{ resources.crystal }}</span>
+                    <span id="resources_crystal" data-raw="{{ resources.crystal }}" class="">{{ resources.crystal|number_format(0, '', ' ') }}</span>
                 </span>
             </div>
         </div>
@@ -66,7 +66,7 @@
             >
                 <div class="resourceIcon deuterium"></div>
                 <span class="value">
-                    <span id="resources_deuterium" data-raw="{{ resources.deuterium }}" class="">{{ resources.deuterium }}</span>
+                    <span id="resources_deuterium" data-raw="{{ resources.deuterium }}" class="">{{ resources.deuterium|number_format(0, '', ' ') }}</span>
                 </span>
             </div>
         </div>

@@ -1931,6 +1931,8 @@ div#resources {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    /* ajout moi */
+    left: 50px;
 }
 
 #info div#resources div.resource {
@@ -42099,17 +42101,29 @@ a#message_alert_box_default,
     background: linear-gradient(#000 0%, #273541 30%, #273541 70%, #000 100%);
     box-shadow: 0 0 1px #000;
 }
+/* #technologydetails .capacity .progressBar {
+    position: relative;
+    width: 176px;
+    height: 8px;
+    margin: 0 auto;
+    background: linear-gradient(#000 0%, #273541 30%, #273541 70%, #000 100%);
+    box-shadow: 0 0 1px #000;
+} */
 
-#technologydetails .capacity meter::after {
+/* #technologydetails .capacity meter::after { */
+#technologydetails .capacity .progressBar::after {
     display: inline-block;
     position: absolute;
-    left: 0;
-    top: 0;
+    /* position: relative; */
+    left: 10px;
+    top: 27px;
     display: block;
-    width: 100%;
-    height: 100%;
+    /* width: 100%;
+    height: 100%; */
+    width: 176px;
+    height: 8px;
     content: "";
-    background: repeating-linear-gradient(90deg, #000, #000 1px, transparent 2px, transparent 5px);;
+    background: repeating-linear-gradient(90deg, #000, #000 1px, transparent 2px, transparent 5px);
 }
 
 #technologydetails .capacity meter::-webkit-meter-bar {

@@ -7,6 +7,7 @@ use App\Repository\PlanetRepository;
 use App\Service\BuildingService;
 use App\Service\TechnologyService;
 use App\Service\VesselService;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/game')]
 class ApiController extends AbstractController
 {
-    public function __construct(private BuildingService $buildingService, private TechnologyService $technologyService, private VesselService $vesselService){
+    public function __construct(private BuildingService $buildingService, private TechnologyService $technologyService, private VesselService $vesselService, private LoggerInterface $logger){
     }
     private function getLiResourceForBuild(array $buildingNeededResources): string{
         $lisElement = "";
@@ -33,7 +34,7 @@ class ApiController extends AbstractController
                     break;
             }
             if($resource != 0){
-                $lisElement .= "<li class=\"resource " . $type . " icon sufficient tooltip js_hideTipOnMobile\"\n      data-value=\"" . $resource . "\"\n   aria-label=\"" . $resource . " " . $typeFr . "\"\n     title=\"" . $resource . " " . $typeFr . "\"\n     >\n     " . $resource . "\n        </li>";
+                $lisElement .= "<li class=\"resource " . $type . " icon sufficient tooltip js_hideTipOnMobile\"\n      data-value=\"" . $resource . "\"\n   aria-label=\"" . $resource . " " . $typeFr . "\"\n     title=\"" . $resource . " " . $typeFr . "\"\n     >\n     " . number_format($resource, 0, '', ' ') . "\n        </li>";
             }
         }
         return $lisElement;
@@ -99,10 +100,22 @@ class ApiController extends AbstractController
 
         $energyType = $this->buildingService->getEnergyType($idBuildingForMyDB);
         $energyOrProductionOrNot = $energyType == "prod" ? "Production :" : ($energyType == "consumption" ? "Énergie nécessaire :" : "");
-        $energyText = "<li class=\"additional_energy_consumption\">\n   
-                                            <strong>" . $energyOrProductionOrNot . "</strong>     \n 
-                                               <span class=\"value tooltip\"\n   data-value=\"11\"\n     title=\"\"\n    >11  \n   </span>\n    \n   
-                                        </li>\n   ";
+
+        // différence énergie
+
+        $energy = "";
+        $energyText = "";
+
+        if($type == "building"){
+
+            $energy = $technologyDatas["buildingNextConsumption"] - $technologyDatas["buildingConsumption"];
+    
+            $energyText = "<li class=\"additional_energy_consumption\">\n   
+                                                <strong>" . $energyOrProductionOrNot . "</strong>     \n 
+                                                   <span class=\"value tooltip\"\n   data-value=\"" . $energy . "\"\n     title=\"\"\n    >" . $energy . "  \n   </span>\n    \n   
+                                            </li>\n   ";
+        }
+
 
         $necesaryText = "Nécessaire pour le niveau " . $technologyDatas["buildingLevel"] + 1; 
         $costText = "Coûts par unité "; 
@@ -113,8 +126,52 @@ class ApiController extends AbstractController
         $dataValueInformation = $type == "building" ? $technologyDatas["buildingLevel"] + 1: $technologyDatas["buildingLevel"]; // pour def et recherche faudra voir les valeurs data-value dans information
         $classInformation = $type == "building" ? "level": "amount";
 
-        // il faut récupérer le niveau du bâtiment sur cette planète
-        // $planet = 
+        // good critical full
+
+        $storage = "";
+        $colorFill = "good";
+
+        $this->logger->info($idBuildingForMyDB);
+
+        if($idBuildingForMyDB == 6 || $idBuildingForMyDB == 7 || $idBuildingForMyDB == 8) {
+            switch($idBuildingForMyDB){
+                case 6:
+                    $resourceFormatted = number_format($planet->getPlanetResource()->getMetal(), 0, '', ' ');
+                    $resource = $planet->getPlanetResource()->getMetal();
+                    break;
+                case 7:
+                    $resourceFormatted = number_format($planet->getPlanetResource()->getCrystal(), 0, '', ' ');
+                    $resource = $planet->getPlanetResource()->getCrystal();
+                    break;
+                case 8:
+                    $resourceFormatted = number_format($planet->getPlanetResource()->getDeuterium(), 0, '', ' ');
+                    $resource = $planet->getPlanetResource()->getDeuterium();
+                    break;
+                default:
+                    $resource = 0;
+                    $resourceFormatted = 0;
+                    break;
+            }
+
+            // low chgt de couleur
+            // high rouge
+
+            $storage = '<div class="capacity">
+                        <span class="label">Capacité de stockage:</span>
+                        <div class="progressBar">
+                                                                <meter min="0" max="1108" low="1100" high="1107.9" optimum="0" value="' . $resource . '"></meter>
+                                                                </div>
+                        <span class="description">
+                            <span class="' . $colorFill . '">' . $resourceFormatted . '</span> / 2400
+                        </span>
+                    </div>' . 
+                    '<div class="fill_capacity_info">
+                        <div class="arrow_description"></div>
+                        
+                    </div>';
+        }
+
+
 
         return $this->json([
     "content" => [
@@ -162,11 +219,12 @@ class ApiController extends AbstractController
                                           </div>\n\n
                                           <div class=\"required\"></div>
                                   <div class=\"description\">\n     \n      \n  
+                                  " . $storage . "
                                     <div class=\"txt_box\">\n   
                                        <button class=\"details tooltip js_hideTipOnMobile overlay\"\n aria-label=\"Plus de détails\"\n    title=\"Plus de détails\"\n data-target=\"https://s274-fr.ogame.gameforge.com/game/index.php?page=ajax&amp;component=technologytree&amp;ajax=1&amp;technologyId=2&amp;tab=technologyinformation\"\n   data-overlay-title=\"" . $technologyDatas["buildingName"] . "\"\n  >\n      
                                          ?\n     
                                          </button>\n    
-                                          <span class=\"text\">\n        Principale ressource pour les installations électroniques et pour les alliages.                 </span>\n            </div>\n            \n\n                    </div>\n    </div>\n\n"
+                                          <span class=\"text\">\n        " . $technologyDatas["description"] . "                 </span>\n            </div>\n            \n\n                    </div>\n    </div>\n\n"
 ],
     "target" => "technologydetails",
             ], 200);
