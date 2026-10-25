@@ -739,7 +739,7 @@
                                     class="technology metalMine hasDetails tooltip hideTooltipOnMouseenter js_hideTipOnMobile ipiHintable {#ipiHintActive#}"
                                     data-id="{{ planet.getBuildingByName('Mine de métal').id }}"
                                     data-technology="1"
-                                    data-status="{{ technologyService.isPrerequisitesMet(user, planet, planet.buildingById(buildingService.TechnoIDCorrespondence(1)).building, 'building').isUnlocked }}"
+                                    data-status="{{ checksConstructionInProgressByPage['Mine de métal'] is not null ? 'active' : (technologyService.isPrerequisitesMet(user, planet, planet.buildingById(buildingService.TechnoIDCorrespondence(1)).building, 'building').isUnlocked == 'on' ? 'on' : 'off' ) }}"
                                     data-is-spaceprovider=""
                                     aria-label="Mine de métal"
                                     data-ipi-hint="ipiTechnologymetalMine"
@@ -749,9 +749,9 @@
                                 </li>
                                 <li
                                     class="technology crystalMine  hasDetails tooltip hideTooltipOnMouseenter js_hideTipOnMobile ipiHintable"
-                                    data-id="{{ planet.getBuildingByName('Mine de métal').id }}"
+                                    data-id="{{ planet.getBuildingByName('Mine de cristal').id }}"
                                     data-technology="2"
-                                    data-status="on"
+                                    data-status="{{ checksConstructionInProgressByPage['Mine de cristal'] is not null ? 'active' : (technologyService.isPrerequisitesMet(user, planet, planet.buildingById(buildingService.TechnoIDCorrespondence(2)).building, 'building').isUnlocked == 'on' ? 'on' : 'off' ) }}"
                                     data-is-spaceprovider=""
                                     aria-label="Mine de cristal"
                                     data-ipi-hint="ipiTechnologycrystalMine"
@@ -839,13 +839,17 @@
                                     class="technology deuteriumStorage  hasDetails tooltip hideTooltipOnMouseenter js_hideTipOnMobile ipiHintable"
                                     data-id="{{ planet.getBuildingByName('Mine de métal').id }}"
                                     data-technology="24"
-                                    data-status="on"
+                                     data-status="active" 
+                                   {# data-status="on"#}
                                     data-is-spaceprovider=""
                                     aria-label="Réservoir de deutérium"
                                     data-ipi-hint="ipiTechnologydeuteriumStorage"
                                     data-tooltip-title="Réservoir de deutérium"
                                 >
-                                    <span class="icon sprite sprite_small small deuteriumStorage"><button class="upgrade tooltip hideOthers js_hideTipOnMobile" aria-label="Réservoir de deutérium : développer au niveau 2" data-technology="24" data-is-spaceprovider="" data-tooltip-title="Réservoir de deutérium : développer au niveau 2"></button><span class="level" data-value="1" data-bonus="0"><span class="stockAmount">{{ planet.getBuildingByName('Réservoir de deutérium').level }}</span><span class="bonus"></span></span></span>
+                                <span class="icon sprite sprite_small small deuteriumStorage"><span class="targetlevel" data-value="3" data-bonus="0">
+                    3
+                </span><div class="cooldownBackground"></div><time-counter><time class="countdown buildingCountdown" id="countdownbuildingDetails" datetime="PT3M11S" data-start="1792878857" data-end="1792879049" data-segments="2">2m 13s</time></time-counter><span class="level" data-value="2" data-bonus="0"><span class="stockAmount">2</span><span class="bonus"></span></span></span>
+                                    {# <span class="icon sprite sprite_small small deuteriumStorage"><button class="upgrade tooltip hideOthers js_hideTipOnMobile" aria-label="Réservoir de deutérium : développer au niveau 2" data-technology="24" data-is-spaceprovider="" data-tooltip-title="Réservoir de deutérium : développer au niveau 2"></button><span class="level" data-value="1" data-bonus="0"><span class="stockAmount">{{ planet.getBuildingByName('Réservoir de deutérium').level }}</span><span class="bonus"></span></span></span> #}
                                 </li>        
                             </ul>
                         </div>
@@ -931,10 +935,12 @@
                     // window.location.reload();
 
                     // console.log(planetBuildingId);
+                    let types = ['"metalMine'];
                     $(document).on("click", ".technology .icon button.upgrade", function (event) {
                         event.preventDefault();
                         event.stopPropagation();
                         let planetBuildingId = $("#producers .metalMine").attr("data-id");
+                        let technologyId = $("#producers .metalMine").attr("data-technology");
                         // var isSpaceProvider = $(this).data("is-spaceprovider") == 1;
                         // var technologyId = $(this).data("technology");
                         // var showLifeformBonusCapReached =
@@ -979,7 +985,7 @@
                     ) {
                         buildListActionCalled = true;
                         let body = {
-                            planetBuildingId: planetBuildingId
+                            technologyId: technologyId
                         };
                         // if ($(".shipyardSelection .radioShipyardSelection").length !== 0) {
                         //     body["selectedShipyard"] = parseInt(

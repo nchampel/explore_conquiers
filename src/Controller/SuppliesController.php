@@ -34,6 +34,7 @@ class SuppliesController extends AbstractController
             'technologyService' => $technologyService,
             'buildingService' => $buildingService,
             'vesselService' => $vesselService,
+            'checksConstructionInProgressByPage' => $technologyService->checksConstructionInProgressByPage("supplies", $planet),
         ]);
     }
 }

@@ -250,18 +250,19 @@ class ApiController extends AbstractController
             ], 200);
     }
     #[Route('/api/tree/ajax', name: 'app_api_tree', methods:["GET"])]
-    public function technology(Request $request): Response
+    public function technology(): Response
     {
         return $this->render('api/index.html.twig', [
             // 'buildings' => $buildingRepository->findAll(),
         ]);
     }
     #[Route('/api/building/upgrade/{planetBuilding}', name: 'api_building_upgrade', methods: ['POST'])]
-    public function upgrade(PlanetBuilding $planetBuilding, EntityManagerInterface $entityManager): Response
+    public function upgrade(PlanetBuilding $planetBuilding, EntityManagerInterface $entityManager, Request $request): Response
     {
         // $id->getBuildingByName('')->get
         $user = $this->getUser();
         $planet = $planetBuilding->getPlanet();
+        $technologyId = $request->query->get('technologyId');
         // $building = $buildingRepository->find($id);
 
 
@@ -287,6 +288,18 @@ class ApiController extends AbstractController
         // $building->setIsBuilding(true);
 
         // il faudra vérifier si le bâtiment a été débloqué
+        // if($technologyId == 212 &&
+        //     $this->technologyService->isPrerequisitesMet($user, $planet, $planetBuilding->getVessel(), 'vessel')["isUnlocked"] == "on"
+        // ){
+
+        if($this->technologyService->isPrerequisitesMet($user, $planet, $planetBuilding->getBuilding(), 'building')["isUnlocked"] == "off"){
+            return $this->json([
+                'success' => false,
+                // 'duration' => $durationInSeconds,
+                // 'endsAt' => $finConstruction->getTimestamp() * 1000 // Timestamp en millisecondes pour JS
+            ]);
+        }
+
         $result = $this->buildingService->buildBuilding($planetBuilding, $planet);
         $durationInSeconds = $result["buildingTime"]["buildingTime"];
         $parisTimezone = new \DateTimeZone('Europe/Paris');

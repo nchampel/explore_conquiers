@@ -2883,7 +2883,8 @@ a:hover img.queuePic { border-color: #E7AE46;}
 
 /* ******************** Station Images ************************************** */
 #buttonz ul#building div.buildingimg {
-    background-image: url("//gf3.geo.gfsrv.net/cdn5b/487c865a747af81fdeb8e06cbfe987.png");
+    /* background-image: url("//gf3.geo.gfsrv.net/cdn5b/487c865a747af81fdeb8e06cbfe987.png"); */
+    background-image: url("../../img/487c865a747af81fdeb8e06cbfe987.png");
     background-repeat:no-repeat;
 }
 
@@ -3057,7 +3058,8 @@ li span.time,
 }
 
 .techtree_link {
-    background: url(//gf3.geo.gfsrv.net/cdn5b/ee9f92c2d5f2eff53bb638188c0a2b.png) repeat;
+    /* background: url(//gf3.geo.gfsrv.net/cdn5b/ee9f92c2d5f2eff53bb638188c0a2b.png) repeat; */
+    background: url("../../img/ee9f92c2d5f2eff53bb638188c0a2b.png") repeat;
     bottom: 0;
     font-size: 11px;
     height: 50px;
@@ -3069,7 +3071,8 @@ li span.time,
 }
 
 .techtree_link:active {
-    background: url(//gf1.geo.gfsrv.net/cdn64/80c1411bc20f8f5e4793cfef0d44c2.png) repeat;
+    /* background: url(//gf1.geo.gfsrv.net/cdn64/80c1411bc20f8f5e4793cfef0d44c2.png) repeat; */
+    background: url("../../img/80c1411bc20f8f5e4793cfef0d44c2.png") repeat;
     color: #fff;
 }
 .techtree_img,
@@ -3358,7 +3361,8 @@ div#promotionCountdownBox a.build-it span {
 }
 
 #description .arrow_description {
-    background: url(//gf3.geo.gfsrv.net/cdn86/bd821d798d0f2d4829d382a0c10c5d.png) no-repeat;
+    /* background: url(//gf3.geo.gfsrv.net/cdn86/bd821d798d0f2d4829d382a0c10c5d.png) no-repeat; */
+    background: url("../../img/bd821d798d0f2d4829d382a0c10c5d.png") no-repeat;
     float: left;
     height: 52px;
     margin: 0 25px 0 0;
@@ -4002,7 +4006,8 @@ a#message_alert_box_default,
 
 /* ****************** Eventbox: Communication Menu ************************** */
 .comm_menu {
-    background-image: url("//gf2.geo.gfsrv.net/cdn43/9d2a040a90c8eae17d3cd2ee3b54df.png");
+    /* background-image: url("//gf2.geo.gfsrv.net/cdn43/9d2a040a90c8eae17d3cd2ee3b54df.png"); */
+    background-image: url("../../img/9d2a040a90c8eae17d3cd2ee3b54df.png");
     background-repeat: no-repeat;
     display: block;
     float: left;
@@ -4333,18 +4338,21 @@ span.normal {font-weight:100;}
     width: 400px;
 }
 .errorBox .head {
-    background: transparent url("//gf3.geo.gfsrv.net/cdn80/ce9090fdecf6ea4ab7a9bf01229022.png") no-repeat;
+    /* background: transparent url("//gf3.geo.gfsrv.net/cdn80/ce9090fdecf6ea4ab7a9bf01229022.png") no-repeat; */
+    background: transparent url("../../img/ce9090fdecf6ea4ab7a9bf01229022.png") no-repeat;
     height: 50px;
 }
 .errorBox .middle {
-    background: transparent url("//gf1.geo.gfsrv.net/cdn96/4daa45b03a732ddeb38ea39739e9c8.png") repeat-y;
+    /* background: transparent url("//gf1.geo.gfsrv.net/cdn96/4daa45b03a732ddeb38ea39739e9c8.png") repeat-y; */
+    background: transparent url("../../img/4daa45b03a732ddeb38ea39739e9c8.png") repeat-y;
     padding: 10px 20px;
     width: 360px;
     word-wrap: break-word;
 }
 
 .errorBox .foot {
-    background: transparent url("//gf2.geo.gfsrv.net/cdnaa/f1a9fc76bf7e54a323a6272db1d7f1.png") no-repeat;
+    /* background: transparent url("//gf2.geo.gfsrv.net/cdnaa/f1a9fc76bf7e54a323a6272db1d7f1.png") no-repeat; */
+    background: transparent url("../../img/f1a9fc76bf7e54a323a6272db1d7f1.png") no-repeat;
     height: 24px;
 }
 
@@ -5081,7 +5089,8 @@ table.empty td {line-height:30px;}
     position:relative;
     top:53px;
     left:99px;
-    background:url("//gf3.geo.gfsrv.net/cdn54/19d8745d33ecac0fd288870ba79bde.png") no-repeat;
+    /* background:url("//gf3.geo.gfsrv.net/cdn54/19d8745d33ecac0fd288870ba79bde.png") no-repeat; */
+    background:url("../../img/19d8745d33ecac0fd288870ba79bde.png") no-repeat;
     height:100px;
     width:100px;
 }
@@ -5448,8 +5457,10 @@ ul#storage li a.fastBuild:link {display:inline;}
     padding: 0;
 }
 
-#fadeBox #fadeBoxStyle.success { background: transparent url("//gf2.geo.gfsrv.net/cdn1c/7f424858dabeaec63cbbc43f1cc8d9.png") no-repeat;}
-#fadeBox #fadeBoxStyle.failed {  background: transparent url("//gf2.geo.gfsrv.net/cdn14/d810e93b54aa5e35fa9091379fcc19.png") no-repeat;}
+/* #fadeBox #fadeBoxStyle.success { background: transparent url("//gf2.geo.gfsrv.net/cdn1c/7f424858dabeaec63cbbc43f1cc8d9.png") no-repeat;} */
+#fadeBox #fadeBoxStyle.success { background: transparent url("../../img/7f424858dabeaec63cbbc43f1cc8d9.png") no-repeat;}
+/* #fadeBox #fadeBoxStyle.failed {  background: transparent url("//gf2.geo.gfsrv.net/cdn14/d810e93b54aa5e35fa9091379fcc19.png") no-repeat;} */
+#fadeBox #fadeBoxStyle.failed {  background: transparent url("../../img/d810e93b54aa5e35fa9091379fcc19.png") no-repeat;}
 
 #overview .fadeBox,
 #resources .fadeBox,
@@ -5496,13 +5507,15 @@ div#onet a img {
 }
 
 .planetMoveIcons {
-    background-image: url("//gf2.geo.gfsrv.net/cdn16/1bcb107d4cdd48d0878fe850157e46.png");
+    /* background-image: url("//gf2.geo.gfsrv.net/cdn16/1bcb107d4cdd48d0878fe850157e46.png"); */
+    background-image: url("../../img/1bcb107d4cdd48d0878fe850157e46.png");
     background-repeat: no-repeat;
     width: 17px;
     height: 17px;
 }
 .planetDiscoverIcons {
-    background-image: url("//gf2.geo.gfsrv.net/cdn16/1bcb107d4cdd48d0878fe850157e46.png");
+    /* background-image: url("//gf2.geo.gfsrv.net/cdn16/1bcb107d4cdd48d0878fe850157e46.png"); */
+    background-image: url("../../img/1bcb107d4cdd48d0878fe850157e46.png");
     background-repeat: no-repeat;
     width: 17px;
     height: 17px;
@@ -5881,9 +5894,10 @@ figure.planetIcon.planet {
 .officer32.geologe { background-position: -96px 0; }
 
 
-
+/* ici moi png */
 .resourceIcon {
-    background: transparent url("//gf3.geo.gfsrv.net/cdned/7f14c18b15064d2604c5476f5d10b3.png") 0 0 no-repeat;
+    /* background: transparent url("//gf3.geo.gfsrv.net/cdned/7f14c18b15064d2604c5476f5d10b3.png") 0 0 no-repeat; */
+    background: transparent url("../../img/7f14c18b15064d2604c5476f5d10b3.png") 0 0 no-repeat;
     width: 48px;
     height: 32px;
     float: left;
@@ -19689,7 +19703,8 @@ no-touch .galaxy_icons.next:hover { background-position: 0px -48px; }
 }
 
 #discoverSystemBtn > div {
-    background-image: url("//gf2.geo.gfsrv.net/cdn16/1bcb107d4cdd48d0878fe850157e46.png");
+    /* background-image: url("//gf2.geo.gfsrv.net/cdn16/1bcb107d4cdd48d0878fe850157e46.png"); */
+    background-image: url("../../img/1bcb107d4cdd48d0878fe850157e46.png");
     background-repeat: no-repeat;
     width: 14px;
     height: 14px;
@@ -32408,7 +32423,8 @@ a.og-button {
 }
 
 #newmessagesindicatorcomponent .messagesIndicator {
-    background-image: url(//gf2.geo.gfsrv.net/cdn43/9d2a040a90c8eae17d3cd2ee3b54df.png);
+    /* background-image: url(//gf2.geo.gfsrv.net/cdn43/9d2a040a90c8eae17d3cd2ee3b54df.png); */
+    background-image: url("../../img/9d2a040a90c8eae17d3cd2ee3b54df.png");
     background-repeat: no-repeat;
     background-position: 0 1px;
     height: 100%;
@@ -32417,7 +32433,8 @@ a.og-button {
     position: relative;
 }
 #newmessagesindicatorcomponent .chatIndicator {
-    background-image: url(//gf2.geo.gfsrv.net/cdn43/9d2a040a90c8eae17d3cd2ee3b54df.png);
+    /* background-image: url(//gf2.geo.gfsrv.net/cdn43/9d2a040a90c8eae17d3cd2ee3b54df.png); */
+    background-image: url("../../img/9d2a040a90c8eae17d3cd2ee3b54df.png");
     background-repeat: no-repeat;
     background-position: 0 -117px;
     height: 100%;
@@ -35700,7 +35717,8 @@ li.espionageReport a.shareReport, li.espionageReport a.hideReport {
 
 /* ****************** Eventbox: Communication Menu ************************** */
 #notificationbarcomponent .comm_menu {
-    background-image: url("//gf2.geo.gfsrv.net/cdn43/9d2a040a90c8eae17d3cd2ee3b54df.png");
+    /* background-image: url("//gf2.geo.gfsrv.net/cdn43/9d2a040a90c8eae17d3cd2ee3b54df.png"); */
+    background-image: url("../../img/9d2a040a90c8eae17d3cd2ee3b54df.png");
     background-repeat: no-repeat;
     display: block;
     height: 40px;
@@ -40612,7 +40630,8 @@ li span.time,
 }
 
 .techtree_link {
-    background: url(//gf3.geo.gfsrv.net/cdn5b/ee9f92c2d5f2eff53bb638188c0a2b.png) repeat;
+    /* background: url(//gf3.geo.gfsrv.net/cdn5b/ee9f92c2d5f2eff53bb638188c0a2b.png) repeat; */
+    background: url("../../img/ee9f92c2d5f2eff53bb638188c0a2b.png") repeat;
     bottom: 0;
     font-size: 11px;
     height: 50px;
@@ -40624,7 +40643,8 @@ li span.time,
 }
 
 .techtree_link:active {
-    background: url(//gf1.geo.gfsrv.net/cdn64/80c1411bc20f8f5e4793cfef0d44c2.png) repeat;
+    /* background: url(//gf1.geo.gfsrv.net/cdn64/80c1411bc20f8f5e4793cfef0d44c2.png) repeat; */
+    background: url("../../img/80c1411bc20f8f5e4793cfef0d44c2.png") repeat;
     color: #fff;
 }
 .techtree_img,
@@ -40925,7 +40945,8 @@ div#promotionCountdownBox a.build-it span {
 }
 
 #description .arrow_description {
-    background: url(//gf3.geo.gfsrv.net/cdn86/bd821d798d0f2d4829d382a0c10c5d.png) no-repeat;
+    /* background: url(//gf3.geo.gfsrv.net/cdn86/bd821d798d0f2d4829d382a0c10c5d.png) no-repeat; */
+    background: url("../../img/bd821d798d0f2d4829d382a0c10c5d.png") no-repeat;
     float: left;
     height: 52px;
     margin: 0 25px 0 0;
@@ -42085,7 +42106,8 @@ a#message_alert_box_default,
 }
 
 #technologydetails .arrow_description {
-    background: url(//gf3.geo.gfsrv.net/cdn86/bd821d798d0f2d4829d382a0c10c5d.png) no-repeat;
+    /* background: url(//gf3.geo.gfsrv.net/cdn86/bd821d798d0f2d4829d382a0c10c5d.png) no-repeat; */
+    background: url("../../img/bd821d798d0f2d4829d382a0c10c5d.png") no-repeat;
     float: left;
     height: 52px;
     margin: 0 25px 0 0;
