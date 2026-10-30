@@ -726,7 +726,7 @@
                 </div>
                 <div id="suppliescomponent" class="maincontent">
                     <div id="supplies">
-                        <header data-anchor="technologyDetails" data-technologydetails-size="large" style="background: url('https://s274-fr.ogame.gameforge.com/headerCache/supplies/gas_1_3_4.jpg');"><h2>Ressources - planète mère</h2><div id="slot01" class="slot "><a href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=resourcesettings">
+                        <header data-anchor="technologyDetails" data-technologydetails-size="large" style="background: url('https://s274-fr.ogame.gameforge.com/headerCache/supplies/gas_1_2_3_4.jpg');"><h2>Ressources - planète mère</h2><div id="slot01" class="slot "><a href="https://s274-fr.ogame.gameforge.com/game/index.php?page=ingame&amp;component=resourcesettings">
                                     Paramétrage de la production
                                 </a></div></header>
                         <div id="technologydetails_wrapper"><div id="technologydetails_content"></div></div>
@@ -739,19 +739,29 @@
                                     class="technology metalMine hasDetails tooltip hideTooltipOnMouseenter js_hideTipOnMobile ipiHintable {#ipiHintActive#}"
                                     data-id="{{ planet.getBuildingByName('Mine de métal').id }}"
                                     data-technology="1"
-                                    data-status="{{ checksConstructionInProgressByPage['Mine de métal'] is not null ? 'active' : (technologyService.isPrerequisitesMet(user, planet, planet.buildingById(buildingService.TechnoIDCorrespondence(1)).building, 'building').isUnlocked == 'on' ? 'on' : 'off' ) }}"
+                                    data-status="{{ checksConstructionInProgressByPage['Mine de métal']['construction'] == true ? 'active' : (technologyService.isPrerequisitesMet(user, planet, planet.buildingById(buildingService.TechnoIDCorrespondence(1)).building, 'building').isUnlocked == 'on' ? 'on' : 'off') }}"
                                     data-is-spaceprovider=""
                                     aria-label="Mine de métal"
                                     data-ipi-hint="ipiTechnologymetalMine"
                                     data-tooltip-title="Mine de métal"
                                 >
-                                    <span class="icon sprite sprite_medium medium metalMine"><button class="upgrade tooltip hideOthers js_hideTipOnMobile" aria-label="Mine de métal : développer au niveau 2" data-technology="1" data-is-spaceprovider="" data-tooltip-title="Mine de métal : développer au niveau 2"></button><span class="level" data-value="1" data-bonus="0"><span class="stockAmount">{{ planet.getBuildingByName('Mine de métal').level }}</span><span class="bonus"></span></span></span>
+                                    <span class="icon sprite sprite_medium medium metalMine">
+                                        {# <button class="upgrade tooltip hideOthers js_hideTipOnMobile" aria-label="Mine de métal : développer au niveau 2" data-technology="1" data-is-spaceprovider="" data-tooltip-title="Mine de métal : développer au niveau 2"></button>
+                                        <span class="level" data-value="1" data-bonus="0">
+                                            <span class="stockAmount">{{ planet.getBuildingByName('Mine de métal').level }}</span>
+                                            <span class="bonus">
+                                            </span>
+                                        </span> #}
+                                        {% if checksConstructionInProgressByPage['Mine de métal']['construction'] == true %}
+                                        {{ checksConstructionInProgressByPage['Mine de métal']['span'] | raw }}
+                                        {% endif %}
+                                    </span>
                                 </li>
                                 <li
                                     class="technology crystalMine  hasDetails tooltip hideTooltipOnMouseenter js_hideTipOnMobile ipiHintable"
                                     data-id="{{ planet.getBuildingByName('Mine de cristal').id }}"
                                     data-technology="2"
-                                    data-status="{{ checksConstructionInProgressByPage['Mine de cristal'] is not null ? 'active' : (technologyService.isPrerequisitesMet(user, planet, planet.buildingById(buildingService.TechnoIDCorrespondence(2)).building, 'building').isUnlocked == 'on' ? 'on' : 'off' ) }}"
+                                    data-status="{{ checksConstructionInProgressByPage['Mine de cristal']['construction'] is not null ? 'active' : (technologyService.isPrerequisitesMet(user, planet, planet.buildingById(buildingService.TechnoIDCorrespondence(2)).building, 'building').isUnlocked == 'on' ? 'on' : 'off') }}"
                                     data-is-spaceprovider=""
                                     aria-label="Mine de cristal"
                                     data-ipi-hint="ipiTechnologycrystalMine"
@@ -761,7 +771,7 @@
                                 </li>
                                 <li
                                     class="technology deuteriumSynthesizer  hasDetails tooltip hideTooltipOnMouseenter js_hideTipOnMobile ipiHintable"
-                                    data-id="{{ planet.getBuildingByName('Mine de métal').id }}"
+                                    data-id="{{ planet.getBuildingByName('Synthétiseur de deutérium').id }}"
                                     data-technology="3"
                                     data-status="on"
                                     data-is-spaceprovider=""
@@ -773,7 +783,7 @@
                                 </li>
                                 <li
                                     class="technology solarPlant  hasDetails tooltip hideTooltipOnMouseenter js_hideTipOnMobile ipiHintable"
-                                    data-id="{{ planet.getBuildingByName('Mine de métal').id }}"
+                                    data-id="{{ planet.getBuildingByName('Centrale électrique solaire').id }}"
                                     data-technology="4"
                                     data-status="on"
                                     data-is-spaceprovider=""
@@ -785,7 +795,7 @@
                                 </li>
                                 <li
                                     class="technology fusionPlant  hasDetails tooltip hideTooltipOnMouseenter js_hideTipOnMobile ipiHintable"
-                                    data-id="{{ planet.getBuildingByName('Mine de métal').id }}"
+                                    data-id="{{ planet.getBuildingByName('Centrale électrique de fusion').id }}"
                                     data-technology="12"
                                     data-status="{{ technologyService.isPrerequisitesMet(user, planet, planet.buildingById(buildingService.TechnoIDCorrespondence(12)).building, 'building').isUnlocked }}"
                                     data-is-spaceprovider=""
@@ -797,7 +807,7 @@
                                 </li>
                                 <li
                                     class="technology solarSatellite  hasDetails tooltip hideTooltipOnMouseenter js_hideTipOnMobile ipiHintable"
-                                    data-id="{{ planet.getBuildingByName('Mine de métal').id }}"
+                                    data-id="{{ planet.getVesselByName('Satellite solaire').id }}"
                                     data-technology="212"
                                     data-status="{{ technologyService.isPrerequisitesMet(user, planet, planet.vesselById(vesselService.TechnoIDCorrespondence(212)).vessel, 'vessel').isUnlocked }}"
                                     data-is-spaceprovider=""
@@ -813,7 +823,7 @@
                         </li>             #}
                                 <li
                                     class="technology metalStorage  hasDetails tooltip hideTooltipOnMouseenter js_hideTipOnMobile ipiHintable"
-                                    data-id="{{ planet.getBuildingByName('Mine de métal').id }}"
+                                    data-id="{{ planet.getBuildingByName('Hangar de métal').id }}"
                                     data-technology="22"
                                     data-status="on"
                                     data-is-spaceprovider=""
@@ -825,7 +835,7 @@
                                 </li>
                                 <li
                                     class="technology crystalStorage  hasDetails tooltip hideTooltipOnMouseenter js_hideTipOnMobile ipiHintable"
-                                    data-id="{{ planet.getBuildingByName('Mine de métal').id }}"
+                                    data-id="{{ planet.getBuildingByName('Hangar de cristal').id }}"
                                     data-technology="23"
                                     data-status="on"
                                     data-is-spaceprovider=""
@@ -837,18 +847,32 @@
                                 </li>
                                 <li
                                     class="technology deuteriumStorage  hasDetails tooltip hideTooltipOnMouseenter js_hideTipOnMobile ipiHintable"
-                                    data-id="{{ planet.getBuildingByName('Mine de métal').id }}"
+                                    data-id="{{ planet.getBuildingByName('Réservoir de deutérium').id }}"
                                     data-technology="24"
-                                     data-status="active" 
-                                   {# data-status="on"#}
+                                    data-status="active"
+                                    {# data-status="on"#}
                                     data-is-spaceprovider=""
                                     aria-label="Réservoir de deutérium"
                                     data-ipi-hint="ipiTechnologydeuteriumStorage"
                                     data-tooltip-title="Réservoir de deutérium"
                                 >
-                                <span class="icon sprite sprite_small small deuteriumStorage"><span class="targetlevel" data-value="3" data-bonus="0">
-                    3
-                </span><div class="cooldownBackground"></div><time-counter><time class="countdown buildingCountdown" id="countdownbuildingDetails" datetime="PT3M11S" data-start="1792878857" data-end="1792879049" data-segments="2">2m 13s</time></time-counter><span class="level" data-value="2" data-bonus="0"><span class="stockAmount">2</span><span class="bonus"></span></span></span>
+                                    <span class="icon sprite sprite_small small deuteriumStorage">
+                                        <span class="targetlevel" data-value="3" data-bonus="0">
+                                            3
+                                        </span>
+                                        <div class="cooldownBackground"></div>
+                                        <time-counter>
+                                            <time class="countdown buildingCountdown" id="countdownbuildingDetails" datetime="PT3M11S" data-start="1792878857" data-end="1792879049" data-segments="2">
+                                                2m 13s
+                                            </time>
+                                        </time-counter>
+                                        <span class="level" data-value="2" data-bonus="0">
+                                            <span class="stockAmount">
+                                                2
+                                            </span>
+                                            <span class="bonus"></span>
+                                        </span>
+                                    </span> 
                                     {# <span class="icon sprite sprite_small small deuteriumStorage"><button class="upgrade tooltip hideOthers js_hideTipOnMobile" aria-label="Réservoir de deutérium : développer au niveau 2" data-technology="24" data-is-spaceprovider="" data-tooltip-title="Réservoir de deutérium : développer au niveau 2"></button><span class="level" data-value="1" data-bonus="0"><span class="stockAmount">{{ planet.getBuildingByName('Réservoir de deutérium').level }}</span><span class="bonus"></span></span></span> #}
                                 </li>        
                             </ul>
@@ -980,12 +1004,10 @@
                         // }
                         buildListActionBuild(planetBuildingId);
                     });
-                    function buildListActionBuild(
-                        planetBuildingId
-                    ) {
+                    function buildListActionBuild(planetBuildingId) {
                         buildListActionCalled = true;
                         let body = {
-                            technologyId: technologyId
+                            technologyId: technologyId,
                         };
                         // if ($(".shipyardSelection .radioShipyardSelection").length !== 0) {
                         //     body["selectedShipyard"] = parseInt(
@@ -993,7 +1015,9 @@
                         //     );
                         // }
                         $.ajax({
-                            url: 'http://localhost:8000/game/api/building/upgrade/' + planetBuildingId,
+                            url:
+                                "http://localhost:8000/game/api/building/upgrade/" +
+                                planetBuildingId,
                             data: body,
                             type: "POST",
                             dataType: "json",
@@ -1008,7 +1032,7 @@
                                     if (json.errors && json.errors.length) {
                                         showNotification(json.errors[0].message, "error");
                                     }
-                                    console.log('construction échouée');
+                                    console.log("construction échouée");
                                     // buildListActionCalled = false;
                                 }
                             },
@@ -1023,7 +1047,7 @@
                                 //     );
                                 // }
                                 // buildListActionCalled = false;
-                                console.log('construction échouée erreur api');
+                                console.log("construction échouée erreur api");
                             },
                         });
                     }

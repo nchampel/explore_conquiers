@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Entity\Building;
 use App\Entity\Defence;
 use App\Entity\Planet;
+use App\Entity\PlanetBuilding;
 use App\Entity\Research;
 use App\Entity\User;
 use App\Entity\Vessel;
@@ -13,6 +14,58 @@ use Psr\Log\LoggerInterface;
 class TechnologyService
 {
     public function __construct(private LoggerInterface $logger) {
+    }
+    private function getConstructionDuration(int $seconds){
+        if ($seconds <= 0) {
+            return '0s';
+        }
+
+        // Définition des unités en secondes
+        $units = [
+            'sem' => 7 * 24 * 3600, // 604 800 secondes
+            'j'   => 24 * 3600,     // 86 400 secondes
+            'h'   => 3600,          // 3600 secondes
+            'm'   => 60,            // 60 secondes
+            's'   => 1              // 1 seconde
+        ];
+
+        $parts = [];
+
+        foreach ($units as $unitName => $unitValue) {
+            // Si le nombre de secondes est supérieur ou égal à l'unité
+            if ($seconds >= $unitValue) {
+                $count = intdiv($seconds, $unitValue); // Division entière
+                $seconds %= $unitValue;               // Reste de la division
+                $parts[] = "{$count}{$unitName}";
+            }
+        }
+
+        return implode(' ', $parts);
+    }
+    private function getConstructionSpan(PlanetBuilding $planetBuilding){
+        $buildingLevel = $planetBuilding->getLevel();
+        $bonus = 0;
+        $time = 3600;
+        $timeFormatted = $this->getConstructionDuration($time);
+        $parisTimezone = new \DateTimeZone('Europe/Paris');
+        $now = new \DateTime("now", $parisTimezone);
+        $nowTimestamp = $now->getTimestamp();
+        $end = $nowTimestamp + $time;
+        return '<span class="targetlevel" data-value="' . $buildingLevel + 1 . '" data-bonus="' . $bonus . '">
+                                            ' . $buildingLevel + 1 . '
+                                        </span>
+                                        <div class="cooldownBackground"></div>
+                                        <time-counter>
+                                            <time class="countdown buildingCountdown" id="countdownbuildingDetails" datetime="PT3M11S" data-start="' . $nowTimestamp . '" data-end="' . $end . '" data-segments="2">
+                                                ' . $timeFormatted . '
+                                            </time>
+                                        </time-counter>
+                                        <span class="level" data-value="' . $buildingLevel . '" data-bonus="' . $bonus . '">
+                                            <span class="stockAmount">
+                                                ' . $buildingLevel . '
+                                            </span>
+                                            <span class="bonus"></span>
+                                        </span>';
     }
     public function checksConstructionInProgress(array $element, Planet $planet){
         // match (true) {
@@ -45,13 +98,14 @@ class TechnologyService
                 $constructionEndsAt = $planet->getBuildingByName($element["entity"])->getConstructionEndsAt();
                 break;
         }
-        //  $this->logger->info($constructionEndsAt->format("d/m/Y H:i:s"));
+        // $this->logger->info($constructionEndsAt->format("d/m/Y H:i:s"));
         if(!$constructionEndsAt){
-            return null;
+            return ["construction" => null, "span" => null];
         } else if ($constructionEndsAt >= $now) {
-            return null;
+            return ["construction" => true, "span" => $this->getConstructionSpan($planet->getBuildingByName($element["entity"]))];
         } else {
-            return "construction ended";
+            $planet->getBuildingByName($element["entity"])->setConstructionEndsAt(null);
+            return ["construction" => "finished", "span" => null];
         }
     }
     public function checksConstructionInProgressByPage(string $page, Planet $planet){
@@ -73,6 +127,8 @@ class TechnologyService
         foreach($elements as $element){
             // foreach($element as $el){
                 $result[$element["entity"]] = $this->checksConstructionInProgress($element, $planet);
+                // $this->logger->info($this->checksConstructionInProgress($element, $planet));
+                // $this->logger->notice($this->checksConstructionInProgress($element, $planet));
             // }
         }
         return $result;
