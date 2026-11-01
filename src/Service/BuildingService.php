@@ -51,6 +51,36 @@ class BuildingService
         }
         return 0;
     }
+    public function getTechnoIDCorrespondenceInverse(int $technology): int
+    {
+        switch ($technology) {
+            case 1:
+                // mine de métal
+                return 1;
+            case 2:
+                // mine de cristal
+                return 2;
+            case 3:
+                // synthétiseur de deutérium
+                return 3;
+            case 4:
+                // centrale électrique solaire
+                return 4;
+            case 5:
+                // centrale électrique de fusion
+                return 12;
+            case 6:
+                // hangar de métal
+                return 22;
+            case 7:
+                // hangar de cristal
+                return 23;
+            case 8:
+                // réservoir de deutérium
+                return 24;
+        }
+        return 0;
+    }
     public function getDescription(int $buildingId): string
     {
         switch ($buildingId) {

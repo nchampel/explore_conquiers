@@ -6,6 +6,8 @@
     <!-- Production tippy ajout moi -->
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
+     {# <script src="https://unpkg.com/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js"></script> #}
     {# fin ajout #}
     <script type="text/javascript" src="{{ asset('js/tooltip.js') }}">
         
@@ -402,7 +404,7 @@
 
                                         const htmlContent = await response.text();
 
-                                        // Insertion du contenu HTML au tout début du body
+                                        // Insertion du contenu HTML à la fin du body
                                         $('body').append(htmlContent);
 
                                     } catch (error) {
@@ -660,7 +662,7 @@
                     element.closest(".hasDetails").addClass("showsDetails");
                     locationIndicator.hide();
                     var anchor = $("header[data-anchor=technologyDetails]");
-                    console.log(`elemTechnologyDetails.length ${elemTechnologyDetails.length}`)
+                    // console.log(`elemTechnologyDetails.length ${elemTechnologyDetails.length}`)
                     if (elemTechnologyDetails.length > 0) {
                     removeTooltip(elemTechnologyDetails.find(getTooltipSelector()));
                     elemTechnologyDetails.replaceWith(json.content[json.target]);
@@ -744,6 +746,7 @@
                                     aria-label="Mine de métal"
                                     data-ipi-hint="ipiTechnologymetalMine"
                                     data-tooltip-title="Mine de métal"
+                                    title="Mine de métal"
                                 >
                                     <span class="icon sprite sprite_medium medium metalMine">
                                         {# <button class="upgrade tooltip hideOthers js_hideTipOnMobile" aria-label="Mine de métal : développer au niveau 2" data-technology="1" data-is-spaceprovider="" data-tooltip-title="Mine de métal : développer au niveau 2"></button>
@@ -752,9 +755,9 @@
                                             <span class="bonus">
                                             </span>
                                         </span> #}
-                                        {% if checksConstructionInProgressByPage['Mine de métal']['construction'] == true %}
+                                        {# {% if checksConstructionInProgressByPage['Mine de métal']['construction'] == true %} #}
                                         {{ checksConstructionInProgressByPage['Mine de métal']['span'] | raw }}
-                                        {% endif %}
+                                        {# {% endif %} #}
                                     </span>
                                 </li>
                                 <li
@@ -767,7 +770,10 @@
                                     data-ipi-hint="ipiTechnologycrystalMine"
                                     data-tooltip-title="Mine de cristal"
                                 >
-                                    <span class="icon sprite sprite_medium medium crystalMine"><button class="upgrade tooltip hideOthers js_hideTipOnMobile" aria-label="Mine de cristal : développer au niveau 1" data-technology="2" data-is-spaceprovider="" data-tooltip-title="Mine de cristal : développer au niveau 1"></button><span class="level" data-value="0" data-bonus="0"><span class="stockAmount">{{ planet.getBuildingByName('Mine de cristal').level }}</span><span class="bonus"></span></span></span>
+                                    <span class="icon sprite sprite_medium medium crystalMine">
+                                {#     <button class="upgrade tooltip hideOthers js_hideTipOnMobile" aria-label="Mine de cristal : développer au niveau 1" data-technology="2" data-is-spaceprovider="" data-tooltip-title="Mine de cristal : développer au niveau 1"></button><span class="level" data-value="0" data-bonus="0"><span class="stockAmount">{{ planet.getBuildingByName('Mine de cristal').level }}</span><span class="bonus"></span></span></span>
+                                #}
+                                {{ checksConstructionInProgressByPage['Mine de cristal']['span'] | raw }}
                                 </li>
                                 <li
                                     class="technology deuteriumSynthesizer  hasDetails tooltip hideTooltipOnMouseenter js_hideTipOnMobile ipiHintable"
@@ -842,8 +848,9 @@
                                     aria-label="Hangar de cristal"
                                     data-ipi-hint="ipiTechnologycrystalStorage"
                                     data-tooltip-title="Hangar de cristal"
+                                    title="Hangar de cristal"
                                 >
-                                    <span class="icon sprite sprite_small small crystalStorage"><button class="upgrade tooltip hideOthers js_hideTipOnMobile" aria-label="Hangar de cristal : développer au niveau 3" data-technology="23" data-is-spaceprovider="" data-tooltip-title="Hangar de cristal : développer au niveau 3"></button><span class="level" data-value="2" data-bonus="0"><span class="stockAmount">{{ planet.getBuildingByName('Hangar de cristal').level }}</span><span class="bonus"></span></span></span>
+                                    <span class="icon sprite sprite_small small crystalStorage"><button class="upgrade tooltip hideOthers js_hideTipOnMobile" aria-label="Hangar de cristal : développer au niveau 3" data-technology="23" data-is-spaceprovider="" data-tooltip-title="Hangar de cristal : développer au niveau 3" title="Hangar de cristal : développer au niveau 3"></button><span class="level" data-value="2" data-bonus="0"><span class="stockAmount">{{ planet.getBuildingByName('Hangar de cristal').level }}</span><span class="bonus"></span></span></span>
                                 </li>
                                 <li
                                     class="technology deuteriumStorage  hasDetails tooltip hideTooltipOnMouseenter js_hideTipOnMobile ipiHintable"
@@ -855,6 +862,7 @@
                                     aria-label="Réservoir de deutérium"
                                     data-ipi-hint="ipiTechnologydeuteriumStorage"
                                     data-tooltip-title="Réservoir de deutérium"
+                                    title="Réservoir de deutérium"
                                 >
                                     <span class="icon sprite sprite_small small deuteriumStorage">
                                         <span class="targetlevel" data-value="3" data-bonus="0">

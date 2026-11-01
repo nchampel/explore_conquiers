@@ -13,7 +13,7 @@ use Psr\Log\LoggerInterface;
 
 class TechnologyService
 {
-    public function __construct(private LoggerInterface $logger) {
+    public function __construct(private LoggerInterface $logger, private BuildingService $buildingService) {
     }
     private function getConstructionDuration(int $seconds){
         if ($seconds <= 0) {
@@ -67,6 +67,17 @@ class TechnologyService
                                             <span class="bonus"></span>
                                         </span>';
     }
+    private function getNotConstructionSpan(PlanetBuilding $planetBuilding, int $technology){
+        $buildingLevel = $planetBuilding->getLevel();
+        $buildingName = $planetBuilding->getBuilding()->getName();
+        $bonus = 0;
+        return '<button class="upgrade tooltip hideOthers js_hideTipOnMobile" aria-label="' . $buildingName . ' : développer au niveau ' . $buildingLevel + 1 . '" data-technology="' . $technology . '" data-is-spaceprovider="" data-tooltip-title="' . $buildingName . ' : développer au niveau ' . $buildingLevel + 1 . '" title="' . $buildingName . ' : développer au niveau ' . $buildingLevel + 1 . '"></button>
+                                        <span class="level" data-value="' . $buildingLevel . '" data-bonus="' . $bonus . '">
+                                            <span class="stockAmount">' . $buildingLevel . '</span>
+                                            <span class="bonus">
+                                            </span>
+                                        </span>';
+    }
     public function checksConstructionInProgress(array $element, Planet $planet){
         // match (true) {
         //     $entity instanceof ResearchPlayer => (function() use ($element, $entity) {
@@ -93,19 +104,23 @@ class TechnologyService
         $parisTimezone = new \DateTimeZone('Europe/Paris');
         $now = new \DateTime("now", $parisTimezone);
         $constructionEndsAt = null;
+        $technology = 0;
+        $entity = $planet->getBuildingByName($element["entity"]);
         switch($element["type"]){
             case "building":
                 $constructionEndsAt = $planet->getBuildingByName($element["entity"])->getConstructionEndsAt();
+                $technology = $this->buildingService->getTechnoIDCorrespondenceInverse($entity->getBuilding()->getId());
                 break;
         }
         // $this->logger->info($constructionEndsAt->format("d/m/Y H:i:s"));
+        $normalSpan = $this->getNotConstructionSpan($entity, $technology);
         if(!$constructionEndsAt){
-            return ["construction" => null, "span" => null];
+            return ["construction" => null, "span" => $normalSpan];
         } else if ($constructionEndsAt >= $now) {
-            return ["construction" => true, "span" => $this->getConstructionSpan($planet->getBuildingByName($element["entity"]))];
+            return ["construction" => true, "span" => $this->getConstructionSpan($entity)];
         } else {
             $planet->getBuildingByName($element["entity"])->setConstructionEndsAt(null);
-            return ["construction" => "finished", "span" => null];
+            return ["construction" => "finished", "span" => $normalSpan];
         }
     }
     public function checksConstructionInProgressByPage(string $page, Planet $planet){
