@@ -78,3 +78,4 @@ quête journalière (les 14 points autour de moi) c'est comme exploration, donne
 vérifier gain moral
 faire tableau 1 à 14, shuffle => donne ordre des planètes à explorer pour la quête journalière
 il faudra tenir compte de l'astéroïde  pour loot
+corriger erreur js sur déployé
