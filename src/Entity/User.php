@@ -21,6 +21,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Groups(['user:read'])]
     private ?string $pseudo = null;
 
     #[ORM\Column]
@@ -28,9 +29,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @var string The hashed password
-     */
+    */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\Column]
+    #[Groups(['user:read'])]
+    private ?int $moral = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: PlanetBuilding::class)]
     private Collection $planetBuildings;
@@ -40,6 +45,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: ResearchPlayer::class, orphanRemoval: true)]
     private Collection $researchesPlayer;
+
 
     public function __construct()
     {
@@ -53,7 +59,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->id;
     }
 
-    #[Groups(['user:read'])]
     public function getPseudo(): ?string
     {
         return $this->pseudo;
@@ -237,5 +242,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return null; // Retourne null si le bâtiment n'est pas encore construit sur la planète
+    }
+
+    public function getMoral(): ?int
+    {
+        return $this->moral;
+    }
+
+    public function setMoral(int $moral): static
+    {
+        $this->moral = $moral;
+
+        return $this;
     }
 }

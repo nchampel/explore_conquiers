@@ -69,3 +69,12 @@ en tout cas en attendant projet avance, je peux faire, pour faire du sport, atte
 1/11
 
 faire entity pour point gps
+
+4/11
+
+moral est la ressource pour conquérir planète
+quête journalière (les 14 points autour de moi) c'est comme exploration, donne points moral
+à tester il faudra empêcher popup radar si point déjà visité
+vérifier gain moral
+faire tableau 1 à 14, shuffle => donne ordre des planètes à explorer pour la quête journalière
+il faudra tenir compte de l'astéroïde  pour loot

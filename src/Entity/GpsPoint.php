@@ -36,6 +36,10 @@ class GpsPoint
     #[Groups(['planet:read'])]
     private ?int $activationRadius = null;
 
+    #[ORM\Column]
+    #[Groups(['planet:read'])]
+    private ?bool $isVisitedForDailyQuest = null;
+
     public function __construct()
     {
         $this->planet = new ArrayCollection();
@@ -122,6 +126,18 @@ class GpsPoint
                 $planet->setGpsPoint(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isVisitedForDailyQuest(): ?bool
+    {
+        return $this->isVisitedForDailyQuest;
+    }
+
+    public function setIsVisitedForDailyQuest(bool $isVisitedForDailyQuest): static
+    {
+        $this->isVisitedForDailyQuest = $isVisitedForDailyQuest;
 
         return $this;
     }

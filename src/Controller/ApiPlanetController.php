@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Repository\GpsPointRepository;
 use App\Repository\PlanetRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -13,7 +15,8 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/api')]
 class ApiPlanetController extends AbstractController
 {
-    public function __construct(private PlanetRepository $planetRepository, private LoggerInterface $logger){}
+    public function __construct(private PlanetRepository $planetRepository, private LoggerInterface $logger, private EntityManagerInterface $entity,
+    private GpsPointRepository $gpsPointRepository){}
 
     // #[Route('/api/planet', name: 'app_api_planet')]
     // public function index(): Response
@@ -22,9 +25,17 @@ class ApiPlanetController extends AbstractController
     //         'controller_name' => 'ApiPlanetController',
     //     ]);
     // }
-    #[Route('/gps/planet/get', name: 'app_api_gps_planets_get', methods: ["POST"])]
+    #[Route('/gps/planet/get', name: 'api_gps_planets_get', methods: ["POST"])]
     public function index(Request $request): Response
     {
+        // return $this->json([
+        //     "planets" => [["id" => 135, "gpsPoint" => ["id" => 1, "latitude" => 37.4219983,
+        //     "longitude" => -122.084,
+        //     "activationRadius" => 15,
+        //     "type" => "wood"]]
+        //     ]
+            
+        // ]);
         $playerPosition = ["latitude" => 43.4237596, "longitude" => 5.2876443];
         $planets = $this->planetRepository->findPlanetsAroundPlayer($playerPosition);
         
@@ -127,6 +138,77 @@ class ApiPlanetController extends AbstractController
         "type" => "water"
     ],
     ]);
+        
+    }
+
+    private function getGainForReachingPlanet(int $visited){
+        switch($visited){
+            case 0:
+            case 1:
+            case 2:
+                return 2;
+                
+            case 4:
+            case 5:
+                return 4;
+                
+            case 6:
+            case 7:
+                return 8;
+                
+            case 8:
+            case 9:
+                return 12;
+                
+            case 10:
+            case 11:
+                return 16;
+            case 12:
+            case 13:
+                return 22;
+            case 14:
+            case 15:
+                return 30;
+                
+            
+        }
+    }
+    private function getGainForTravel(int $distance){
+        return round($distance / 50);
+    }
+    private function getGainForValidatingQuests(){}
+
+    #[Route('/gps/planet/quest/validate', name: 'api_gps_planet_quest_validate', methods: ["POST"])]
+    public function validateQuest(Request $request): Response
+    {
+        $data = json_decode($request->getContent(), true);
+        $planetId = $data['planetId'] ?? null;
+        $distance = $data['distance'] ?? null;
+        $planet = $this->planetRepository->findOneBy(["id" => $planetId]);
+        if(!$planet->getGpsPoint()->isVisitedForDailyQuest()){
+            $dailyVisitedPlanets = count($this->gpsPointRepository->findBy(["isVisitedForDailyQuest" => true]));
+            $gainForReachingPlanet = $this->getGainForReachingPlanet($dailyVisitedPlanets);
+            $gainForTravel = $this->getGainForTravel($distance);
+            $gainForValidatingQuests = 0;
+            $gain = $gainForReachingPlanet + $gainForTravel + $gainForValidatingQuests;
+            /** @var \App\Entity\User $user */
+            $user = $this->getUser();
+            $moral = $user->getMoral();
+            $user->setMoral($moral + $gain);
+            $planet->getGpsPoint()->setIsVisitedForDailyQuest(true);
+            $this->entity->flush();
+            return $this->json([
+                "message" => "Planète visitée id : " . $planetId,
+                "moral" => $gain
+            ], 200);
+            } else {
+            return $this->json([
+                "message" => "Planète déjà visitée id : " . $planetId,
+                "moral" => 0,
+            ], 200);
+
+        }
+        // $longitudeData = $data['longitude'] ?? null;
         
     }
 }
