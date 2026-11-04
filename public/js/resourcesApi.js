@@ -1,4 +1,3 @@
-let baseUrl = 'http://localhost:8000'
 async function fetchResources(planet) {
     try {
         const url = baseUrl + '/game/api/resources/get';

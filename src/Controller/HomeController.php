@@ -33,7 +33,7 @@ class HomeController extends AbstractController
         ]);
     }
     #[Route('/game/home/og', name: 'app_home_game_og')]
-    public function homeGameOg(PlanetResourceRepository $planetResourceRepository, PlanetRepository $planetRepository, BuildingService $buildingService): Response
+    public function homeGameOg(PlanetResourceRepository $planetResourceRepository, PlanetRepository $planetRepository, BuildingService $buildingService, ConstantService $constantService): Response
     {
         // Récupérer le paramètre 'component' (renvoie null si absent, avec une valeur par défaut facultative)
         // $component = $request->query->get('component');
@@ -55,6 +55,7 @@ class HomeController extends AbstractController
             // 'researches' => $user->getResearchesPlayer(),
             'component' => 'overview',
             'occupation' => $buildingService->getBuildingsCountByPlanet($planet),
+            'domain' => $constantService->getDomain(),
         ]);
     }
 }

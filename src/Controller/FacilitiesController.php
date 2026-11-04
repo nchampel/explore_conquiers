@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\PlanetRepository;
 use App\Repository\PlanetResourceRepository;
+use App\Service\ConstantService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class FacilitiesController extends AbstractController
 {
     #[Route('/facilities', name: 'app_facilities')]
-    public function index(PlanetRepository $planetRepository, PlanetResourceRepository $planetResourceRepository): Response
+    public function index(PlanetRepository $planetRepository, PlanetResourceRepository $planetResourceRepository, ConstantService $constantService): Response
     {
         // Récupérer le paramètre 'component' (renvoie null si absent, avec une valeur par défaut facultative)
         // $component = $request->query->get('component');
@@ -31,6 +32,7 @@ class FacilitiesController extends AbstractController
             // 'defences' => $planet->getPlanetDefences(),
             // 'vessels' => $planet->getPlanetVessels(),
             // 'researches' => $user->getResearchesPlayer(),
+            'domain' => $constantService->getDomain(),
             'component' => 'facilities',
         ]);
     }

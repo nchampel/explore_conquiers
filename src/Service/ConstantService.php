@@ -14,4 +14,7 @@ class ConstantService
     public function getGalaxiesNumber(): int{
         return $this->constantRepository->findOneBy(["name" => "nombre de galaxies"])->getValue();
     }
+    public function getDomain(): int{
+        return $this->constantRepository->findOneBy(["name" => "domaine"])->getValue() == 1 ? 'http://localhost:8000' : 'https://explore-conquiers.siextra.fr';
+    }
 }
