@@ -49,7 +49,7 @@ class RegistrationController extends AbstractController
             
             do {
                 $position = random_int(1, 15);
-                $gSystem = random_int(1, 50);
+                $gSystem = random_int(1, 12);
                 $userPlanet = $planetRepository->findOneBy(["galaxy" => 1, "gSystem" => $gSystem, "position" => $position]);
                 $isPlanetOccupied = $userPlanet->getUser();
                 if(!$isPlanetOccupied){
