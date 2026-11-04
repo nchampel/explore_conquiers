@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Repository\PlanetRepository;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,6 +13,8 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/api')]
 class ApiPlanetController extends AbstractController
 {
+    public function __construct(private PlanetRepository $planetRepository, private LoggerInterface $logger){}
+
     // #[Route('/api/planet', name: 'app_api_planet')]
     // public function index(): Response
     // {
@@ -21,39 +25,22 @@ class ApiPlanetController extends AbstractController
     #[Route('/gps/planet/get', name: 'app_api_gps_planets_get', methods: ["POST"])]
     public function index(Request $request): Response
     {
-        // $playerPosition = ["latitude" => 43.4237596, "longitude" => 5.2876443];
-        // $data = json_decode($request->getContent(), true);
-        // $latitudeData = $data['latitude'] ?? null;
-        // $longitudeData = $data['longitude'] ?? null;
-        // $playerPosition = ["latitude" => $latitudeData, "longitude" => $longitudeData];
-        // // on récupère les ressources récoltables et on vérifie si elles sont pas périmées
-        // $recoltableResources = [];
-        // $resources = $resourceRepository->findResourcesAroundPlayer($playerPosition);
-        // $countOutdatedResources = 0;
-        // $now = new \DateTimeImmutable('now', new \DateTimeZone('Europe/Paris'));
+        $playerPosition = ["latitude" => 43.4237596, "longitude" => 5.2876443];
+        $planets = $this->planetRepository->findPlanetsAroundPlayer($playerPosition);
+        
 
-        // foreach($resources as $resource){
-        //     $isOutdated = $resourceService->determinateResourceIsCollectable($resource, $now);
-        //     if($isOutdated){
-        //         $countOutdatedResources++;
-        //         $resource->setIsCollectable(false);
-        //         $this->entityManager->persist($resource);
-        //     } else {
-        //         $recoltableResources[] = $resource;
-        //     }
-        // }
-        // if($countOutdatedResources > 0){
-        //     $this->entityManager->flush();
-        // }
+        foreach($planets as $planet){
+            $this->logger->notice($planet->getId());
+        }
 
-        // return $this->json([
-        //         'message' => "Ressources récupérées",
-        //             'resources' => $recoltableResources,
-        //         ], 200, [], [
-        //             'groups' => [
-        //                 'resource:read',
-        //             ],
-        //     ]);
+        return $this->json([
+                'message' => "Planètes récupéréees",
+                    'planets' => $planets,
+                ], 200, [], [
+                    'groups' => [
+                        'planet:read',
+                    ],
+            ]);
         
     
 

@@ -11,4 +11,7 @@ class ConstantService
     public function getSpeedGame(): int{
         return $this->constantRepository->findOneBy(["name" => "vitesse"])->getValue();
     }
+    public function getGalaxiesNumber(): int{
+        return $this->constantRepository->findOneBy(["name" => "nombre de galaxies"])->getValue();
+    }
 }

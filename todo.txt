@@ -65,3 +65,7 @@ tippy refonctionne (faut mettre title sur la balise)
 pour attaquer, il faut points d'attaque. on les a en se déplaçant, quête journalière, du genre aller à lieu x, puis lieu y ?, course entre 2 pts, renouvelable, on choisit les points, 
 récompense points en fonction du temps et de la distance entre les 2 points
 en tout cas en attendant projet avance, je peux faire, pour faire du sport, atteindre x points pour un niveau
+
+1/11
+
+faire entity pour point gps

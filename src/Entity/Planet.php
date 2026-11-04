@@ -6,6 +6,7 @@ use App\Repository\PlanetRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 use function PHPUnit\Framework\throwException;
 
@@ -15,6 +16,7 @@ class Planet
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['planet:read'])]
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'planets')]
@@ -55,6 +57,14 @@ class Planet
 
     #[ORM\OneToOne(mappedBy: 'planet', cascade: ['persist', 'remove'])]
     private ?PlanetResource $planetResource = null;
+
+    #[ORM\ManyToOne(inversedBy: 'planet')]
+    #[ORM\JoinColumn(nullable: true)]
+    #[Groups(['planet:read'])]
+    private ?GpsPoint $gpsPoint = null;
+
+    #[ORM\Column]
+    private ?bool $hasAsteroid = null;
 
     public function __construct()
     {
@@ -198,7 +208,7 @@ class Planet
     //     return $this;
     // }
 
-    public function isIsDestroyed(): ?bool
+    public function isDestroyed(): ?bool
     {
         return $this->isDestroyed;
     }
@@ -352,4 +362,30 @@ class Planet
 
         return null; // Retourne null si le bâtiment n'est pas encore construit sur la planète
     }
+
+    public function getGpsPoint(): ?GpsPoint
+    {
+        return $this->gpsPoint;
+    }
+
+    public function setGpsPoint(?GpsPoint $gpsPoint): static
+    {
+        $this->gpsPoint = $gpsPoint;
+
+        return $this;
+    }
+
+    public function hasAsteroid(): ?bool
+    {
+        return $this->hasAsteroid;
+    }
+
+    public function setHasAsteroid(bool $hasAsteroid): static
+    {
+        $this->hasAsteroid = $hasAsteroid;
+
+        return $this;
+    }
+
+    
 }

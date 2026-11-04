@@ -125,15 +125,16 @@ class PlanetService
     }
 
     public function generatePlanets(int $galaxy){
+        // 2 	1 	25 	15 	-24 	0 	175 	Planète mère
         // $maxSystem = 499;
-        $maxSystem = 50;
+        $maxSystem = 12;
         for($system = 1 ; $system <= $maxSystem ; $system++){
             for($position = 1 ; $position <= 15 ; $position++){
                 // $alea = random_int(1, 4);
                 // if($alea != 1){
                     // if($this->chainedCompareEqual(1, 3, $position)){
                         // $aleaFinal = random_int(1, 4);
-                        // if($aleaFinal == 1){
+                        // if($aleaFinal == 1){ 
                             $fields = $this->generateFields($position);
                             $temperature = $this->generateTemperature($position);
 
