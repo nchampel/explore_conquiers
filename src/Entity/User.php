@@ -35,7 +35,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     #[Groups(['user:read'])]
-    private ?int $moral = null;
+    private ?int $moral = 0;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: PlanetBuilding::class)]
     private Collection $planetBuildings;
