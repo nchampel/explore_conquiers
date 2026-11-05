@@ -37,13 +37,17 @@ class ApiPlanetController extends AbstractController
         //     ]
             
         // ]);
-        $playerPosition = ["latitude" => 43.4237596, "longitude" => 5.2876443];
+        $data = json_decode($request->getContent(), true);
+        $latitude = $data['latitude'] ?? null;
+        $longitude = $data['longitude'] ?? null;
+        $playerPosition = ["latitude" => $latitude, "longitude" => $longitude];
+        // $playerPosition = ["latitude" => 43.4237596, "longitude" => 5.2876443];
         $planets = $this->planetRepository->findPlanetsAroundPlayer($playerPosition);
         
 
-        foreach($planets as $planet){
-            $this->logger->notice($planet->getId());
-        }
+        // foreach($planets as $planet){
+        //     $this->logger->notice($planet->getId());
+        // }
 
         return $this->json([
                 'message' => "Planètes récupéréees",
