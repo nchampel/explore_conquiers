@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\LogPosition;
 use App\Repository\GpsPointRepository;
 use App\Repository\PlanetRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -209,6 +210,39 @@ class ApiPlanetController extends AbstractController
 
         }
         // $longitudeData = $data['longitude'] ?? null;
+        
+    }
+    #[Route('/gps/quest/log-position/save', name: 'api_gps_quest_log_position_save', methods: ["POST"])]
+    public function saveLogPosition(Request $request): Response
+    {
+        /** @var \App\Entity\User $user */
+        $data = json_decode($request->getContent(), true);
+        $latitude = $data['latitude'] ?? null;
+        $longitude = $data['longitude'] ?? null;
+        $accuracy = $data['accuracy'] ?? null;
+        $stepDistance = $data['stepDistance'] ?? null;
+        $startPlanetId = $data['startPlanetId'] ?? null;
+        $destinationPlanetId = $data['destinationPlanetId'] ?? null;
+
+        $logPosition = new LogPosition();
+        $logPosition->setUser($this->getUser());
+        $logPosition->setAccuracy($accuracy);
+        $logPosition->setLatitude($latitude);
+        $logPosition->setLongitude($longitude);
+        $logPosition->setSpeed(round(($stepDistance / 10) * (3600 / 1000), 1));
+        $logPosition->setStepDistance($stepDistance);
+        $logPosition->setStartPlanet($startPlanetId);
+        $logPosition->setDestinationGpsPoint($destinationPlanetId);
+        $logPosition->setCreatedAt(new \DateTimeImmutable('now', new \DateTimeZone('Europe/Paris')));
+        $this->entity->persist($logPosition);
+        $this->entity->flush();
+        // $planet = $this->planetRepository->findOneBy(["id" => $planetId]);
+        
+        
+        return $this->json([
+            "message" => "Log de position enregistré",
+        ], 200);
+           
         
     }
 }

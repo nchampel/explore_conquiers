@@ -46,12 +46,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: ResearchPlayer::class, orphanRemoval: true)]
     private Collection $researchesPlayer;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: LogPosition::class, orphanRemoval: true)]
+    private Collection $logPositions;
+
 
     public function __construct()
     {
         $this->planetBuildings = new ArrayCollection();
         $this->planets = new ArrayCollection();
         $this->researchesPlayer = new ArrayCollection();
+        $this->logPositions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -252,6 +256,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setMoral(int $moral): static
     {
         $this->moral = $moral;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, LogPosition>
+     */
+    public function getLogPositions(): Collection
+    {
+        return $this->logPositions;
+    }
+
+    public function addLogPosition(LogPosition $logPosition): static
+    {
+        if (!$this->logPositions->contains($logPosition)) {
+            $this->logPositions->add($logPosition);
+            $logPosition->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLogPosition(LogPosition $logPosition): static
+    {
+        if ($this->logPositions->removeElement($logPosition)) {
+            // set the owning side to null (unless already changed)
+            if ($logPosition->getUser() === $this) {
+                $logPosition->setUser(null);
+            }
+        }
 
         return $this;
     }

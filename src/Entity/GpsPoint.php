@@ -40,9 +40,17 @@ class GpsPoint
     #[Groups(['planet:read'])]
     private ?bool $isVisitedForDailyQuest = null;
 
+    #[ORM\OneToMany(mappedBy: 'startPlanet', targetEntity: LogPosition::class)]
+    private Collection $logPositionsStart;
+
+    #[ORM\OneToMany(mappedBy: 'destinationGpsPoint', targetEntity: LogPosition::class)]
+    private Collection $logPositionsDestination;
+
     public function __construct()
     {
         $this->planet = new ArrayCollection();
+        $this->logPositionsStart = new ArrayCollection();
+        $this->logPositionsDestination = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -138,6 +146,66 @@ class GpsPoint
     public function setIsVisitedForDailyQuest(bool $isVisitedForDailyQuest): static
     {
         $this->isVisitedForDailyQuest = $isVisitedForDailyQuest;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, LogPosition>
+     */
+    public function getLogPositionsStart(): Collection
+    {
+        return $this->logPositionsStart;
+    }
+
+    public function addLogPositionStart(LogPosition $logPositionStart): static
+    {
+        if (!$this->logPositionsStart->contains($logPositionStart)) {
+            $this->logPositionsStart->add($logPositionStart);
+            $logPositionStart->setStartPlanet($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLogPositionStart(LogPosition $logPositionStart): static
+    {
+        if ($this->logPositionsStart->removeElement($logPositionStart)) {
+            // set the owning side to null (unless already changed)
+            if ($logPositionStart->getStartPlanet() === $this) {
+                $logPositionStart->setStartPlanet(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, LogPosition>
+     */
+    public function getLogPositionsDestination(): Collection
+    {
+        return $this->logPositionsDestination;
+    }
+
+    public function addLogPositionsDestination(LogPosition $logPositionsDestination): static
+    {
+        if (!$this->logPositionsDestination->contains($logPositionsDestination)) {
+            $this->logPositionsDestination->add($logPositionsDestination);
+            $logPositionsDestination->setDestinationGpsPoint($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLogPositionsDestination(LogPosition $logPositionsDestination): static
+    {
+        if ($this->logPositionsDestination->removeElement($logPositionsDestination)) {
+            // set the owning side to null (unless already changed)
+            if ($logPositionsDestination->getDestinationGpsPoint() === $this) {
+                $logPositionsDestination->setDestinationGpsPoint(null);
+            }
+        }
 
         return $this;
     }
